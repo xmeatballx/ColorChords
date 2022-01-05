@@ -57,9 +57,9 @@ addIcon.addEventListener("mouseup", () => {
 
 const removeIcon = document.querySelector(".remove_interval_button");
 removeIcon.addEventListener("mouseup", () => {
-  numNotes--;
-  activeNotes.splice(activeNotes.length - 1, 1);
+  activeNotes.splice(numNotes, 1);
   drawNotes(activeNotes);
+  numNotes--;
 });
 
 function createNote(index) {
@@ -90,13 +90,8 @@ function drawNotes(notes) {
 }
 
 function removeNoteFromActive(index) {
-  //remove note from list when its value is changed
   const matches = [];
   const match = activeNotes.find((matchItem) => matchItem[2] == index);
-  // activeNotes.forEach((item, i) => {
-  // matches.length = 2;
-  // console.log(match);
-  // if (match.length > 0) {
   matches.push(match);
   activeNotes.splice(activeNotes.indexOf(match), 1);
 }

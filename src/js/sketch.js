@@ -74,7 +74,11 @@ const sketch = (p) => {
         p.strokeWeight(2.5);
         p.stroke(255);
         p.fill(interval.activeColor(wheel, p));
-        p.ellipse(interval.point.x, interval.point.y, 50);
+        p.ellipse(
+          interval.point.x,
+          interval.point.y,
+          Math.min(p.width / 8, 50)
+        );
         p.pop();
       });
     }
@@ -95,9 +99,12 @@ const sketch = (p) => {
 
     p.rectMode(p.CENTER);
 
-    params.forEach((param, index) => {
+    const list = document.querySelector("#notes");
+    const notesList = [...list.children].filter((item, i) => i % 2 == 1);
+
+    notesList.forEach((param, index) => {
       //refactor this it's awful
-      const numNotes = document.querySelector("ul").children.length;
+      const numNotes = document.querySelector("ul").children.length / 2;
       const groupIndex = Math.floor(index / (params.length / numNotes));
       const interval = document.querySelector(`#interval${groupIndex}`);
       chord = new Chord(notes);
@@ -136,7 +143,7 @@ const sketch = (p) => {
   };
 
   p.draw = () => {
-    p.background(24, 24, 27);
+    p.background("#2c2c2c");
     p.push();
     p.text("Resizing...", p.width / 2, p.height / 2);
     p.pop();
@@ -147,8 +154,9 @@ const sketch = (p) => {
     chord.draw(wheel, p);
   };
 
-  let resizeTimer;
+  let prevWidth;
   p.windowResized = function () {
+    radius = p.height / 2 - 26;
     p.resizeCanvas(
       canvasContainer.clientWidth * 0.5 + 50,
       canvasContainer.clientWidth * 0.5 + 50
@@ -170,14 +178,18 @@ const sketch = (p) => {
   };
   function setPreviewColor(groupIndex) {
     const color = document.querySelector(`#color${groupIndex}`);
+    const color2 = document.querySelector(`#color2${groupIndex}`);
     const activeColor = notes[groupIndex].activeColor(wheel, p);
     color.style.backgroundColor = `rgba(${activeColor[0]}, ${activeColor[1]}, ${
       activeColor[2]
     }, ${activeColor[3] / 255})`;
+    color2.style.backgroundColor = `rgba(${activeColor[0]}, ${
+      activeColor[1]
+    }, ${activeColor[2]}, ${activeColor[3] / 255})`;
   }
   function updateParams() {
     params.forEach((param, index) => {
-      const numNotes = document.querySelector("ul").children.length;
+      const numNotes = document.querySelector("ul").children.length / 2;
       const groupIndex = Math.floor(index / (params.length / numNotes));
       const interval = document.querySelector(`#interval${groupIndex}`);
       const saturation = document.querySelector(`#saturation${groupIndex}`);
