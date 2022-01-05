@@ -15,255 +15,132 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <title>P5.js Sketch</title>
   </head>
-  <body class="bg-zinc-800">
-    <div class="w-full h-full">
+  <body class="bg-adobe-gray-800 root">
+    <div class="w-full h-full content-container">
       <header
-        class="flex flex-row justify-between w-full h-12 bg-zinc-800 fixed"
+        class="flex flex-row justify-between items-center w-full h-16 bg-adobe-gray-900"
       >
-        <h1 class="text-lg text-zinc-100 font-bold p-3 w-2/4">ColorChords</h1>
+        <h1 class="text-xl text-adobe-gray-100 font-bold p-3 w-2/4 h-min">
+          ColorChords
+        </h1>
         <span
-          class="
-            flex
-            justify-center
-            align-middle
-            border-2 border-zinc-100
-            rounded-full
-            text-base text-zinc-100
-            font-bold
-            px-2
-            m-3
-            h-min
-            leading-snug
-            text-center
-          "
+          class="inline-flex justify-center align-middle border-2 border-adobe-gray-100 rounded-full text-base text-adobe-gray-100 font-bold mr-3 w-6 h-6 leading-5 text-center"
           >i</span
         >
       </header>
       <main
-        class="
-          flex flex-col
-          md:content-center md:flex-row
-          w-full
-          h-sidebar
-          bg-zinc-900
-          pt-12
-          md:h-full
-        "
+        class="flex flex-col -mt-0.5 md:content-center md:flex-row w-full bg-adobe-gray-900"
       >
         <section
-          class="
-            w-full
-            h:2/4
-            md:h-full md:w-2/3
-            flex flex-col
-            items-center
-            bg-zinc-900
-          "
+          class="w-full h:2/4 md:h-sidebar md:w-2/3 flex flex-col items-center xl:pt-12 bg-adobe-gray-900"
         >
           <div
             id="canvas"
-            class="
-              w-smallCanvas
-              md:w-full
-              xl:w-10/12
-              h-min
-              md:h-full
-              mx-auto
-              md:my-6
-              flex
-              justify-center
-              self-center
-              items-center
-            "
+            class="w-smallCanvas basis-1/3 flex-shrink md:w-full xl:w-3/5 xl:mb-6 mx-auto flex justify-center self-center items-center"
           ></div>
           <div
-            class="
-              rotation
-              flex flex-wrap
-              justify-between
-              w-mobilecontent
-              md:w-2/4
-              mx-auto
-              my-3
-            "
+            class="rotation flex flex-wrap justify-between w-mobilecontent md:w-2/4 xl:w-2/4 mx-auto mt-3 mb-6"
           >
-            <label for="rotation" class="text-sm text-zinc-300"
+            <label for="rotation" class="text-sm text-adobe-gray-300"
               >Transpose</label
             >
-            <div class="rotation_value text-sm text-zinc-300">0</div>
+            <div class="rotation_value text-sm text-adobe-gray-300">0</div>
             <input
               type="range"
-              min="0"
-              max="360"
+              min="-180"
+              max="180"
               value="0"
-              class="slider w-full"
+              class="slider dark w-full mt-3"
               name="rotation"
               id="rotation"
             />
           </div>
           <div
             id="piano_container"
-            class="
-              md:w-full md:h-full
-              w-mobilecontent
-              mx-auto
-              flex
-              md:items-end
-            "
+            class="md:w-full xl:w-2/4 h-full w-mobilecontent mx-auto flex md:items-end xl:items-start"
           ></div>
         </section>
+        <div
+          class="preview_container w-mobilecontent mx-auto md:w-64 md:h-full h-32 flex flex-row md:flex-col md:hidden flex-wrap md:flex-nowrap pt-3"
+        ></div>
         <aside
-          class="
-            flex flex-col
-            w-mobilecontent
-            h-sidebarsmall
-            mx-auto
-            mt-3
-            md:mt-0 md:w-1/3 md:h-sidebar
-            bg-zinc-800
-            overflow-hidden
-          "
+          class="flex-auto flex flex-col my-3 md:m-0 w-mobilecontent mx-auto md:w-1/3 md:h-sidebar bg-adobe-gray-900"
         >
           <div class="w-full plus_container flex justify-center">
             <i
-              class="
-                fas
-                fa-plus
-                add_interval_button
-                text-zinc-200
-                rounded-full
-                flex
-                justify-center
-                p-1
-                m-0.5
-              "
+              class="fas fa-plus add_interval_button text-adobe-gray-200 rounded-full flex justify-center p-1 m-0.5"
             ></i>
             <i
-              class="
-                fas
-                fa-minus
-                remove_interval_button
-                text-zinc-200
-                rounded-full
-                flex
-                justify-center
-                p-1
-                m-0.5
-              "
+              class="fas fa-minus remove_interval_button text-adobe-gray-200 rounded-full flex justify-center p-1 m-0.5"
             ></i>
           </div>
           <ul
-            class="
-              notes
-              overflow-y-scroll
-              scrollbar scrollbar-thin
-              w-full
-              h-full
-            "
+            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin w-full mb-3"
             id="notes"
           >
-            <li class="note w-full h-max p-3">
-              <select
-                name="interval"
-                class="
-                  param
-                  form-select
-                  bg-zinc-800 bg-clip-border
-                  text-sm text-zinc-300
-                  font-normal
-                  transition
-                  ease-in-out
-                  m-0
-                  p-0
-                  w-full
-                  mb-2
-                  shadow-sm
-                  focus:text-zinc-300
-                  focus:bg-zinc-700
-                  focus:border-blue-600
-                  focus:outline-none
-                "
-                aria-label="Default select example"
-                value="1"
-              >
-                <option value="1" class="text-sm">Fundamental</option>
-                <option value="1.067" class="text-sm">Minor Second</option>
-                <option value="1.125" class="text-sm">Major Second</option>
-                <option value="1.200" class="text-sm">Minor Third</option>
-                <option value="1.250" class="text-sm">Major Third</option>
-                <option value="1.333" class="text-sm">Perfect Fourth</option>
-                <option value="1.414" class="text-sm">Tritone</option>
-                <option value="1.500" class="text-sm">Perfect Fifth</option>
-                <option value="1.600" class="text-sm">Minor Sixth</option>
-                <option value="1.666" class="text-sm">Major Sixth</option>
-                <option value="1.777" class="text-sm">Minor Seventh</option>
-                <option value="1.875" class="text-sm">Major Seventh</option>
-              </select>
-              <div
-                class="color_preview w-full h-6"
-                style="background-color: rgb(255, 5, 5)"
-              ></div>
-              <div class="flex flex-wrap justify-between w-full">
-                <label for="octave" class="text-sm text-zinc-300">Octave</label>
-                <div class="octave_value text-sm text-zinc-300">0</div>
-                <input
-                  type="range"
-                  name="octave"
-                  class="
-                    param
-                    octave
-                    form-range
-                    w-full
-                    h-3
-                    p-0
-                    bg-transparent
-                    focus:outline-none focus:ring-0 focus:shadow-none
-                  "
-                  min="-4"
-                  max="4"
-                  value="0"
-                />
-              </div>
-              <div class="flex flex-wrap justify-between w-full">
-                <label for="saturation" class="text-sm text-zinc-300"
-                  >Velocity</label
+            <hr class="w-full text-adobe-gray-300" />
+            <li class="note w-full h-max p-3 md:flex md:flex-row">
+              <div class="controls md:w-2/3">
+                <select
+                  name="interval"
+                  class="param text-lg text-adobe-gray-300 font-normal transition ease-in-out m-0 p-1 bg-adobe-gray-900 w-full mb-2 shadow-sm border border-adobe-gray-300 rounded focus:text-adobe-gray-300 focus:border-blue-600 focus:outline-none"
+                  aria-label="Default select example"
+                  value="1"
                 >
-                <div class="saturation_value text-sm text-zinc-300">100%</div>
-                <input
-                  type="range"
-                  name="saturation"
-                  class="
-                    param
-                    saturation
-                    form-range
-                    w-full
-                    h-3
-                    p-0
-                    bg-transparent
-                    focus:outline-none focus:ring-0 focus:shadow-none
-                  "
-                  min="0"
-                  max="100"
-                  value="100"
-                />
+                  <option value="1" class="text-sm">Fundamental</option>
+                  <option value="1.067" class="text-sm">Minor Second</option>
+                  <option value="1.125" class="text-sm">Major Second</option>
+                  <option value="1.200" class="text-sm">Minor Third</option>
+                  <option value="1.250" class="text-sm">Major Third</option>
+                  <option value="1.333" class="text-sm">Perfect Fourth</option>
+                  <option value="1.414" class="text-sm">Tritone</option>
+                  <option value="1.500" class="text-sm">Perfect Fifth</option>
+                  <option value="1.600" class="text-sm">Minor Sixth</option>
+                  <option value="1.666" class="text-sm">Major Sixth</option>
+                  <option value="1.777" class="text-sm">Minor Seventh</option>
+                  <option value="1.875" class="text-sm">Major Seventh</option>
+                </select>
+                <div
+                  class="color_preview w-full h-6 md:hidden"
+                  style="background-color: rgb(255, 5, 5)"
+                ></div>
+                <div class="flex flex-wrap justify-between w-full mt-3">
+                  <label for="octave" class="text-sm text-adobe-gray-300"
+                    >Octave</label
+                  >
+                  <div class="octave_value text-sm text-adobe-gray-300">0</div>
+                  <input
+                    type="range"
+                    name="octave"
+                    class="param octave slider dark mt-3 mb-6 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none"
+                    min="-4"
+                    max="4"
+                    value="0"
+                  />
+                </div>
+                <div class="flex flex-wrap justify-between w-full">
+                  <label for="saturation" class="text-sm text-adobe-gray-300"
+                    >Velocity</label
+                  >
+                  <div class="saturation_value text-sm text-adobe-gray-300">
+                    100%
+                  </div>
+                  <input
+                    type="range"
+                    name="saturation"
+                    class="param saturation slider dark mt-3 mb-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none"
+                    min="0"
+                    max="100"
+                    value="100"
+                  />
+                </div>
               </div>
+              <div
+                class="color_preview hidden md:block w-2/4 flex-grow ml-3 border-2 border-adobe-gray-300"
+              ></div>
             </li>
           </ul>
         </aside>
-        <div
-          class="
-            preview_container
-            w-mobilecontent
-            mx-auto
-            md:w-64 md:h-full
-            h-32
-            flex flex-row
-            md:flex-col
-            flex-wrap
-            md:flex-nowrap
-            p-3
-          "
-        ></div>
       </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
