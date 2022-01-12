@@ -1,19 +1,42 @@
 /* eslint-disable no-undef, no-unused-vars */
 let numNotes = 0;
 const listItems = document.querySelector("#notes");
-const notesList = [...listItems.children].filter(
-  (item, index) => index % 2 == 1
-);
 const note = document.querySelector(".note");
+const notesList = [note];
 initIntervals();
 setTimeout(() => {
   addPreviewColor();
 }, 500);
 
+const root = document.querySelector(".root");
+const toggle = document.querySelector(".toggle");
+const switcher = document.querySelector(".switch");
+const icon = document.querySelector(".icon");
+const mask = document.querySelector(".mask");
+
+let darkMode = false;
+toggle.onclick = () => {
+  darkMode = !darkMode;
+  if (darkMode == true) {
+    root.style.setProperty("--bg-main", "var(--gray-900)");
+    root.style.setProperty("--bg-focus", "var(--gray-800)");
+    root.style.setProperty("--mid", "var(--gray-500)");
+    root.style.setProperty("--high-contrast", "var(--gray-100)");
+  } else {
+    root.style.setProperty("--bg-main", "var(--gray-100)");
+    root.style.setProperty("--bg-focus", "var(--gray-500)");
+    root.style.setProperty("--mid", "var(--gray-900)");
+    root.style.setProperty("--high-contrast", "var(--gray-800)");
+  }
+  switcher.classList.toggle("switch-left");
+  switcher.classList.toggle("switch-right");
+  mask.classList.toggle("nomask");
+  icon.classList.toggle("sun");
+};
+
 const rotation = document.querySelector(".rotation");
 rotation.addEventListener("input", (e) => addPreviewColor());
 
-const root = document.querySelector(".content-container");
 const addIntervalIcon = document.querySelector(".add_interval_button");
 addIntervalIcon.addEventListener("mouseup", () => {
   numNotes++;
@@ -32,20 +55,18 @@ addIntervalIcon.addEventListener("mouseup", () => {
   [...allParams].forEach((param) => {
     param.addEventListener("change", (e) => addPreviewColor());
   });
-
-  console.log(numNotes);
   document.querySelector(`#note${numNotes}`).scrollIntoView();
 });
 
-const removeIntervalIcon = document.querySelector(".remove_interval_button");
-removeIntervalIcon.addEventListener("mouseup", () => {
-  numNotes--;
-  notesList.length -= 1;
-  listItems.removeChild(listItems.lastChild);
-  listItems.removeChild(listItems.lastChild);
-  removePreviewColor();
-  document.querySelector(`#note${numNotes}`).scrollIntoView();
-});
+// const removeIntervalIcon = document.querySelector(".remove_interval_button");
+// removeIntervalIcon.addEventListener("mouseup", () => {
+//   numNotes--;
+//   notesList.length -= 1;
+//   listItems.removeChild(listItems.lastChild);
+//   listItems.removeChild(listItems.lastChild);
+//   removePreviewColor();
+//   document.querySelector(`#note${numNotes}`).scrollIntoView();
+// });
 
 function initIntervals() {
   notesList.forEach((noteElement, index) => {

@@ -2,6 +2,8 @@ import { list } from "postcss";
 import { Instrument } from "../../node_modules/piano-chart/piano-chart.esm.js";
 
 const piano = new Instrument(document.getElementById("piano_container"), {
+  startOctave: 0,
+  endOctave: 9,
   keyPressStyle: "vivid",
 });
 piano.create();
@@ -55,12 +57,12 @@ addIcon.addEventListener("mouseup", () => {
   });
 });
 
-const removeIcon = document.querySelector(".remove_interval_button");
-removeIcon.addEventListener("mouseup", () => {
-  activeNotes.splice(numNotes, 1);
-  drawNotes(activeNotes);
-  numNotes--;
-});
+// const removeIcon = document.querySelector(".remove_interval_button");
+// removeIcon.addEventListener("mouseup", () => {
+//   activeNotes.splice(numNotes, 1);
+//   drawNotes(activeNotes);
+//   numNotes--;
+// });
 
 function createNote(index) {
   let noteName = ["", 0];

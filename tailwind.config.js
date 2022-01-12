@@ -9,6 +9,7 @@ module.exports = {
       width: {
         mobilecontent: "90%",
         smallCanvas: "250px",
+        actionBar: "6.66%",
       },
       colors: {
         "adobe-gray-50": "#ffffff",
@@ -21,6 +22,11 @@ module.exports = {
         "adobe-gray-700": "#6e6e6e",
         "adobe-gray-800": "#4b4b4b",
         "adobe-gray-900": "#2c2c2c",
+        main: "var(--bg-main)",
+        focus: "var(--bg-focus)",
+        light: "var(--light)",
+        mid: "var(--mid)",
+        highcontrast: "var(--high-contrast)",
       },
     },
   },

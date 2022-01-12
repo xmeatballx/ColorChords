@@ -17,6 +17,18 @@ let params = Array.from(document.getElementsByClassName("param"));
 
 /* eslint-disable no-undef, no-unused-vars */
 
+let background = "#b3b3b3";
+let root = document.querySelector(".root");
+let darkMode = false;
+document.querySelector(".toggle").addEventListener("click", () => {
+  darkMode = !darkMode;
+  if (darkMode) {
+    background = "#4b4b4b";
+  } else {
+    background = "#b3b3b3";
+  }
+});
+
 const sketch = (p) => {
   class Interval {
     constructor(interval, octave, radius, saturation, rotation) {
@@ -89,8 +101,8 @@ const sketch = (p) => {
 
   p.setup = () => {
     p.createCanvas(
-      canvasContainer.clientWidth * 0.5 + 50,
-      canvasContainer.clientWidth * 0.5 + 50
+      canvasContainer.clientHeight * 0.9 + 50,
+      canvasContainer.clientHeight * 0.9 + 50
     );
     radius = p.height / 2 - 26;
     w = p.width - 50;
@@ -100,34 +112,34 @@ const sketch = (p) => {
     p.rectMode(p.CENTER);
 
     const list = document.querySelector("#notes");
-    const notesList = [...list.children].filter((item, i) => i % 2 == 1);
+    const notesList = [list.children[1]];
 
     notesList.forEach((param, index) => {
       //refactor this it's awful
       const numNotes = document.querySelector("ul").children.length / 2;
       const groupIndex = Math.floor(index / (params.length / numNotes));
       const interval = document.querySelector(`#interval${groupIndex}`);
-      chord = new Chord(notes);
       notes[groupIndex] = new Interval(interval.value, 0, radius, 1, 0);
+      chord = new Chord(notes);
       updateParams();
       setPreviewColor(groupIndex);
 
-      const intervalAdd = document.querySelector(".plus_container .fa-plus");
+      const intervalAdd = document.querySelector(".add_interval_button");
       intervalAdd.onclick = () => {
         params = Array.from(document.getElementsByClassName("param"));
         updateParams();
         chord = new Chord(notes);
       };
 
-      const intervalRemove = document.querySelector(
-        ".plus_container .fa-minus"
-      );
-      intervalRemove.onclick = () => {
-        params = Array.from(document.getElementsByClassName("param"));
-        updateParams();
-        notes.splice(notes.length - 1);
-        chord = new Chord(notes);
-      };
+      // const intervalRemove = document.querySelector(
+      //   ".plus_container .fa-minus"
+      // );
+      // intervalRemove.onclick = () => {
+      //   params = Array.from(document.getElementsByClassName("param"));
+      //   updateParams();
+      //   notes.splice(notes.length - 1);
+      //   chord = new Chord(notes);
+      // };
 
       const rotation = document.querySelector(".slider");
       rotation.oninput = (e) => {
@@ -137,13 +149,12 @@ const sketch = (p) => {
         });
         chord = new Chord(notes);
       };
-
       chord = new Chord(notes);
     });
   };
 
   p.draw = () => {
-    p.background("#2c2c2c");
+    p.background(background);
     p.push();
     p.text("Resizing...", p.width / 2, p.height / 2);
     p.pop();
@@ -158,8 +169,8 @@ const sketch = (p) => {
   p.windowResized = function () {
     radius = p.height / 2 - 26;
     p.resizeCanvas(
-      canvasContainer.clientWidth * 0.5 + 50,
-      canvasContainer.clientWidth * 0.5 + 50
+      canvasContainer.clientHeight * 0.9 + 50,
+      canvasContainer.clientHeight * 0.9 + 50
     );
     // p.push();
     // p.pop();
@@ -178,14 +189,14 @@ const sketch = (p) => {
   };
   function setPreviewColor(groupIndex) {
     const color = document.querySelector(`#color${groupIndex}`);
-    const color2 = document.querySelector(`#color2${groupIndex}`);
+    // const color2 = document.querySelector(`#color2${groupIndex}`);
     const activeColor = notes[groupIndex].activeColor(wheel, p);
     color.style.backgroundColor = `rgba(${activeColor[0]}, ${activeColor[1]}, ${
       activeColor[2]
     }, ${activeColor[3] / 255})`;
-    color2.style.backgroundColor = `rgba(${activeColor[0]}, ${
-      activeColor[1]
-    }, ${activeColor[2]}, ${activeColor[3] / 255})`;
+    // color2.style.backgroundColor = `rgba(${activeColor[0]}, ${
+    //   activeColor[1]
+    // }, ${activeColor[2]}, ${activeColor[3] / 255})`;
   }
   function updateParams() {
     params.forEach((param, index) => {
