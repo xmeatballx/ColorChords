@@ -16,33 +16,30 @@
     <title>ColorChords</title>
   </head>
   <body class="bg-adobe-gray-800 root">
-    <div class="w-full h-full content-container">
-      <header
+    <!-- app wrapper  -->
+    <div class="w-full content-container">
+    <!-- header   -->
+    <header
         class="flex flex-row justify-between items-center w-full h-16 bg-main"
       >
-        <h1 class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min">
-          ColorChords
-        </h1>
-        <div
-          class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center"
-        >
-          <div
-            class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform"
-          >
-            <div
-              class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full"
-            >
-              <div
-                class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"
-              ></div>
-            </div>
+      <h1 class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min">
+        ColorChords
+      </h1>
+      <!-- dark mode switch  -->
+      <div class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center">
+        <div class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform">
+          <div class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full">
+            <div class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"></div>
           </div>
         </div>
-      </header>
-      <main class="flex flex-col -mt-0.5 md:flex-row w-full bg-focus">
-        <aside class="w-24 bg-main">
+      </div>
+    </header>
+    <!-- end header -->
+
+      <main class="flex flex-col h-full md:flex-row w-full bg-focus">
+        <aside class="bg-main w-full h-16 flex items-center fixed bottom-0 md:block md:w-24">
           <hr />
-          <div class="h-1/3 flex flex-col items-center justify-evenly">
+          <div class="w-full h-1/3 flex flex-row md:flex-col items-center justify-between m-3 md:justify-evenly">
             <a href=""
               ><svg
                 width="32"
@@ -115,10 +112,10 @@
             </a>
           </div>
         </aside>
-        <section class="w-full h:2/4 md:h-sidebar flex flex-col bg-focus">
+        <section class="w-full h-2/4 md:h-sidebar flex flex-col bg-focus">
           <div
             id="canvas"
-            class="w-smallCanvas md:w-full md:h-full flex-grow xl:mb-6 mx-auto flex justify-center items-center"
+            class="w-smallCanvas md:w-full h-full flex-grow xl:mb-6 mx-auto flex justify-center items-center"
           ></div>
 
           <div
@@ -130,7 +127,7 @@
           class="preview_container w-mobilecontent mx-auto md:w-64 md:h-full h-32 flex flex-row md:flex-col md:hidden flex-wrap md:flex-nowrap pt-3"
         ></div>
         <aside
-          class="flex flex-col my-3 md:m-0 w-80 mx-auto md:h-sidebar bg-main"
+          class="flex flex-col mt-3 pb-16 md:m-0 w-full mx-auto md:h-sidebar bg-main"
         >
           <hr />
           <div
@@ -148,17 +145,9 @@
               id="rotation"
             />
           </div>
-          <!-- <div class="w-full plus_container flex justify-center hidden">
-            <i
-              class="fas fa-plus add_interval_button text-adobe-gray-200 rounded-full flex justify-center p-1 m-0.5"
-            ></i>
-            <i
-              class="fas fa-minus remove_interval_button text-adobe-gray-200 rounded-full flex justify-center p-1 m-0.5"
-            ></i>
-          </div> -->
           <hr />
           <ul
-            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3"
+            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3 "
             id="notes"
           >
             <li class="note w-full h-max p-3 md:flex md:flex-row">
