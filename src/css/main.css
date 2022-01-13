@@ -72,6 +72,21 @@ body {
 
 select {
   background-color: var(--bg-main) !important;
+  -webkit-appearance: none;
+}
+
+.interval-wrapper {
+ position: relative;
+}
+
+.interval-wrapper::before {
+  content: "v";
+  display: inline-block;
+  position: absolute;
+  right:.5rem;
+  top: .25rem;
+  
+  /* background: black; */
 }
 
 hr {
