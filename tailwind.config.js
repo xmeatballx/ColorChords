@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       height: {
         sidebar: "calc(100vh - 64px)",
+        sidebarstatic: "800px",
         sidebarsmall: "25vh",
       },
       width: {
