@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    "./src/js/app.js",
+    "./src/js/app.mjs",
     "./src/js/renderlist.mjs",
     "./src/js/pubsub.mjs",
     "./src/js/state.mjs",

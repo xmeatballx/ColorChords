@@ -18,31 +18,46 @@
   <body class="bg-main root flex justify-center">
     <!-- app wrapper  -->
     <div class="w-full max-w-screen-2xl max-h-fit content-container">
-    <!-- header   -->
-    <header
+      <!-- header   -->
+      <header
         class="flex flex-row justify-between items-center w-full h-16 bg-main"
       >
-      <h1 class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl">
-        ColorChords
-      </h1>
-      <!-- dark mode switch  -->
-      <div class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center">
-        <div class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform">
-          <div class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full">
-            <div class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"></div>
+        <h1
+          class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl"
+        >
+          ColorChords
+        </h1>
+        <!-- dark mode switch  -->
+        <div
+          class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center"
+          data-parameter="theme"
+        >
+          <div
+            class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform"
+          >
+            <div
+              class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full"
+            >
+              <div
+                class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"
+              ></div>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-    <!-- end header -->
+      </header>
+      <!-- end header -->
 
-    <!-- content container -->
-    <main class="flex flex-col h-full md:flex-row w-full md:h-auto bg-focus">
-      <!-- tab switcher     -->
-      <aside class="bg-main w-full h-16 flex flex-col items-center justify-center fixed bottom-0 md:relative md:items-start md:h-sidebar md:w-24">
-          <hr class="bg-main md:bg-focus"/>
+      <!-- content container -->
+      <main class="flex flex-col h-full md:flex-row w-full md:h-auto bg-focus">
+        <!-- tab switcher     -->
+        <aside
+          class="bg-main w-full h-16 flex flex-col items-center justify-center fixed bottom-0 md:relative md:items-start md:h-sidebar md:w-24"
+        >
+          <hr class="bg-main md:bg-focus" />
           <!-- icons -->
-          <div class="w-full flex flex-row md:flex-col items-center justify-between p-2 md:justify-start md:h-full md:gap-6">
+          <div
+            class="w-full flex flex-row md:flex-col items-center justify-between p-2 md:justify-start md:h-full md:gap-6"
+          >
             <a href=""
               ><svg
                 width="32"
@@ -128,7 +143,7 @@
           <!-- piano  -->
           <div
             id="piano_container"
-            class="md:w-full  h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
+            class="md:w-full h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
           ></div>
         </section>
         <!-- end focus container  -->
@@ -148,7 +163,9 @@
           <div
             class="param rotation flex flex-wrap justify-between w-full mx-auto p-3 mb-3"
           >
-            <label for="rotation" class="text-sm text-mid 2xl:text-2xl">Transpose</label>
+            <label for="rotation" class="text-sm text-mid 2xl:text-2xl"
+              >Transpose</label
+            >
             <div class="rotation_value text-sm text-mid 2xl:text-2xl">0</div>
             <input
               type="range"
@@ -165,7 +182,7 @@
           <hr />
           <!-- notes container  -->
           <ul
-            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3 "
+            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3"
             id="notes"
           >
             <!-- note  -->
@@ -173,25 +190,27 @@
               <div class="controls w-full">
                 <!-- interval  -->
                 <div class="interval-wrapper">
-                <select
-                  name="interval"
-                  class="param text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:text-light focus:border-blue-600 focus:outline-none"
-                  aria-label="Default select example"
-                  value="1"
-                >
-                  <option value="1" class="text-sm">Fundamental</option>
-                  <option value="1.067" class="text-sm">Minor Second</option>
-                  <option value="1.125" class="text-sm">Major Second</option>
-                  <option value="1.200" class="text-sm">Minor Third</option>
-                  <option value="1.250" class="text-sm">Major Third</option>
-                  <option value="1.333" class="text-sm">Perfect Fourth</option>
-                  <option value="1.414" class="text-sm">Tritone</option>
-                  <option value="1.500" class="text-sm">Perfect Fifth</option>
-                  <option value="1.600" class="text-sm">Minor Sixth</option>
-                  <option value="1.666" class="text-sm">Major Sixth</option>
-                  <option value="1.777" class="text-sm">Minor Seventh</option>
-                  <option value="1.875" class="text-sm">Major Seventh</option>
-                </select>
+                  <select
+                    name="interval"
+                    class="param text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:text-light focus:border-blue-600 focus:outline-none"
+                    aria-label="Default select example"
+                    value="1"
+                  >
+                    <option value="1" class="text-sm">Fundamental</option>
+                    <option value="1.067" class="text-sm">Minor Second</option>
+                    <option value="1.125" class="text-sm">Major Second</option>
+                    <option value="1.200" class="text-sm">Minor Third</option>
+                    <option value="1.250" class="text-sm">Major Third</option>
+                    <option value="1.333" class="text-sm">
+                      Perfect Fourth
+                    </option>
+                    <option value="1.414" class="text-sm">Tritone</option>
+                    <option value="1.500" class="text-sm">Perfect Fifth</option>
+                    <option value="1.600" class="text-sm">Minor Sixth</option>
+                    <option value="1.666" class="text-sm">Major Sixth</option>
+                    <option value="1.777" class="text-sm">Minor Seventh</option>
+                    <option value="1.875" class="text-sm">Major Seventh</option>
+                  </select>
                 </div>
                 <!-- end interval  -->
 
@@ -202,8 +221,12 @@
                 ></div>
 
                 <div class="flex flex-wrap justify-between w-full mt-3">
-                  <label for="octave" class="text-sm text-mid 2xl:text-2xl">Octave</label>
-                  <div class="octave_value text-sm text-mid 2xl:text-2xl">0</div>
+                  <label for="octave" class="text-sm text-mid 2xl:text-2xl"
+                    >Octave</label
+                  >
+                  <div class="octave_value text-sm text-mid 2xl:text-2xl">
+                    0
+                  </div>
                   <input
                     type="range"
                     name="octave"
@@ -217,7 +240,9 @@
                   <label for="saturation" class="text-sm text-mid 2xl:text-2xl"
                     >Velocity</label
                   >
-                  <div class="saturation_value text-sm text-mid 2xl:text-2xl">100%</div>
+                  <div class="saturation_value text-sm text-mid 2xl:text-2xl">
+                    100%
+                  </div>
                   <input
                     type="range"
                     name="saturation"
@@ -234,7 +259,7 @@
             </li>
           </ul>
           <!-- end notes container  -->
-          
+
           <!-- add note button  -->
           <button
             class="add_interval_button p-3 border border-mid mx-auto rounded text-mid 2xl:text-2xl font-medium justify-self-end mb-3"

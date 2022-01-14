@@ -1,10 +1,9 @@
 import { state } from "./state.mjs";
 import { pubsub } from "./pubsub.mjs";
 import { renderListTemplate } from "./renderlist.mjs";
+import { toggleDarkTheme } from "./eventhandler.mjs";
 
 function updateShaderUniforms() {}
-
-function toggleDarkTheme() {}
 
 renderListTemplate(state);
 
