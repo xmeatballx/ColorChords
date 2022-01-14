@@ -1,5 +1,12 @@
 module.exports = {
-  entry: ["./src/js/app.js","./src/js/renderlist.mjs", "./src/js/pubsub.mjs", "./src/js/state.mjs", "./src/js/eventhandler.mjs", "./src/js/piano.js"],
+  entry: [
+    "./src/js/app.js",
+    "./src/js/renderlist.mjs",
+    "./src/js/pubsub.mjs",
+    "./src/js/state.mjs",
+    "./src/js/eventhandler.mjs",
+    "./src/js/piano.mjs",
+  ],
   output: {
     filename: "bundle.js",
   },
