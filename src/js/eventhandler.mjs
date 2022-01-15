@@ -8,6 +8,7 @@ function attachListeners() {
     param.addEventListener("input", (e) => useParam(e));
   });
   const themeToggle = document.querySelector(".toggle");
+  console.log(themeToggle);
   themeToggle.addEventListener("click", (e) => useTheme(e));
 
   [...params].forEach((slider) => {
@@ -19,7 +20,6 @@ function useParam(e) {
   const index = e.target.getAttribute("data-index");
   const parameter = e.target.getAttribute("data-parameter");
   const value = e.target.value;
-  console.log(value);
   if (
     parameter == "velocity" ||
     parameter == "octave" ||
@@ -36,7 +36,8 @@ function useParam(e) {
 
 let darkMode = false;
 function useTheme(e) {
-  const parameter = e.target.getAttribute("data-parameter");
+  const parameter = e.currentTarget.getAttribute("data-parameter");
+  console.log(parameter);
   if (parameter == "theme") {
     darkMode = !darkMode;
     if (darkMode == true) {
