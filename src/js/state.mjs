@@ -10,7 +10,7 @@ export let state = {
       color: [255, 0, 0],
     },
     {
-      interval: 1.15,
+      interval: 1.067,
       octave: 0,
       velocity: 0.8,
       color: [137, 215, 220],

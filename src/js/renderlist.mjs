@@ -24,7 +24,7 @@ let styles = {
   velocityLabel: "text-sm text-mid 2xl:text-2xl",
   velocityValue: "slider_value text-sm text-mid 2xl:text-2xl",
   velocity:
-    "param saturation slider light mt-3 mb-3 form-range w-full md:w-72 p-0 focus:outline-none focus:ring-0 focus:shadow-none",
+    "param saturation slider light mt-3 mb-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none",
   colorPreview2:
     "color_preview hidden w-2/4 flex-grow ml-3 border-2 border-light",
 };
@@ -60,7 +60,7 @@ function renderListTemplate(state) {
     return `
     
     <li class="${styles.note}" data-index=${index}>
-			<div class=${styles.controls}>
+			<div class="${styles.controls}">
 				<div class="interval-wrapper">
 					<select name="interval" class="${
             styles.interval
@@ -122,7 +122,7 @@ function renderListTemplate(state) {
             styles.velocity
           }" min=0.0 max=1.0 value=${
       note.velocity
-    } step="0.1" data-index=${index} data-parameter="velocity"/>
+    } step="0.01" data-index=${index} data-parameter="velocity"/>
 				</div>
 			</div>
 			<div class=${styles.colorPreview2}></div>	

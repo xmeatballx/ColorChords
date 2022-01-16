@@ -7,6 +7,7 @@ function attachListeners() {
   [...params].forEach((param) => {
     param.addEventListener("input", (e) => useParam(e));
   });
+
   const themeToggle = document.querySelector(".toggle");
   console.log(themeToggle);
   themeToggle.addEventListener("click", (e) => useTheme(e));
@@ -14,6 +15,9 @@ function attachListeners() {
   [...params].forEach((slider) => {
     slider.addEventListener("input", (e) => updateControlsUI(e));
   });
+
+  const addColorButton = document.querySelector(".add_interval_button");
+  addColorButton.addEventListener("click", () => addNote);
 }
 
 function useParam(e) {
@@ -57,8 +61,12 @@ function updateControlsUI(e) {
   if (parameter == "transpose") valueDisplays[0].textContent = value;
   if (parameter == "octave") valueDisplays[index * 2 + 1].textContent = value;
   if (parameter == "velocity")
-    valueDisplays[index * 2 + 2].textContent = value * 100 + "%";
+    valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";
 }
+
+// function addNote(e) {
+//   state.notes.push()
+// }
 
 function toggleDarkTheme() {
   const root = document.querySelector(".root");
