@@ -51,4 +51,5 @@ function updatePiano(state) {
 
 updatePiano(state);
 
+pubsub.subscribe("note added", updatePiano);
 pubsub.subscribe("controls changed", updatePiano);

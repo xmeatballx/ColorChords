@@ -1,9 +1,20 @@
 import { state } from "./state.mjs";
 import { pubsub } from "./pubsub.mjs";
 import { renderListTemplate } from "./renderlist.mjs";
-import { toggleDarkTheme } from "./eventhandler.mjs";
+import { toggleDarkTheme, updateShaderUniforms } from "./eventhandler.mjs";
+import { note } from "./factories.mjs";
 
-function updateShaderUniforms() {}
+state.notes.push(
+  new note({ interval: 1, octave: 0, velocity: 1, color: [255, 0, 0] })
+);
+state.notes.push(
+  new note({
+    interval: 1.067,
+    octave: 0,
+    velocity: 0.8,
+    color: [137, 215, 220],
+  })
+);
 
 renderListTemplate(state);
 

@@ -1,5 +1,6 @@
 import { state } from "./state.mjs";
 import { pubsub } from "./pubsub.mjs";
+import { note } from "./factories.mjs";
 
 function attachListeners() {
   const params = document.querySelectorAll(".param");
@@ -9,7 +10,6 @@ function attachListeners() {
   });
 
   const themeToggle = document.querySelector(".toggle");
-  console.log(themeToggle);
   themeToggle.addEventListener("click", (e) => useTheme(e));
 
   [...params].forEach((slider) => {
@@ -17,7 +17,7 @@ function attachListeners() {
   });
 
   const addColorButton = document.querySelector(".add_interval_button");
-  addColorButton.addEventListener("click", () => addNote);
+  addColorButton.addEventListener("click", addNote);
 }
 
 function useParam(e) {
@@ -41,7 +41,6 @@ function useParam(e) {
 let darkMode = false;
 function useTheme(e) {
   const parameter = e.currentTarget.getAttribute("data-parameter");
-  console.log(parameter);
   if (parameter == "theme") {
     darkMode = !darkMode;
     if (darkMode == true) {
@@ -64,9 +63,30 @@ function updateControlsUI(e) {
     valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";
 }
 
-// function addNote(e) {
-//   state.notes.push()
-// }
+function updateShaderUniforms() {
+  state.shaderUniforms = new shaderUniforms({
+    wheelRadius: 0.9,
+    noteRadius: 0.1,
+    noteAngles: state.notes.map(
+      (note) => TWO_PI * note.interval + state.transpose * Math.PI * 180
+    ),
+    noteVelocities: state.notes.map((note) => note.velocity),
+    noteOctaves: state.notes.map((note) => note.octave / 4),
+  });
+}
+
+function addNote(e) {
+  const intervalSelect = document.querySelector(".interval");
+  state.notes.push(
+    new note({
+      interval: intervalSelect.children[state.notes.length % 12].value,
+      octave: 0,
+      velocity: 1,
+      color: [0, 0, 255],
+    })
+  );
+  pubsub.publish("note added", state);
+}
 
 function toggleDarkTheme() {
   const root = document.querySelector(".root");
@@ -85,11 +105,10 @@ function toggleDarkTheme() {
     root.style.setProperty("--mid", "var(--gray-900)");
     root.style.setProperty("--high-contrast", "var(--gray-800)");
   }
-  console.log(state.theme);
   switcher.classList.toggle("switch-left");
   switcher.classList.toggle("switch-right");
   mask.classList.toggle("nomask");
   icon.classList.toggle("sun");
 }
 
-export { attachListeners, toggleDarkTheme };
+export { attachListeners, toggleDarkTheme, updateShaderUniforms };

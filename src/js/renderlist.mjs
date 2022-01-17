@@ -139,6 +139,9 @@ function renderListTemplate(state) {
   container.innerHTML =
     transposeControl + listItems.join("") + "</ul>" + addNoteButton;
 
+  const list = document.querySelector(".notes");
+  list.scrollTop = list.lastChild.offsetTop;
+
   attachListeners();
 }
 
