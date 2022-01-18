@@ -279,23 +279,16 @@
         <!-- end tab switcher -->
 
         <!-- focus container -->
-        <section class="w-full h-2/4 md:h-sidebar flex flex-col bg-focus">
+        <section class="w-full h-full md:h-sidebar flex flex-col bg-focus">
           <!-- canvas  -->
-          <div
-            id="main-canvas"
-            class="relative w-full flex-grow mx-auto flex justify-center items-center"
-          >
-            <div
-              class="absolute plane w-canvasSmall h-canvasLarge md:w-canvasLarge md:h-canvasLarge"
+          <div class="canvas-container flex-grow flex justify-center items-center">
+            <canvas
+              id="main-canvas"
+              class="relative"
+width="512" height="512"
             >
-              <img src="./assets/colorwheel.png" class="hidden" />
-            </div>
-          </div>
-          <div id="preview-canvas" class="relative w-full h-16 inline-block">
-            <div
-              class="absolute offscreen-plane inset-0">
-              <img src="./assets/colorwheel.png" class="hidden" />
-            </div>
+                <img src="./assets/colorwheel.png" id="colorwheel" class="hidden" />
+            </canvas>
           </div>
           <!-- end canvas  -->
           <!-- piano  -->

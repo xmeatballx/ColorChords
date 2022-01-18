@@ -30,7 +30,7 @@ function useParam(e) {
     parameter == "octave" ||
     parameter == "interval"
   ) {
-    state.notes[index][parameter] = value;
+    state.notes[index][parameter] = parseFloat(value,10);
     pubsub.publish("controls changed", state);
   }
   if (parameter == "transpose") {
@@ -63,34 +63,6 @@ function updateControlsUI(e) {
   if (parameter == "velocity")
     valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";
   
-}
-
-const TWO_PI = Math.PI * 2;
-const planeElements = document.getElementsByClassName("plane");
-const pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
-
-function updateShaderUniforms() {
-  state.shaderUniforms = new shaderUniforms({
-    uResolution: [
-      pixelRatio * planeElements[0].clientWidth,
-      pixelRatio * planeElements[0].clientHeight,
-    ],
-    wheelRadius: 1.0,
-    noteRadius: 0.1,
-    noteAngles: state.notes.map(
-      (note) => TWO_PI * note.interval + state.transpose * Math.PI * 180
-    ),
-    noteVelocities: state.notes.map((note) => parseFloat(note.velocity, 10)),
-    noteOctaves: state.notes.map((note) => note.octave / 4),
-    numNotes: state.notes.length,
-    mobile: window.innerWidth < 768 ? 1.0 : 0.0,
-  });
-
-  state.notes.forEach(note, index => {
-    const colorPreviews = document.querySelectorAll(".color_preview");
-    colorPreviews[index].style.backgroundColor = `rgb(${note.color[0]} ${note.color[1]} ${note.color[2]})`
-    console.log(note.color)
-  })
 }
 
 function addNote(e) {
@@ -129,4 +101,4 @@ function toggleDarkTheme() {
   icon.classList.toggle("sun");
 }
 
-export { attachListeners, toggleDarkTheme, updateShaderUniforms };
+export { attachListeners, toggleDarkTheme };

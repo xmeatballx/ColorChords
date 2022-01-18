@@ -7,14 +7,14 @@ module.exports = {
         sidebarstatic: "800px",
         sidebarsmall: "25vh",
         canvasSmall: "24rem",
-        canvasLarge: "32rem",
+        canvasLarge: "40rem",
       },
       width: {
         mobilecontent: "90%",
         smallCanvas: "250px",
         actionBar: "6.66%",
         canvasSmall: "24rem",
-        canvasLarge: "32rem",
+        canvasLarge: "40rem",
       },
       colors: {
         "adobe-gray-50": "#ffffff",

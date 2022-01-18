@@ -493,10 +493,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-.visible {
-  visibility: visible;
-}
-
 .static {
   position: static;
 }
@@ -511,13 +507,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .relative {
   position: relative;
-}
-
-.inset-0 {
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
 }
 
 .bottom-0 {
@@ -605,12 +594,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
-.h-2\/4 {
-  height: 50%;
-}
-
-.h-canvasLarge {
-  height: 32rem;
+.h-canvasSmall {
+  height: 24rem;
 }
 
 .h-auto {
@@ -1057,7 +1042,7 @@ svg {
   }
 
   .md\:h-canvasLarge {
-    height: 32rem;
+    height: 40rem;
   }
 
   .md\:w-24 {
@@ -1065,7 +1050,7 @@ svg {
   }
 
   .md\:w-canvasLarge {
-    width: 32rem;
+    width: 40rem;
   }
 
   .md\:w-full {

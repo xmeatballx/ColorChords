@@ -6,7 +6,7 @@ module.exports = {
     "./src/js/state.mjs",
     "./src/js/eventhandler.mjs",
     "./src/js/piano.mjs",
-    "./src/js/curtains.mjs",
+    "./src/js/canvas.mjs",
   ],
   output: {
     filename: "bundle.js",
