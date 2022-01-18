@@ -18,7 +18,9 @@ state.notes.push(
 );
 
 renderListTemplate(state);
-drawCanvas();
+window.onload = (() => {
+  drawCanvas();
+})
 
 
 pubsub.subscribe("note added", renderListTemplate);
