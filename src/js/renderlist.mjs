@@ -15,12 +15,12 @@ let styles = {
   interval:
     "param interval text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:text-light focus:border-blue-600 focus:outline-none",
   colorPreview: "color_preview w-full h-6",
-  octaveContainer: "flex flex-wrap justify-between w-full mt-3",
+  octaveContainer: "flex flex-wrap mt-1 justify-between w-full",
   octaveLabel: "text-sm text-mid 2xl:text-2xl",
   octaveValue: "slider_value text-sm text-mid 2xl:text-2xl",
   octave:
-    "param octave slider light mt-3 mb-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none",
-  velocityContainer: "flex flex-wrap justify-between w-full",
+    "param octave slider light mt-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none",
+  velocityContainer: "flex flex-wrap mt-1 justify-between w-full",
   velocityLabel: "text-sm text-mid 2xl:text-2xl",
   velocityValue: "slider_value text-sm text-mid 2xl:text-2xl",
   velocity:
