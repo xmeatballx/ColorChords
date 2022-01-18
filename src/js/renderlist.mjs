@@ -125,7 +125,6 @@ function renderListTemplate(state) {
     } step="0.01" data-index=${index} data-parameter="velocity"/>
 				</div>
 			</div>
-			<div class=${styles.colorPreview2}></div>	
 		</li>`;
   });
 

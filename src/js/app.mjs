@@ -18,7 +18,12 @@ state.notes.push(
 
 renderListTemplate(state);
 updateShaderUniforms();
-console.log(state.shaderUniforms);
+
+state.notes.forEach(note, index => {
+  const colorPreviews = document.querySelectorAll(".color_preview");
+  colorPreviews[index].style.backgroundColor = `rgb(${note.color[0]} ${note.color[1]} ${note.color[2]})`
+  console.log(note.color)
+})
 
 pubsub.subscribe("note added", renderListTemplate);
 pubsub.subscribe("note deleted", renderListTemplate);

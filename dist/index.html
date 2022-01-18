@@ -115,6 +115,52 @@
           //gl_FragColor = vec4(col.z);
       }
     </script>
+
+    <script id="color-fs" type="x-shader/x-fragment">
+            precision mediump float;
+    
+            varying vec2 vTextureCoord;
+    
+            uniform sampler2D uSampler0;
+            uniform vec2 uResolution;
+            uniform float noteAngles[20];
+            uniform float noteOctaves[20];
+            uniform float noteVelocities[20];
+            uniform float numNotes;
+            uniform float mobile;
+    
+          void main( )
+          {
+              // Normalized pixel coordinates (from 0 to 1)
+              vec2 uv = mobile == 1. ? vTextureCoord*1.5-vec2(1.5/6.) : vTextureCoord;
+    
+    
+              // Time varying pixel color
+              vec4 image = texture2D(uSampler0, uv);
+    
+              vec4 col;
+    
+              for (int i=0;i<12;i++){
+                  if (i<int(numNotes)) {
+                  vec2 offset = vec2(sin(-noteAngles[i]),cos(noteAngles[i]))*noteVelocities[i]*.39;
+                  vec2 pos = uv + offset;
+                  vec4 c = texture2D(uSampler0,vec2(.5)-offset)+vec4(vec3(noteOctaves[i]),1.);
+                  c.w = 1.;
+
+                  float w = 1./numNotes;
+                  float rBorder = w + (w)*float(i);
+                  float lBorder = rBorder - w;
+                  if (uv.x < rBorder && uv.x > lBorder) {
+                      col = c;
+                  }
+                  }
+              }
+    
+              // Output to screen
+              gl_FragColor =  col;
+              //gl_FragColor = vec4(col.z);
+          }
+        </script>
     <!-- app wrapper  -->
     <div class="w-full max-w-screen-2xl max-h-fit content-container">
       <!-- header   -->
@@ -236,8 +282,8 @@
         <section class="w-full h-2/4 md:h-sidebar flex flex-col bg-focus">
           <!-- canvas  -->
           <div
-            id="canvas"
-            class="relative w-full h-96 md:h-96 flex-grow xl:mb-6 mx-auto flex justify-center items-center"
+            id="main-canvas"
+            class="relative w-full flex-grow mx-auto flex justify-center items-center"
           >
             <div
               class="absolute plane w-canvasSmall h-canvasLarge md:w-canvasLarge md:h-canvasLarge"
@@ -245,6 +291,13 @@
               <img src="./assets/colorwheel.png" class="hidden" />
             </div>
           </div>
+          <div id="preview-canvas" class="relative w-full h-16 inline-block">
+            <div
+              class="absolute offscreen-plane inset-0">
+              <img src="./assets/colorwheel.png" class="hidden" />
+            </div>
+          </div>
+          <!-- end canvas  -->
           <!-- piano  -->
           <div
             id="piano_container"
@@ -320,10 +373,10 @@
                 <!-- end interval  -->
 
                 <!-- color preview  -->
-                <div
+                <!-- <div
                   class="color_preview w-full h-6"
                   style="background-color: rgb(255, 5, 5)"
-                ></div>
+                ></div> -->
 
                 <div class="flex flex-wrap justify-between w-full mt-3">
                   <label for="octave" class="text-sm text-mid 2xl:text-2xl"
@@ -358,9 +411,9 @@
                   />
                 </div>
               </div>
-              <div
+              <!-- <div
                 class="color_preview hidden w-2/4 flex-grow ml-3 border-2 border-light"
-              ></div>
+              ></div> -->
             </li>
           </ul>
           <!-- end notes container  -->

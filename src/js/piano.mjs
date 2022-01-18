@@ -38,7 +38,6 @@ function formatNoteName(state, index) {
 
 const prevNotes = new Set();
 function updatePiano(state) {
-  console.log(prevNotes);
   prevNotes.forEach((note) => piano.keyUp(note));
 
   state.notes.forEach((note, index) => {

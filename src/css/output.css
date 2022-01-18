@@ -513,6 +513,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -600,10 +607,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-2\/4 {
   height: 50%;
-}
-
-.h-96 {
-  height: 24rem;
 }
 
 .h-canvasLarge {
@@ -1053,10 +1056,6 @@ svg {
     height: calc(100vh - 64px);
   }
 
-  .md\:h-96 {
-    height: 24rem;
-  }
-
   .md\:h-canvasLarge {
     height: 32rem;
   }
@@ -1183,10 +1182,6 @@ svg {
 }
 
 @media (min-width: 1280px) {
-  .xl\:mb-6 {
-    margin-bottom: 1.5rem;
-  }
-
   .xl\:w-96 {
     width: 24rem;
   }

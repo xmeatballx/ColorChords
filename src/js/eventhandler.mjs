@@ -62,6 +62,7 @@ function updateControlsUI(e) {
   if (parameter == "octave") valueDisplays[index * 2 + 1].textContent = value;
   if (parameter == "velocity")
     valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";
+  
 }
 
 const TWO_PI = Math.PI * 2;
@@ -84,7 +85,12 @@ function updateShaderUniforms() {
     numNotes: state.notes.length,
     mobile: window.innerWidth < 768 ? 1.0 : 0.0,
   });
-  console.log(JSON.stringify(state.shaderUniforms));
+
+  state.notes.forEach(note, index => {
+    const colorPreviews = document.querySelectorAll(".color_preview");
+    colorPreviews[index].style.backgroundColor = `rgb(${note.color[0]} ${note.color[1]} ${note.color[2]})`
+    console.log(note.color)
+  })
 }
 
 function addNote(e) {
