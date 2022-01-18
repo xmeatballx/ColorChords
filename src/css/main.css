@@ -30,14 +30,6 @@ body {
   /* transition: all 2s ease-in; */
 }
 
-* {
-  overscroll-behavior-y: none;
-}
-
-.content-container {
-  max-height: 900px;
-}
-
 .slider {
   appearance: none;
 }
@@ -72,28 +64,12 @@ body {
 
 select {
   background-color: var(--bg-main) !important;
-  -webkit-appearance: none;
-}
-
-.interval-wrapper {
- position: relative;
-}
-
-.interval-wrapper::before {
-  content: "v";
-  display: inline-block;
-  position: absolute;
-  right:.5rem;
-  top: .25rem;
-  
-  /* background: black; */
 }
 
 hr {
   background-color: var(--bg-focus);
   height: 2px;
   border: 0;
-  width: 100%;
 }
 
 svg {
@@ -119,13 +95,7 @@ svg {
 }
 
 .mask {
-  display: inline-block;
-  /*   box-shadow: -1px 1px black; */
-  border-radius: 100%;
   transform: translate(6px, -6px);
-  transition: all 330ms ease-out;
-  -webkit-transition: all 330ms ease-out;
-  -webkit-transition: -webkit-transform 330ms ease-out;
 }
 
 .switch-right {
@@ -138,7 +108,6 @@ svg {
 
 .nomask {
   transform: translate(0px, 0px) scale(0.8);
-  /*   background: black; */
 }
 
 .nomask::after,

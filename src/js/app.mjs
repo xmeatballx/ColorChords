@@ -17,8 +17,11 @@ state.notes.push(
 );
 
 renderListTemplate(state);
+updateShaderUniforms();
+console.log(state.shaderUniforms);
 
 pubsub.subscribe("note added", renderListTemplate);
 pubsub.subscribe("note deleted", renderListTemplate);
+pubsub.subscribe("note added", updateShaderUniforms);
 pubsub.subscribe("controls changed", updateShaderUniforms);
 pubsub.subscribe("theme changed", toggleDarkTheme);

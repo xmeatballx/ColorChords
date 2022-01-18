@@ -1,5 +1,3 @@
-const TWO_PI = Math.PI * 2;
-
 export let state = {
   transpose: 0,
   notes: [],

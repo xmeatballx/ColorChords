@@ -31,7 +31,6 @@ piano.create();
 function formatNoteName(state, index) {
   const intervalIndex = [...document.querySelectorAll(".interval")][index]
     .selectedIndex;
-  //   console.log(noteNames[intervalIndex], state.notes[index].octave);
   return `${
     noteNames[intervalIndex] + (parseInt(state.notes[index].octave) + 4)
   }`;

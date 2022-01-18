@@ -1,6 +1,7 @@
 import { state } from "./state.mjs";
 import { pubsub } from "./pubsub.mjs";
-import { note } from "./factories.mjs";
+import { note, shaderUniforms } from "./factories.mjs";
+// import { plane } from "./curtains.mjs";
 
 function attachListeners() {
   const params = document.querySelectorAll(".param");
@@ -63,16 +64,27 @@ function updateControlsUI(e) {
     valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";
 }
 
+const TWO_PI = Math.PI * 2;
+const planeElements = document.getElementsByClassName("plane");
+const pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
+
 function updateShaderUniforms() {
   state.shaderUniforms = new shaderUniforms({
-    wheelRadius: 0.9,
+    uResolution: [
+      pixelRatio * planeElements[0].clientWidth,
+      pixelRatio * planeElements[0].clientHeight,
+    ],
+    wheelRadius: 1.0,
     noteRadius: 0.1,
     noteAngles: state.notes.map(
       (note) => TWO_PI * note.interval + state.transpose * Math.PI * 180
     ),
-    noteVelocities: state.notes.map((note) => note.velocity),
+    noteVelocities: state.notes.map((note) => parseFloat(note.velocity, 10)),
     noteOctaves: state.notes.map((note) => note.octave / 4),
+    numNotes: state.notes.length,
+    mobile: window.innerWidth < 768 ? 1.0 : 0.0,
   });
+  console.log(JSON.stringify(state.shaderUniforms));
 }
 
 function addNote(e) {
