@@ -3,6 +3,8 @@ import { pubsub } from "./pubsub.mjs";
 import { note, shaderUniforms } from "./factories.mjs";
 // import { plane } from "./curtains.mjs";
 
+  const themeToggle = document.querySelector(".toggle");
+  themeToggle.addEventListener("click", (e) => useTheme(e));
 function attachListeners() {
   const params = document.querySelectorAll(".param");
 
@@ -10,8 +12,6 @@ function attachListeners() {
     param.addEventListener("input", (e) => useParam(e));
   });
 
-  const themeToggle = document.querySelector(".toggle");
-  themeToggle.addEventListener("click", (e) => useTheme(e));
 
   [...params].forEach((slider) => {
     slider.addEventListener("input", (e) => updateControlsUI(e));
