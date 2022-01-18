@@ -4,6 +4,7 @@ import { state } from "./state.mjs";
 window.addEventListener("load", () => {
   const curtains = new Curtains({
     container: "canvas",
+    watchScroll: false,
   });
 
   const planeElement = document.getElementsByClassName("plane")[0];
