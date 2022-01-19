@@ -56,7 +56,7 @@ function addNote(e) {
       interval: intervalSelect.children[state.notes.length % 12].value,
       octave: 0,
       velocity: 1,
-      color: [0, 0, 255],
+      color: [255, 255, 255],
     })
   );
   pubsub.publish("note added", state);
