@@ -3,7 +3,7 @@ import { state } from '../models/state'
 import { note } from '../models/factories'
 
 
-function attachListeners() {
+export function attachListeners() {
   const params = document.querySelectorAll(".param");
 
   [...params].forEach((param) => {
@@ -61,5 +61,3 @@ function addNote(e) {
   );
   pubsub.publish("note added", state);
 }
-
-export {attachListeners}
