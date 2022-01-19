@@ -42,7 +42,7 @@ function updateControlsUI(e) {
   const parameter = e.target.getAttribute("data-parameter");
   const value = e.target.value;
   const valueDisplays = document.querySelectorAll(".slider_value");
-  if (parameter == "transpose") valueDisplays[0].textContent = value;
+  if (parameter == "transpose") valueDisplays[0].textContent = Math.floor((value/180)*6);
   if (parameter == "octave") valueDisplays[index * 2 + 1].textContent = value;
   if (parameter == "velocity")
     valueDisplays[index * 2 + 2].textContent = Math.floor(value * 100) + "%";

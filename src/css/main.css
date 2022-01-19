@@ -36,6 +36,10 @@ select {
     outline 500ms ease-in, background-color 500ms ease-in;
 }
 
+.color_preview {
+  transition: background-color 100ms ease-in !important;
+}
+
 .slider {
   appearance: none;
 }

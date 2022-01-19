@@ -20,6 +20,7 @@ export const transposeControl = (state) => {
         type="range"
         min="-180"
         max="180"
+        step="${180/6}"
         value="${state.transpose}"
         class="${styles.rotation}"
         name="rotation"
