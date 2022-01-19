@@ -1,6 +1,6 @@
-import { pubsub } from "./pubsub.mjs";
-import { state } from "./state.mjs";
-import { attachListeners } from "./eventhandler.mjs";
+import { pubsub } from "./pubsub.js";
+import { state } from "./state.js";
+import { attachListeners } from "./eventhandler.js";
 
 let styles = {
   rotationContainer:

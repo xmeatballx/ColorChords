@@ -1,6 +1,6 @@
-import { state } from "./state.mjs";
-import { pubsub } from "./pubsub.mjs";
-import { note } from "./factories.mjs";
+import { state } from "./state.js";
+import { pubsub } from "./pubsub.js";
+import { note } from "./factories.js";
 // import { plane } from "./curtains.mjs";
 
   const themeToggle = document.querySelector(".toggle");

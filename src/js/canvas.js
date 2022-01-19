@@ -1,5 +1,5 @@
-import {state} from './state.mjs'
-import {pubsub} from './pubsub.mjs'
+import {state} from './state.js'
+import {pubsub} from './pubsub.js'
 
 export const drawCanvas = () => {
     const canvas = document.querySelector("#main-canvas");
