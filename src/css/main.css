@@ -27,7 +27,13 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  /* transition: all 2s ease-in; */
+}
+
+*,
+.slider::-webkit-slider-thumb,
+select {
+  transition: background 500ms ease-in, border 500ms ease-in,
+    outline 500ms ease-in, background-color 500ms ease-in;
 }
 
 .slider {
@@ -63,7 +69,7 @@ body {
 }
 
 select {
-  background-color: var(--bg-main) !important;
+  background: rgba(0, 0, 0, 0);
 }
 
 hr {
