@@ -534,16 +534,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .ml-3 {
@@ -700,12 +700,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 2px;
 }
 
-.border-light {
-  border-color: var(--light);
-}
-
 .border-mid {
   border-color: var(--mid);
+}
+
+.border-light {
+  border-color: var(--light);
 }
 
 .bg-main {
@@ -752,14 +752,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 4rem;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .text-xl {
@@ -767,12 +767,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .font-bold {
@@ -856,6 +856,10 @@ select {
     outline 500ms ease-in, background-color 500ms ease-in;
   transition: background 500ms ease-in, border 500ms ease-in,
     outline 500ms ease-in, background-color 500ms ease-in;
+}
+
+.color_preview {
+  transition: background-color 100ms ease-in !important;
 }
 
 .slider {
