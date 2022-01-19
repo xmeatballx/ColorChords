@@ -1,5 +1,5 @@
-import {state} from './state.js'
-import {pubsub} from './pubsub.js'
+import {state} from '../models/state.js'
+import {pubsub} from '../models/pubsub.js'
 
 export const drawCanvas = () => {
     const canvas = document.querySelector("#main-canvas");
@@ -15,8 +15,7 @@ export const drawCanvas = () => {
         offset = 204;
         radius = 25;
     }
-    canvas.width = canvas.height *
-        (canvas.clientWidth / canvas.clientHeight);
+    canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = true;
     const image = document.querySelector("#colorwheel")
@@ -32,14 +31,12 @@ export const drawCanvas = () => {
         col.data[0] += note.octave*50
         col.data[1] += note.octave * 50
         col.data[2] += note.octave * 50
-        state.notes[i].color = `rgb(${col.data[0]}, ${col.data[1]}, ${col.data[2]} )`;
-        ctx.fillStyle = state.notes[i].color;
+        state.notes[i].color = col.data;
+        pubsub.publish("color changed", state);
+        ctx.fillStyle = `rgb(${col.data[0]}, ${col.data[1]}, ${col.data[2]})`;
         ctx.fill();
 
         ctx.strokeStyle = `rgb(179,179,179)`
         ctx.stroke();
-
-        const colorPreviews = document.querySelectorAll(".color_preview")
-        colorPreviews[i].style.backgroundColor = state.notes[i].color;
     })
 }

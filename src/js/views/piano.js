@@ -1,5 +1,5 @@
-import { pubsub } from "./pubsub.js";
-import { state } from "./state.js";
+import { pubsub } from "../models/pubsub.js";
+import { state } from "../models/state.js";
 import { Instrument } from "piano-chart";
 
 export const initPiano = () => {
