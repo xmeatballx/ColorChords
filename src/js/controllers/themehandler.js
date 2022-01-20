@@ -2,7 +2,7 @@ import { pubsub } from '../models/pubsub'
 import { state } from '../models/state'
 
 const themeToggle = document.querySelector(".toggle");
-  themeToggle.addEventListener("click", (e) => useTheme(e));
+  themeToggle.onclick = (e) => useTheme(e);
 
 let darkMode = false;
 function useTheme(e) {

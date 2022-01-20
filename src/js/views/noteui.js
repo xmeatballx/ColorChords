@@ -4,7 +4,7 @@ let styles = {
   note: "note w-full h-max p-3 md:flex md:flex-row",
   controls: "controls w-full",
   interval:
-    "param interval text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:text-light focus:border-blue-600 focus:outline-none",
+    "param interval text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:border-blue-600 focus:outline-none",
   colorPreview: "color_preview w-full h-6",
   octaveContainer: "flex flex-wrap mt-1 justify-between w-full",
   octaveLabel: "text-sm text-mid 2xl:text-2xl",
