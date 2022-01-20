@@ -1,3 +1,5 @@
+import {deleteButton} from './deletebutton.js'
+
 let styles = {
   note: "note w-full h-max p-3 md:flex md:flex-row",
   controls: "controls w-full",
@@ -86,6 +88,7 @@ export const noteUI = (noteData, index) => {
       noteData.velocity
     } step="0.01" data-index=${index} data-parameter="velocity"/>
 				</div>
+        ${deleteButton(index)}
 			</div>
 		</li>`;
 }

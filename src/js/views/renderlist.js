@@ -1,5 +1,3 @@
-import { pubsub } from "../models/pubsub.js";
-import { state } from "../models/state.js";
 import { attachListeners } from "../controllers/controlhandler.js";
 import { noteUI } from "./noteui.js";
 import { transposeControl } from "./transpose.js"
@@ -13,7 +11,7 @@ function renderListTemplate(state) {
 
   const container = document.querySelector(".controls-container");
   container.innerHTML =
-    transposeControl(state) + noteList.join("") + "</ul>" + addNoteButton;
+    transposeControl(state) + noteList.join("") + "</ul>" + addNoteButton();
 
   const list = document.querySelector(".notes");
   list.scrollTop = list.lastChild.offsetTop;

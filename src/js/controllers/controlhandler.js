@@ -17,6 +17,11 @@ export function attachListeners() {
 
   const addColorButton = document.querySelector(".add_interval_button");
   addColorButton.addEventListener("click", addNote);
+
+  const deleteColorButtons = document.querySelectorAll(".delete");
+  [...deleteColorButtons].forEach((deleteColorButton) => {
+    deleteColorButton.addEventListener("click", deleteNote);
+  })
 }
 
 function useParam(e) {
@@ -60,4 +65,12 @@ function addNote(e) {
     })
   );
   pubsub.publish("note added", state);
+}
+
+function deleteNote(e) {
+  const index = e.currentTarget.getAttribute("data-index");
+  if (state.notes.length > 1) {
+    state.notes.splice(parseInt(index),1);
+    pubsub.publish("note deleted", state); 
+  }
 }
