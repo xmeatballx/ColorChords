@@ -29,15 +29,16 @@ body {
   height: 100%;
 }
 
-*,
+*:not(.color_preview),
 .slider::-webkit-slider-thumb,
+.slider::-webkit-slider-runnable-track,
 select {
-  transition: background 500ms ease-in, border 500ms ease-in,
-    outline 500ms ease-in, background-color 500ms ease-in;
+  transition: border 500ms ease-in, outline 500ms ease-in,
+    background-color 500ms ease-in;
 }
 
 .color_preview {
-  transition: background-color 100ms ease-in !important;
+  /* transition: background-color 100ms ease-in !important; */
 }
 
 .slider {
@@ -73,7 +74,7 @@ select {
 }
 
 select {
-  background: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 hr {

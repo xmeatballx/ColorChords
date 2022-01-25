@@ -1,7 +1,7 @@
-export const deleteButton = (index) => {
+export const deleteButton = (index, styles) => {
     const button = document.createElement("a");
     button.href = "#";
-    button.classList.add("delete");
+    button.className = styles;
     button.setAttribute("data-index", index);
 
     const buttonIcon = document.createElement("img");

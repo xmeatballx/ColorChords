@@ -55,7 +55,7 @@ function updateControlsUI(e) {
 }
 
 function addNote(e) {
-  const intervalSelect = document.querySelector(".interval");
+  const intervalSelect = document.querySelector("select[data-parameter='interval']");
   state.notes.push(
     new note({
       interval: intervalSelect.children[state.notes.length % 12].value,

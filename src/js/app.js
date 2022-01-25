@@ -6,6 +6,7 @@ import { note } from "./models/factories.js";
 import { drawCanvas } from "./views/canvas.js";
 import { initPiano, updatePiano } from "./views/piano.js";
 import { useColor } from './controllers/colorhandler';
+import { attachTabListener} from './controllers/tabhandler'
 
 state.notes.push(
   new note({ interval: 1, octave: 0, velocity: 1, color: [] })
@@ -37,3 +38,5 @@ pubsub.subscribe("controls changed", updatePiano);
 pubsub.subscribe("controls changed", drawCanvas)
 pubsub.subscribe("theme changed", toggleDarkTheme);
 pubsub.subscribe("color changed", useColor);
+pubsub.subscribe("tab changed", renderListTemplate);
+pubsub.subscribe("tab changed", useColor);

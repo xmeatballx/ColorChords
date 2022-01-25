@@ -12,7 +12,7 @@ function renderListTemplate(state) {
   container.appendChild(transposeControl(state))
   
   const noteList = document.createElement("ul");
-  noteList.className = "notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3";
+  noteList.className = "notes pt-3 mb-8 md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full";
   noteList.setAttribute("id", "notes");
   state.notes.forEach((note, index) => {
     noteList.appendChild(noteUI(note, index));

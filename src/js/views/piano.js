@@ -34,7 +34,7 @@ const initPiano = () => {
 }
 
 function formatNoteName(state, index) {
-  const intervalIndex = [...document.querySelectorAll(".interval")][index]
+  const intervalIndex = [...document.querySelectorAll("select[data-parameter='interval']")][index]
     .selectedIndex;
   return `${
     noteNames[intervalIndex] + (parseInt(state.notes[index].octave) + 4)
