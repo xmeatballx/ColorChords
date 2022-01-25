@@ -4,7 +4,7 @@ import { renderListTemplate } from "./views/renderlist.js";
 import { toggleDarkTheme } from "./controllers/themehandler.js";
 import { note } from "./models/factories.js";
 import { drawCanvas } from "./views/canvas.js";
-import { initPiano } from "./views/piano.js";
+import { initPiano, updatePiano } from "./views/piano.js";
 import { useColor } from './controllers/colorhandler';
 
 state.notes.push(
@@ -31,6 +31,9 @@ pubsub.subscribe("note added", renderListTemplate);
 pubsub.subscribe("note deleted", renderListTemplate);
 pubsub.subscribe("note added", drawCanvas);
 pubsub.subscribe("note deleted", drawCanvas);
+pubsub.subscribe("note added", updatePiano);
+pubsub.subscribe("note deleted", updatePiano);
+pubsub.subscribe("controls changed", updatePiano);
 pubsub.subscribe("controls changed", drawCanvas)
 pubsub.subscribe("theme changed", toggleDarkTheme);
 pubsub.subscribe("color changed", useColor);

@@ -20,75 +20,117 @@ let styles = {
     "color_preview hidden w-2/4 flex-grow ml-3 border-2 border-light",
 };
 
+let intervals = {
+  "Fundamental": 1,
+  "Minor Second": 1.067,
+  "Major Second": 1.125,
+  "Minor Third": 1.2,
+  "Major Third": 1.25,
+  "Perfect Fourth": 1.333,
+  "Tritone": 1.414,
+  "Perfect Fifth": 1.5,
+  "Minor Sixth": 1.6,
+  "Major Sixth": 1.666,
+  "Minor Seventh": 1.777,
+  "Major Seventh": 1.875,
+}
+
 export const noteUI = (noteData, index) => {
-  return `
-    
-    <li class="${styles.note}" data-index=${index}>
-			<div class="${styles.controls}">
-				<div class="interval-wrapper">
-					<select name="interval" class="${
-            styles.interval
-          }" data-index=${index} data-parameter="interval">
-						<option value="1" ${
-              noteData.interval == 1 ? "selected" : ""
-            } class="text-sm">Fundamental</option>
-						<option value="1.067" ${
-              noteData.interval == 1.067 ? "selected" : ""
-            } class="text-sm">Minor Second</option>
-						<option value="1.125" ${
-              noteData.interval == 1.125 ? "selected" : ""
-            } class="text-sm">Major Second</option>
-						<option value="1.200" ${
-              noteData.interval == 1.2 ? "selected" : ""
-            } class="text-sm">Minor Third</option>
-						<option value="1.250" ${
-              noteData.interval == 1.25 ? "selected" : ""
-            } class="text-sm">Major Third</option>
-						<option value="1.333" ${
-              noteData.interval == 1.333 ? "selected" : ""
-            } class="text-sm">Perfect Fourth</option>
-						<option value="1.414" ${
-              noteData.interval == 1.414 ? "selected" : ""
-            } class="text-sm">Tritone</option>
-						<option value="1.500" ${
-              noteData.interval == 1.5 ? "selected" : ""
-            } class="text-sm">Perfect Fifth</option>
-						<option value="1.600" ${
-              noteData.interval == 1.6 ? "selected" : ""
-            } class="text-sm">Minor Sixth</option>
-						<option value="1.666" ${
-              noteData.interval == 1.666 ? "selected" : ""
-            } class="text-sm">Major Sixth</option>
-						<option value="1.777" ${
-              noteData.interval == 1.777 ? "selected" : ""
-            } class="text-sm">Minor Seventh</option>
-						<option value="1.875" ${
-              noteData.interval == 1.875 ? "selected" : ""
-            }class="text-sm">Major Seventh</option>
-					</select>
-				</div>
-				<div class="${styles.colorPreview}" style="background: rgb(${noteData.color[0]} ${
-      noteData.color[1]
-    } ${noteData.color[2]})"></div>
-				<div class="${styles.octaveContainer}">
-					<label for="octave" class="${styles.octaveLabel}">Octave</label>
-					<div class="${styles.octaveValue}">${noteData.octave}</div>
-					<input type="range" name="octave" class="${
-            styles.octave
-          }" min="-4" max="4" value=${
-      noteData.octave
-    } data-index=${index} data-parameter="octave"/>
-				</div>
-				<div class="${styles.velocityContainer}">
-					<label for="velocity" class="${styles.velocityLabel}">Velocity</label>
-					<div class="${styles.velocityValue}">${noteData.velocity * 100}%</div>
-					<input type="range" name="velocity" class="${
-            styles.velocity
-          }" min=0.0 max=1.0 value=${
-      noteData.velocity
-    } step="0.01" data-index=${index} data-parameter="velocity"/>
-				</div>
-        ${deleteButton(index)}
-			</div>
-		</li>`;
+  const fragment = document.createDocumentFragment();
+
+  const noteItem = document.createElement("li");
+  noteItem.className = styles.note;
+  noteItem.setAttribute("data-index", index);
+
+  const controlsContainer = document.createElement("div");
+  controlsContainer.className = styles.controls;
+
+   const intervalContainer = document.createElement("div");
+
+  const interval = document.createElement("select");
+  interval.name = "interval";
+  interval.className = styles.interval;
+  interval.setAttribute("data-index", index);
+  interval.setAttribute("data-parameter", "interval");
+
+  for (const intervalProp in intervals) {
+    const opt = document.createElement("option");
+    opt.value = intervals[intervalProp];
+    opt.classList.add("text-sm");
+    opt.textContent = intervalProp;
+    interval.appendChild(opt);
+  }
+
+  interval.value = noteData.interval;
+
+  intervalContainer.appendChild(interval);
+  controlsContainer.appendChild(intervalContainer);
+
+  const colorPreview = document.createElement("div");
+  colorPreview.className = styles.colorPreview;
+  colorPreview.style.background = `rgb(${noteData.color[0]}, ${noteData.color[1]}, ${noteData.color[2]}})`;
+
+  controlsContainer.appendChild(colorPreview);
+
+  const octaveContainer = document.createElement("div");
+  octaveContainer.className = styles.octaveContainer;
+
+  const octaveLabel = document.createElement("label");
+  octaveLabel.for = "octave";
+  octaveLabel.className = styles.octaveLabel;
+  octaveLabel.textContent = "Octave";
+  octaveContainer.appendChild(octaveLabel);
+
+  const octaveValue = document.createElement("div");
+  octaveValue.className = styles.octaveValue;
+  octaveValue.textContent = noteData.octave;
+  octaveContainer.appendChild(octaveValue);
+
+  const octave = document.createElement("input");
+  octave.type = "range";
+  octave.name = "octave";
+  octave.className = styles.octave;
+  octave.min = -4;
+  octave.max = 4;
+  octave.value = noteData.octave;
+  octave.setAttribute("data-index", index);
+  octave.setAttribute("data-parameter", "octave");
+  octaveContainer.appendChild(octave);
+
+  controlsContainer.appendChild(octaveContainer);
+
+  const velocityContainer = document.createElement("div");
+  velocityContainer.className = styles.octaveContainer;
+
+  const velocityLabel = document.createElement("label");
+  velocityLabel.for = "velocity";
+  velocityLabel.className = styles.velocityLabel;
+  velocityLabel.textContent = "Velocity";
+  velocityContainer.appendChild(velocityLabel);
+
+  const velocityValue = document.createElement("div");
+  velocityValue.className = styles.velocityValue;
+  velocityValue.textContent = noteData.velocity * 100 + "%";
+  velocityContainer.appendChild(velocityValue);
+
+  const velocity = document.createElement("input");
+  velocity.type = "range";
+  velocity.name = "velocity";
+  velocity.className = styles.velocity;
+  velocity.min = 0.;
+  velocity.max = 1.;
+  velocity.step = 0.01;
+  velocity.value = noteData.velocity;
+  velocity.setAttribute("data-index", index);
+  velocity.setAttribute("data-parameter", "velocity");
+  velocityContainer.appendChild(velocity);
+
+  controlsContainer.appendChild(velocityContainer);
+  controlsContainer.appendChild(deleteButton(index));
+  noteItem.appendChild(controlsContainer);
+
+  fragment.append(noteItem);
+
+
+  return fragment;
 }
