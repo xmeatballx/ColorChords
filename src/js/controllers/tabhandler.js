@@ -12,12 +12,31 @@ function useTab(e) {
     pubsub.publish("tab changed", state);
 }
 
+function switchTab(state) {
+    console.log(state.tab)
+    switch(state.tab) {
+        default:
+            hideCode();
+            hideInfo();
+            break;
+        
+        case "code":
+            hideInfo();
+            showCode(state);
+            break;
+
+        case "info":
+            hideCode();
+            showInfo();
+            break;
+    }
+}
+
 function showCode(state) {
     const codeView = document.querySelector(".code");
     const codeCarousel = document.querySelector(".code_carousel")
     const currCode = document.querySelectorAll(".code p");
     const codeOpts = document.querySelectorAll("li>a>h2");
-    console.log(codeOpts);
     [...codeOpts].forEach(option => {
         option.addEventListener("click", (e) => {
             e.target.getAttribute("data-parameter") == "rgb" 
@@ -31,17 +50,28 @@ function showCode(state) {
             
         })
     })
-    
-    if (state.tab=="code") {
-        codeView.style.display = "block";
-        [...currCode].forEach(codeBlock => {
-            console.log(codeBlock)
-            codeBlock ? codeCarousel.removeChild(codeBlock) : ""
-        })
-            codeCarousel.appendChild(code(state));
-    } else {
-        codeView.style.display = "none";
-    }
+
+    codeView.style.display = "block";
+    [...currCode].forEach(codeBlock => {
+        console.log(codeBlock)
+        codeBlock ? codeCarousel.removeChild(codeBlock) : ""
+    })
+    codeCarousel.appendChild(code(state));
+
 }
 
-export {attachTabListener, showCode};
+function hideCode() {
+    const codeView = document.querySelector(".code");
+    codeView.style.display = "none"
+}
+
+const info = document.querySelector(".info")
+function showInfo(state) {
+        info.style.display = "block";
+}
+
+function hideInfo() {
+    info.style.display = "none";
+}
+
+export {attachTabListener, showCode, switchTab};
