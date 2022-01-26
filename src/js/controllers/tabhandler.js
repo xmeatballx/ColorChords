@@ -14,12 +14,17 @@ function useTab(e) {
 
 function showCode(state) {
     const codeView = document.querySelector(".code");
-    const currCode = document.querySelectorAll(".code>p");
+    const codeCarousel = document.querySelector(".code_carousel")
+    const currCode = document.querySelectorAll(".code p");
     const codeOpts = document.querySelectorAll("li>a>h2");
     console.log(codeOpts);
     [...codeOpts].forEach(option => {
-        option.getAttribute("data-selected") == true ? option.classList.add("selected"): "";
         option.addEventListener("click", (e) => {
+            e.target.getAttribute("data-parameter") == "rgb" 
+            ? document.getElementById("rgb").scrollIntoView({inline: "center", block: "center"})
+            : e.target.getAttribute("data-parameter") == "hsl" 
+            ? document.getElementById("hsl").scrollIntoView({inline: "center", block: "center"})
+            : document.getElementById("hex").scrollIntoView({inline: "center", block: "center"})
             const otherSiblings = [...codeOpts].filter((option) => option != e.target)
             otherSiblings.forEach(sibling => sibling.classList.remove("selected"));
             e.target.classList.add("selected");
@@ -29,8 +34,11 @@ function showCode(state) {
     
     if (state.tab=="code") {
         codeView.style.display = "block";
-        [...currCode].forEach(codeBlock => codeBlock ? codeView.removeChild(codeBlock) : "")
-        codeView.appendChild(code(state));
+        [...currCode].forEach(codeBlock => {
+            console.log(codeBlock)
+            codeBlock ? codeCarousel.removeChild(codeBlock) : ""
+        })
+            codeCarousel.appendChild(code(state));
     } else {
         codeView.style.display = "none";
     }

@@ -66,7 +66,7 @@
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-mid"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -87,7 +87,7 @@
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-light"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -102,7 +102,7 @@
                 width="32"
                 height="24"
                 viewBox="0 0 32 24"
-                class="fill-light"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -121,7 +121,7 @@
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-light"
+                class="fill-light active:fill-light"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -152,16 +152,17 @@
           <!-- piano  -->
           <div
             id="piano_container"
-            class="md:w-full h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
+            class="w- md:w-full h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
           ></div>
         <!-- end piano  -->
         <!-- code view modal  -->
-        <div class="code hidden absolute inset-0 bg-focus overflow-y-scroll w-full">
-        <ul class="text-center">
-          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="true">RGB</h2></a></li>
-          <li class="inline-block mt-12" ><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="false">HSL</h2></a></li>
-          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="false">HEX</h2></a></li>
+        <div class="code hidden absolute inset-0 bg-focus overflow-y-scroll scrollbar-none w-full overflow-x-hidden">
+        <ul class="text-center w-full">
+          <li class="inline-block mt-12 "><a href="#"><h2 class="w-20 text-xl text-mid font-bold selected" data-parameter="rgb">RGB</h2></a></li>
+          <li class="inline-block mt-12" ><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-parameter="hsl">HSL</h2></a></li>
+          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-parameter="hex">HEX</h2></a></li>
         </ul>
+        <div class="code_carousel flex scrollbar-none overflow-x-auto"></div>
         </div>
         <!-- end code view modal  -->
         </section>

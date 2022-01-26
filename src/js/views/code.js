@@ -3,7 +3,8 @@ import { intervals } from "../models/constants";
 export const code = (state) => {
     const fragment = document.createDocumentFragment();
     const codeContainerRGB = document.createElement("p");
-    codeContainerRGB.className = "text-sm text-mid px-6 py-3 md:m-12 bg-adobe-gray-800";
+    codeContainerRGB.className = "shrink-0 w-11/12 text-sm text-mid px-6 py-3 md:m-12 bg-adobe-gray-800";
+    codeContainerRGB.setAttribute("id", "rgb");
 
 
     const codeBoxRGB = document.createElement("code");
@@ -37,6 +38,8 @@ export const code = (state) => {
     codeBoxRGB.appendChild(suffix);
 
     const codeContainerHSL = codeContainerRGB.cloneNode();
+    codeContainerHSL.className = "shrink-0 w-11/12 text-sm text-mid px-6 py-3 md:m-12 bg-adobe-gray-800";
+    codeContainerHSL.setAttribute("id", "hsl");
 
     const codeBoxHSL = codeBoxRGB.cloneNode();
 
@@ -57,6 +60,8 @@ export const code = (state) => {
     codeBoxHSL.appendChild(suffix.cloneNode());
 
     const codeContainerHex = codeContainerRGB.cloneNode();
+    codeContainerHex.className = "shrink-0 w-11/12 text-sm text-mid px-6 py-3 md:m-12 bg-adobe-gray-800";
+    codeContainerHex.setAttribute("id", "hex");
 
     const codeBoxHex = codeBoxRGB.cloneNode();
     codeBoxHex.appendChild(prefix.cloneNode());

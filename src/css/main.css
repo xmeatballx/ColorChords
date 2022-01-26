@@ -174,3 +174,7 @@ h2 {
 .selected {
   border-bottom: 4px solid var(--mid);
 }
+
+.code {
+  right: -10px;
+}
