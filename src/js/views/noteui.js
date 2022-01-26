@@ -1,6 +1,7 @@
 import { createConditionalStyles } from '../controllers/createconditionalstyles.js';
 import { state } from '../models/state.js';
-import {deleteButton} from './deletebutton.js'
+import {deleteButton} from './deletebutton.js';
+import { intervals } from "../models/constants"
 
 let styles = {
   note: "note w-full h-max px-3 mb-3 md:flex md:flex-row",
@@ -25,21 +26,6 @@ let styles = {
   deleteButton: "delete",
   hidden: "hidden",
 };
-
-let intervals = {
-  "Fundamental": 1,
-  "Minor Second": 1.067,
-  "Major Second": 1.125,
-  "Minor Third": 1.2,
-  "Major Third": 1.25,
-  "Perfect Fourth": 1.333,
-  "Tritone": 1.414,
-  "Perfect Fifth": 1.5,
-  "Minor Sixth": 1.6,
-  "Major Sixth": 1.666,
-  "Minor Seventh": 1.777,
-  "Major Seventh": 1.875,
-}
 
 export const noteUI = (noteData, index) => {
   let conditionalStyles = createConditionalStyles(styles, state);

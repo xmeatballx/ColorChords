@@ -29,7 +29,7 @@ body {
   height: 100%;
 }
 
-*:not(.color_preview),
+*:not(.color_preview):not(h2),
 .slider::-webkit-slider-thumb,
 .slider::-webkit-slider-runnable-track,
 select {
@@ -165,4 +165,12 @@ svg {
 
 .sun::after {
   transform: rotate(45deg);
+}
+
+h2 {
+  transition: border-bottom 60ms linear !important;
+}
+
+.selected {
+  border-bottom: 4px solid var(--mid);
 }

@@ -137,13 +137,13 @@
         <!-- end tab switcher -->
 
         <!-- focus container -->
-        <section class="w-full h-full md:h-sidebar flex flex-col bg-focus">
+        <section class="relative w-full h-full md:h-sidebar bg-focus flex flex-col">
           <!-- canvas  -->
           <div class="canvas-container flex-grow flex justify-center items-center">
             <canvas
               id="main-canvas"
               class="relative"
-width="512" height="512"
+              width="512" height="512"
             >
                 <img src="./assets/colorwheel.png" id="colorwheel" class="hidden" />
             </canvas>
@@ -154,6 +154,16 @@ width="512" height="512"
             id="piano_container"
             class="md:w-full h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
           ></div>
+        <!-- end piano  -->
+        <!-- code view modal  -->
+        <div class="code hidden absolute inset-0 bg-focus overflow-y-scroll w-full">
+        <ul class="text-center">
+          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="true">RGB</h2></a></li>
+          <li class="inline-block mt-12" ><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="false">HSL</h2></a></li>
+          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-selected="false">HEX</h2></a></li>
+        </ul>
+        </div>
+        <!-- end code view modal  -->
         </section>
         <!-- end focus container  -->
 

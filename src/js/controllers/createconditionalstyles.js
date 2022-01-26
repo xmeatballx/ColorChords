@@ -1,8 +1,10 @@
+import { code } from "../views/code";
+
 export const createConditionalStyles = (styles, state) => {
     return Object.keys(styles).reduce( (result, key) => {
     result[key] = styles[key];
     switch(state.tab) {
-        case "notes":
+        default:
             break;
 
         case "colors": 
@@ -12,7 +14,6 @@ export const createConditionalStyles = (styles, state) => {
                 key == "note" ? result[key] = styles.color : "";
             }
             break;
-
     }
     return result; 
   }, {})
