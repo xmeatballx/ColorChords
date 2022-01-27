@@ -788,6 +788,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: var(--mid);
 }
 
+.fill-highcontrast {
+  fill: var(--high-contrast);
+}
+
 .fill-light {
   fill: var(--light);
 }

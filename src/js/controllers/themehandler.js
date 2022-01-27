@@ -33,7 +33,7 @@ function toggleDarkTheme() {
     root.style.setProperty("--bg-main", "var(--gray-100)");
     root.style.setProperty("--bg-focus", "var(--gray-500)");
     root.style.setProperty("--mid", "var(--gray-900)");
-    root.style.setProperty("--high-contrast", "var(--gray-800)");
+    root.style.setProperty("--high-contrast", "var(--gray-900)");
   }
   switcher.classList.toggle("switch-left");
   switcher.classList.toggle("switch-right");

@@ -24,7 +24,7 @@ const initPiano = () => {
     startOctave: 0,
     endOctave: 9,
     keyPressStyle: "vivid",
-  };
+  };9
   piano = new Instrument(
     document.getElementById("piano_container"),
     pianoOptions
@@ -36,9 +36,11 @@ const initPiano = () => {
 function formatNoteName(state, index) {
   const intervalIndex = [...document.querySelectorAll("select[data-parameter='interval']")][index]
     .selectedIndex;
-  return `${
-    noteNames[intervalIndex] + (parseInt(state.notes[index].octave) + 4)
-  }`;
+    const note = intervalIndex+Math.floor(state.transpose/180*6) >= 0 ? `${
+    noteNames[intervalIndex+Math.floor(state.transpose/180*6)] + (parseInt(state.notes[index].octave) + 4)}`
+    : intervalIndex+12+Math.floor(state.transpose/180*6) != 0 ? `${
+    noteNames[intervalIndex+12+Math.floor(state.transpose/180*6)] + (parseInt(state.notes[index].octave) + 3)}` : `${noteNames[0] + (parseInt(state.notes[index].octave) + 4)}`
+  return note;
 }
 
 const prevNotes = new Set();

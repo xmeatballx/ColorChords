@@ -37,6 +37,7 @@ function showCode(state) {
     const codeCarousel = document.querySelector(".code_carousel")
     const currCode = document.querySelectorAll(".code p");
     const codeOpts = document.querySelectorAll("li>a>h2");
+    if (state.tab == "code") {
     [...codeOpts].forEach(option => {
         option.addEventListener("click", (e) => {
             e.target.getAttribute("data-parameter") == "rgb" 
@@ -51,13 +52,14 @@ function showCode(state) {
         })
     })
 
+
     codeView.style.display = "block";
     [...currCode].forEach(codeBlock => {
         console.log(codeBlock)
         codeBlock ? codeCarousel.removeChild(codeBlock) : ""
     })
     codeCarousel.appendChild(code(state));
-
+    }
 }
 
 function hideCode() {
