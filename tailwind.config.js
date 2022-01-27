@@ -10,7 +10,7 @@ module.exports = {
         canvasLarge: "40rem",
       },
       width: {
-        mobilecontent: "90%",
+        mobilecontent: "90vw",
         smallCanvas: "250px",
         actionBar: "6.66%",
         canvasSmall: "24rem",
