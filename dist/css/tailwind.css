@@ -509,8 +509,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .bottom-0 {
   bottom: 0px;
+}
+
+.m-0 {
+  margin: 0px;
 }
 
 .m-3 {
@@ -521,29 +532,41 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 0.25rem;
 }
 
-.m-0 {
-  margin: 0px;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .mb-3 {
   margin-bottom: 0.75rem;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
 }
 
 .block {
@@ -566,8 +589,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.h-16 {
-  height: 4rem;
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .h-min {
@@ -576,12 +601,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: min-content;
 }
 
-.h-8 {
-  height: 2rem;
-}
-
 .h-6 {
   height: 1.5rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .h-5 {
@@ -592,28 +625,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
-.h-2\/4 {
-  height: 50%;
-}
-
 .h-auto {
   height: auto;
-}
-
-.h-32 {
-  height: 8rem;
-}
-
-.h-max {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
 }
 
 .max-h-fit {
   max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-full {
@@ -636,16 +659,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.25rem;
 }
 
-.w-smallCanvas {
-  width: 250px;
-}
-
 .w-mobilecontent {
   width: 90%;
 }
 
+.w-20 {
+  width: 5rem;
+}
+
 .max-w-screen-2xl {
   max-width: 1536px;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
 }
 
 .flex-grow {
@@ -684,20 +715,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-between;
 }
 
+.self-end {
+  align-self: flex-end;
+}
+
 .justify-self-end {
   justify-self: end;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .overflow-hidden {
   overflow: hidden;
 }
 
-.rounded-full {
-  border-radius: 9999px;
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {
@@ -708,12 +759,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 2px;
 }
 
+.border-mid {
+  border-color: var(--mid);
+}
+
 .border-light {
   border-color: var(--light);
 }
 
-.border-mid {
-  border-color: var(--mid);
+.border-main {
+  border-color: var(--bg-main);
+}
+
+.bg-adobe-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 75 75 / var(--tw-bg-opacity));
 }
 
 .bg-main {
@@ -728,8 +788,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: var(--mid);
 }
 
-.fill-mid {
-  fill: var(--mid);
+.fill-highcontrast {
+  fill: var(--high-contrast);
 }
 
 .fill-light {
@@ -740,10 +800,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.75rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
 .p-1 {
   padding: 0.25rem;
 }
@@ -752,17 +808,49 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0px;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
 }
 
 .pb-16 {
   padding-bottom: 4rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.text-center {
+  text-align: center;
 }
 
 .text-sm {
@@ -775,24 +863,43 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.5rem;
 }
 
-.font-bold {
-  font-weight: 700;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
-.font-semibold {
-  font-weight: 600;
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-medium {
   font-weight: 500;
 }
 
-.text-highcontrast {
-  color: var(--high-contrast);
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.leading-10 {
+  line-height: 2.5rem;
 }
 
 .text-mid {
   color: var(--mid);
+}
+
+.text-highcontrast {
+  color: var(--high-contrast);
 }
 
 .shadow-sm {
@@ -810,14 +917,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   filter: var(--tw-filter);
 }
 
-.transition-transform {
-  transition-property: transform;
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+.transition-transform {
+  transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -828,6 +935,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scrollbar.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.scrollbar-thin.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 .root {
@@ -855,15 +978,20 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  /* transition: all 2s ease-in; */
 }
 
-* {
-  overscroll-behavior-y: none;
+*:not(.color_preview):not(h2),
+.slider::-webkit-slider-thumb,
+.slider::-webkit-slider-runnable-track,
+select {
+  -webkit-transition: border 500ms ease-in, outline 500ms ease-in,
+    background-color 500ms ease-in;
+  transition: border 500ms ease-in, outline 500ms ease-in,
+    background-color 500ms ease-in;
 }
 
-.content-container {
-  max-height: 900px;
+.color_preview {
+  /* transition: background-color 100ms ease-in !important; */
 }
 
 .slider {
@@ -901,28 +1029,13 @@ body {
 }
 
 select {
-  background-color: var(--bg-main) !important;
-  -webkit-appearance: none;
-}
-
-.interval-wrapper {
-  position: relative;
-}
-
-.interval-wrapper::before {
-  content: "v";
-  display: inline-block;
-  position: absolute;
-  right:.5rem;
-  top: .25rem;
-  /* background: black; */
+  background-color: rgba(0, 0, 0, 0);
 }
 
 hr {
   background-color: var(--bg-focus);
   height: 2px;
   border: 0;
-  width: 100%;
 }
 
 svg {
@@ -948,12 +1061,7 @@ svg {
 }
 
 .mask {
-  display: inline-block;
-  /*   box-shadow: -1px 1px black; */
-  border-radius: 100%;
   transform: translate(6px, -6px);
-  transition: all 330ms ease-out;
-  -webkit-transition: -webkit-transform 330ms ease-out;
 }
 
 .switch-right {
@@ -966,7 +1074,6 @@ svg {
 
 .nomask {
   transform: translate(0px, 0px) scale(0.8);
-  /*   background: black; */
 }
 
 .nomask::after,
@@ -1013,13 +1120,21 @@ svg {
   transform: rotate(45deg);
 }
 
+h2 {
+  transition: border-bottom 60ms linear !important;
+}
+
+.selected {
+  border-bottom: 4px solid var(--mid);
+}
+
+.code {
+  right: -10px;
+}
+
 .focus\:border-blue-600:focus {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
-}
-
-.focus\:text-light:focus {
-  color: var(--light);
 }
 
 .focus\:shadow-none:focus {
@@ -1039,9 +1154,21 @@ svg {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.active\:fill-mid:active {
+  fill: var(--mid);
+}
+
+.active\:fill-light:active {
+  fill: var(--light);
+}
+
 @media (min-width: 768px) {
   .md\:relative {
     position: relative;
+  }
+
+  .md\:m-12 {
+    margin: 3rem;
   }
 
   .md\:m-0 {
@@ -1056,20 +1183,16 @@ svg {
     display: none;
   }
 
+  .md\:h-full {
+    height: 100%;
+  }
+
   .md\:h-auto {
     height: auto;
   }
 
   .md\:h-sidebar {
     height: calc(100vh - 64px);
-  }
-
-  .md\:h-full {
-    height: 100%;
-  }
-
-  .md\:h-96 {
-    height: 24rem;
   }
 
   .md\:w-24 {
@@ -1118,6 +1241,10 @@ svg {
 
   .md\:bg-focus {
     background-color: var(--bg-focus);
+  }
+
+  .md\:pb-0 {
+    padding-bottom: 0px;
   }
 
   .md\:scrollbar {
@@ -1186,10 +1313,6 @@ svg {
 }
 
 @media (min-width: 1280px) {
-  .xl\:mb-6 {
-    margin-bottom: 1.5rem;
-  }
-
   .xl\:w-96 {
     width: 24rem;
   }

@@ -1,5 +1,7 @@
 module.exports = {
-  entry: ["./src/js/ui.js", "./src/js/sketch.js", "./src/js/piano.js"],
+  entry: [
+    "./src/js/app.js"
+  ],
   output: {
     filename: "bundle.js",
   },

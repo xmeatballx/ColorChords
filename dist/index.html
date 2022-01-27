@@ -18,37 +18,55 @@
   <body class="bg-main root flex justify-center">
     <!-- app wrapper  -->
     <div class="w-full max-w-screen-2xl max-h-fit content-container">
-    <!-- header   -->
-    <header
+      <!-- header   -->
+      <header
         class="flex flex-row justify-between items-center w-full h-16 bg-main"
       >
-      <h1 class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl">
-        ColorChords
-      </h1>
-      <!-- dark mode switch  -->
-      <div class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center">
-        <div class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform">
-          <div class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full">
-            <div class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"></div>
+        <h1
+          class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl"
+        >
+          ColorChords
+        </h1>
+        <!-- dark mode switch  -->
+        <a
+          href="#"
+          class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center"
+          data-parameter="theme"
+          tabindex="0"
+        >
+          <div
+            class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform"
+          >
+            <div
+              class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full"
+            >
+              <div
+                class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"
+              ></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </header>
-    <!-- end header -->
+        </a>
+        <!-- end dark mode switch  -->
+      </header>
+      <!-- end header -->
 
-    <!-- content container -->
-    <main class="flex flex-col h-full md:flex-row w-full md:h-auto bg-focus">
-      <!-- tab switcher     -->
-      <aside class="bg-main w-full h-16 flex flex-col items-center justify-center fixed bottom-0 md:relative md:items-start md:h-sidebar md:w-24">
-          <hr class="bg-main md:bg-focus"/>
+      <!-- content container -->
+      <main class="flex flex-col h-full md:flex-row w-full md:h-auto bg-focus">
+        <!-- tab switcher     -->
+        <aside
+          class="bg-main w-full h-16 flex flex-col items-center justify-center fixed bottom-0 md:relative md:items-start md:h-sidebar md:w-24"
+        >
+          <hr class="bg-main md:bg-focus w-full" />
           <!-- icons -->
-          <div class="w-full flex flex-row md:flex-col items-center justify-between p-2 md:justify-start md:h-full md:gap-6">
-            <a href=""
+          <div
+            class="tabicons w-full flex flex-row md:flex-col items-center justify-between p-2 md:justify-start md:h-full md:gap-6"
+          >
+            <a href="#" data-tab="notes"
               ><svg
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-mid"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -64,12 +82,12 @@
                 />
               </svg>
             </a>
-            <a href="#"
+            <a href="#" data-tab="colors"
               ><svg
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-light"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -79,12 +97,12 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" data-tab="code">
               <svg
                 width="32"
                 height="24"
                 viewBox="0 0 32 24"
-                class="fill-light"
+                class="fill-light active:fill-mid"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -98,12 +116,12 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" data-tab="info">
               <svg
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                class="fill-light"
+                class="fill-light active:fill-light"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -119,18 +137,48 @@
         <!-- end tab switcher -->
 
         <!-- focus container -->
-        <section class="w-full h-2/4 md:h-sidebar flex flex-col bg-focus">
+        <section class="relative w-full h-full md:h-sidebar bg-focus flex flex-col">
           <!-- canvas  -->
-          <div
-            id="canvas"
-            class="w-smallCanvas md:w-full h-full md:h-96 flex-grow xl:mb-6 mx-auto flex justify-center items-center"
-          ></div>
+          <div class="canvas-container flex-grow flex justify-center items-center">
+            <canvas
+              id="main-canvas"
+              class="relative"
+              width="512" height="512"
+            >
+                <img src="./assets/colorwheel.png" id="colorwheel" class="hidden" />
+            </canvas>
+          </div>
+          <!-- end canvas  -->
           <!-- piano  -->
           <div
             id="piano_container"
-            class="md:w-full  h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
+            class="w- md:w-full h-auto justify-self-end w-mobilecontent mx-auto flex md:items-end"
           ></div>
+        <!-- end piano  -->
+        <!-- code view modal  -->
+        <div class="code hidden absolute inset-0 bg-focus overflow-y-scroll scrollbar-none w-full overflow-x-hidden">
+        <ul class="text-center w-full">
+          <li class="inline-block mt-12 "><a href="#"><h2 class="w-20 text-xl text-mid font-bold selected" data-parameter="rgb">RGB</h2></a></li>
+          <li class="inline-block mt-12" ><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-parameter="hsl">HSL</h2></a></li>
+          <li class="inline-block mt-12"><a href="#"><h2 class="w-20 text-xl text-mid font-bold" data-parameter="hex">HEX</h2></a></li>
+        </ul>
+        <div class="code_carousel flex scrollbar-none overflow-x-auto"></div>
+        </div>
+        <!-- end code view modal  -->
+        <!-- info view modal -->
+        <div
+          class="info hidden absolute inset-0 bg-focus overflow-y-scroll scrollbar-none w-full overflow-x-hidden">
+          <h2 class="prose text-5xl font-bold text-highcontrast pt-24 px-24 max-w-4xl">
+            Have you ever thought about color like music? What if you used musical harmonic
+            ratios to create color palettes?
+          </h2>
+          <p class="prose text-2xl text-highcontrast px-24 py-12 max-w-4xl leading-10">
+            ColorChords lets you use musical harmonic ratios to compose color palettes. It's
+          a great tool for designers, developers, and artists of all kinds. Using
+          ColorChords is as easy as choosing a base color, then choosing which musical intervals you would like your palette to be harmonized by.</p>
+          </div>
         </section>
+        <!-- end info modal  -->
         <!-- end focus container  -->
 
         <!-- color preview  -->
@@ -141,113 +189,15 @@
 
         <!-- controls container  -->
         <aside
-          class="flex flex-col mt-3 pb-16 md:m-0 w-full md:w-64 xl:w-96 mx-auto md:h-sidebar bg-main 2xl:max-w-screen-md"
+          class="controls-container flex flex-col mt-3 pb-16 md:pb-0 md:m-0 w-full md:w-64 xl:w-96 mx-auto md:h-sidebar bg-main 2xl:max-w-screen-md"
         >
-          <hr />
-          <!-- transpose  -->
-          <div
-            class="rotation flex flex-wrap justify-between w-full mx-auto p-3 mb-3"
-          >
-            <label for="rotation" class="text-sm text-mid 2xl:text-2xl">Transpose</label>
-            <div class="rotation_value text-sm text-mid 2xl:text-2xl">0</div>
-            <input
-              type="range"
-              min="-180"
-              max="180"
-              value="0"
-              class="slider light w-full mt-3"
-              name="rotation"
-              id="rotation"
-            />
-          </div>
-          <!-- end transpose  -->
-          <hr />
-          <!-- notes container  -->
-          <ul
-            class="notes md:overflow-y-scroll md:scrollbar md:scrollbar-thin md:h-full w-full mb-3 "
-            id="notes"
-          >
-            <!-- note  -->
-            <li class="note w-full h-max p-3 md:flex md:flex-row">
-              <div class="controls w-full">
-                <!-- interval  -->
-                <div class="interval-wrapper">
-                <select
-                  name="interval"
-                  class="param text-base text-mid 2xl:text-2xl font-semibold transition ease-in-out m-0 p-1 w-full mb-2 shadow-sm border border-light rounded focus:text-light focus:border-blue-600 focus:outline-none"
-                  aria-label="Default select example"
-                  value="1"
-                >
-                  <option value="1" class="text-sm">Fundamental</option>
-                  <option value="1.067" class="text-sm">Minor Second</option>
-                  <option value="1.125" class="text-sm">Major Second</option>
-                  <option value="1.200" class="text-sm">Minor Third</option>
-                  <option value="1.250" class="text-sm">Major Third</option>
-                  <option value="1.333" class="text-sm">Perfect Fourth</option>
-                  <option value="1.414" class="text-sm">Tritone</option>
-                  <option value="1.500" class="text-sm">Perfect Fifth</option>
-                  <option value="1.600" class="text-sm">Minor Sixth</option>
-                  <option value="1.666" class="text-sm">Major Sixth</option>
-                  <option value="1.777" class="text-sm">Minor Seventh</option>
-                  <option value="1.875" class="text-sm">Major Seventh</option>
-                </select>
-                </div>
-                <!-- end interval  -->
-
-                <!-- color preview  -->
-                <div
-                  class="color_preview w-full h-6"
-                  style="background-color: rgb(255, 5, 5)"
-                ></div>
-
-                <div class="flex flex-wrap justify-between w-full mt-3">
-                  <label for="octave" class="text-sm text-mid 2xl:text-2xl">Octave</label>
-                  <div class="octave_value text-sm text-mid 2xl:text-2xl">0</div>
-                  <input
-                    type="range"
-                    name="octave"
-                    class="param octave slider light mt-3 mb-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none"
-                    min="-4"
-                    max="4"
-                    value="0"
-                  />
-                </div>
-                <div class="flex flex-wrap justify-between w-full">
-                  <label for="saturation" class="text-sm text-mid 2xl:text-2xl"
-                    >Velocity</label
-                  >
-                  <div class="saturation_value text-sm text-mid 2xl:text-2xl">100%</div>
-                  <input
-                    type="range"
-                    name="saturation"
-                    class="param saturation slider light mt-3 mb-3 form-range w-full p-0 focus:outline-none focus:ring-0 focus:shadow-none"
-                    min="0"
-                    max="100"
-                    value="100"
-                  />
-                </div>
-              </div>
-              <div
-                class="color_preview hidden w-2/4 flex-grow ml-3 border-2 border-light"
-              ></div>
-            </li>
-          </ul>
-          <!-- end notes container  -->
-          
-          <!-- add note button  -->
-          <button
-            class="add_interval_button p-3 border border-mid mx-auto rounded text-mid 2xl:text-2xl font-medium justify-self-end mb-3"
-          >
-            Add Color
-          </button>
-          <!-- end add note button  -->
+          <!-- noteList is injected here -->
         </aside>
         <!-- end controls container  -->
       </main>
       <!-- end content container  -->
     </div>
     <!-- end app container  -->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="bundle.js"></script>
   </body>
 </html>
