@@ -3,11 +3,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        sidebar: "calc(100vh - 64px)",
-        sidebarstatic: "800px",
-        sidebarsmall: "25vh",
-        canvasSmall: "24rem",
-        canvasLarge: "40rem",
+        fullScreen: "100vh",
       },
       width: {
         mobilecontent: "90vw",
