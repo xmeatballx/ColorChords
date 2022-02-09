@@ -138,6 +138,10 @@ section#piano > svg:nth-child(3) {
   transform: translateX(-2%);
 }
 
+section#piano > svg:nth-child(4) {
+  transform: translateX(-4%);
+}
+
 .C,
 .D,
 .E,

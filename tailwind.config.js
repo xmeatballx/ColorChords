@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        fullScreen: "100vh",
+        content: "-webkit-fill-available",
       },
       width: {
         mobilecontent: "90vw",

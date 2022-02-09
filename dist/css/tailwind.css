@@ -537,8 +537,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.25rem;
 }
 
-.h-fullScreen {
-  height: 100vh;
+.h-content {
+  height: -webkit-fill-available;
 }
 
 .h-auto {
@@ -788,6 +788,10 @@ section#piano > svg:nth-child(3) {
   transform: translateX(-2%);
 }
 
+section#piano > svg:nth-child(4) {
+  transform: translateX(-4%);
+}
+
 .C,
 .D,
 .E,
@@ -798,9 +802,9 @@ section#piano > svg:nth-child(3) {
   fill: white;
 }
 
-@media (min-width: 640px) {
-  .sm\:block {
-    display: block;
+@media (min-width: 768px) {
+  .md\:h-full {
+    height: 100%;
   }
 }
 

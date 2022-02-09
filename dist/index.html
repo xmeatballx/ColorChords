@@ -20,83 +20,28 @@
     <div class="w-full max-w-screen-2xl h-full content-container">
       <!-- header   -->
       <header
-        class="
-          flex flex-row
-          justify-between
-          items-center
-          absolute
-          top-0
-          left-0
-          right-0
-          h-16
-          bg-main
-        "
+        class="flex flex-row justify-between items-center absolute top-0 left-0 right-0 h-16 bg-main"
       >
         <h1
-          class="
-            text-xl text-highcontrast
-            font-bold
-            p-3
-            w-2/4
-            h-min
-            2xl:text-2xl
-          "
+          class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl"
         >
           ColorChords
         </h1>
         <!-- dark mode switch  -->
         <a
           href="#"
-          class="
-            toggle
-            justify-self-end
-            m-3
-            w-16
-            h-8
-            bg-focus
-            flex
-            items-center
-          "
+          class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center"
           data-parameter="theme"
           tabindex="0"
         >
           <div
-            class="
-              switch switch-left
-              w-6
-              h-6
-              m-1
-              bg-main
-              overflow-hidden
-              flex
-              items-center
-              justify-center
-              transition-transform
-            "
+            class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform"
           >
             <div
-              class="
-                icon
-                w-5
-                h-5
-                sun
-                bg-mid
-                transition-transform
-                duration-500
-                rounded-full
-              "
+              class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full"
             >
               <div
-                class="
-                  mask
-                  nomask
-                  w-5
-                  h-5
-                  bg-main
-                  inline-block
-                  rounded-full
-                  transition-transform
-                "
+                class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"
               ></div>
             </div>
           </div>
@@ -104,16 +49,15 @@
         <!-- end dark mode switch  -->
       </header>
       <!-- end header -->
-      <main class="flex flex-col h-fullScreen">
-        <section class="flex-auto flex"></section>
+      <main class="flex flex-col h-content md:h-full">
+        <section class="flex-auto flex m-3"></section>
         <section id="piano" class="flex justify-center w-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
-            height="auto"
             fill="none"
             viewBox="0 0 285 182"
-            class="w-full h-auto hidden sm:block"
+            class="w-full h-auto"
           >
             <g class="Octave">
               <path
@@ -122,7 +66,7 @@
                 d="M1 1v180h41v-77.577H31V1H1z"
                 class="C"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 fill="#000"
@@ -131,7 +75,7 @@
                 d="M31 1h23v102H31V1z"
                 class="C#"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -139,7 +83,7 @@
                 d="M72 1H54.5v102.423H42V181h40.5v-78.085H72V1z"
                 class="D"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -147,7 +91,7 @@
                 d="M95 102.915L94.5 1H122v180H82.5v-78.085H95z"
                 class="E"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 fill="#000"
@@ -156,7 +100,7 @@
                 d="M72 1h23v102H72V1z"
                 class="Eb"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -164,7 +108,7 @@
                 d="M122 1v180h41v-77.865h-11V1h-30z"
                 class="F"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 fill="#000"
@@ -173,7 +117,7 @@
                 d="M152 1h23v102h-23V1z"
                 class="F#"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -181,7 +125,7 @@
                 d="M193 1h-17.5v102.423H163V181h40.5v-78.085H193V1z"
                 class="G"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 fill="#000"
@@ -190,7 +134,7 @@
                 d="M193 1h23v102h-23V1z"
                 class="Ab"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -198,7 +142,7 @@
                 d="M234 1h-17.5v102.423H204V181h40.5v-78.085H234V1z"
                 class="A"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 fill="#000"
@@ -207,7 +151,7 @@
                 d="M234 1h23v102h-23V1z"
                 class="Bb"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
               <path
                 stroke="#050505"
@@ -215,14 +159,14 @@
                 d="M257 102.915L256.5 1H284v180h-39.5v-78.085H257z"
                 class="B"
                 data-active="false"
-                data-octave="3"
+                data-octave="2"
               />
             </g>
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
-            height="auto"
+            height="100%"
             fill="none"
             viewBox="0 0 285 182"
             class="w-full h-auto hidden lg:block"
@@ -235,7 +179,7 @@
                 d="M1 1v180h41v-77.577H31V1H1z"
                 class="C"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 fill="#000"
@@ -244,7 +188,7 @@
                 d="M31 1h23v102H31V1z"
                 class="C#"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -252,7 +196,7 @@
                 d="M72 1H54.5v102.423H42V181h40.5v-78.085H72V1z"
                 class="D"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 fill="#000"
@@ -261,7 +205,7 @@
                 d="M72 1h23v102H72V1z"
                 class="Eb"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -269,7 +213,7 @@
                 d="M95 102.915L94.5 1H122v180H82.5v-78.085H95z"
                 class="E"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -277,7 +221,7 @@
                 d="M122 1v180h41v-77.865h-11V1h-30z"
                 class="F"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 fill="#000"
@@ -286,7 +230,7 @@
                 d="M152 1h23v102h-23V1z"
                 class="F#"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -294,7 +238,7 @@
                 d="M193 1h-17.5v102.423H163V181h40.5v-78.085H193V1z"
                 class="G"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 fill="#000"
@@ -303,7 +247,7 @@
                 d="M193 1h23v102h-23V1z"
                 class="Ab"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -311,7 +255,7 @@
                 d="M234 1h-17.5v102.423H204V181h40.5v-78.085H234V1z"
                 class="A"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 fill="#000"
@@ -320,7 +264,7 @@
                 d="M234 1h23v102h-23V1z"
                 class="Bb"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
               <path
                 stroke="#050505"
@@ -328,14 +272,13 @@
                 d="M257 102.915L256.5 1H284v180h-39.5v-78.085H257z"
                 class="B"
                 data-active="false"
-                data-octave="4"
+                data-octave="3"
               />
             </g>
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
-            height="auto"
             fill="none"
             viewBox="0 0 285 182"
             class="w-full h-auto"
@@ -441,6 +384,117 @@
                 class="B"
                 data-active="false"
                 data-octave="4"
+              />
+            </g>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            fill="none"
+            viewBox="0 0 285 182"
+            class="w-full h-auto"
+          >
+            <g class="Octave">
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M1 1v180h41v-77.577H31V1H1z"
+                class="C"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M31 1h23v102H31V1z"
+                class="C#"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1H54.5v102.423H42V181h40.5v-78.085H72V1z"
+                class="D"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1h23v102H72V1z"
+                class="Eb"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M95 102.915L94.5 1H122v180H82.5v-78.085H95z"
+                class="E"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M122 1v180h41v-77.865h-11V1h-30z"
+                class="F"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M152 1h23v102h-23V1z"
+                class="F#"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h-17.5v102.423H163V181h40.5v-78.085H193V1z"
+                class="G"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h23v102h-23V1z"
+                class="Ab"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h-17.5v102.423H204V181h40.5v-78.085H234V1z"
+                class="A"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h23v102h-23V1z"
+                class="Bb"
+                data-active="false"
+                data-octave="5"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M257 102.915L256.5 1H284v180h-39.5v-78.085H257z"
+                class="B"
+                data-active="false"
+                data-octave="5"
               />
             </g>
           </svg>
