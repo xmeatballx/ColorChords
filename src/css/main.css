@@ -15,10 +15,10 @@
   --gray-800: #4b4b4b;
   --gray-900: #2c2c2c;
   --bg-main: var(--gray-100);
-  --bg-focus: var(--gray-500);
+  --bg-focus: var(--gray-200);
   --light: var(--gray-400);
   --lighter: var(--gray-300);
-  --mid: var(--gray-900);
+  --mid: var(--gray-800);
   --high-contrast: var(--gray-800);
   counter-reset: octaves;
 }
@@ -33,7 +33,8 @@ body {
 *:not(.color_preview):not(h2),
 .slider::-webkit-slider-thumb,
 .slider::-webkit-slider-runnable-track,
-select {
+select,
+#piano path {
   transition: border 500ms ease-in, outline 500ms ease-in,
     background-color 500ms ease-in;
 }
@@ -149,5 +150,22 @@ section#piano > svg:nth-child(4) {
 .G,
 .A,
 .B {
-  fill: white;
+  fill: var(--bg-main);
+  stroke: var(--mid);
+}
+
+.accidental {
+  fill: var(--mid);
+  stroke: var(--mid);
+}
+
+.text-shadow {
+  text-shadow: -1px 1px 2px var(--mid);
+}
+
+@media (max-width: 768px) {
+  section#piano > svg:nth-child(2) {
+    margin-left: 1.5%;
+    translate: none;
+  }
 }
