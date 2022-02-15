@@ -4,6 +4,7 @@ export const Palette = function () {
 };
 
 Palette.prototype.render = function (colors) {
+  console.log("hi");
   clearChildren(this.colorSection);
   this.colorBlock.classList =
     "flex-grow h-full grid items-center justify-center";

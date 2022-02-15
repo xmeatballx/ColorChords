@@ -11,7 +11,6 @@ Piano.prototype.keyDown = function (key, color) {
 };
 
 Piano.prototype.keyUp = function (key) {
-  console.log(key.classList.contains("accidental"));
   key.style.fill =
     key.classList.contains("accidental") == true
       ? this.darkColor

@@ -45,7 +45,6 @@ Colors.prototype.getAllColors = function () {
 };
 
 Colors.prototype.indexOf = function (key) {
-  console.log(key);
   const hue = this.intervals[key.classList[0]] * 360;
   let value = key.getAttribute("data-octave");
   value = value / 8;

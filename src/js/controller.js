@@ -13,12 +13,11 @@ export const Controller = function () {
 
 Controller.prototype.handleInput = function () {
   const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
-  const useEvent = (e) =>
-    !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
   [...pianoKeys].forEach((key) =>
-    key.addEventListener("mousedown", (e) => useEvent(e))
+    key.addEventListener("mousedown", (e) =>
+      !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target)
+    )
   );
-  this.palette.render(this.colors);
 };
 
 Controller.prototype.handleTheme = function () {
@@ -32,6 +31,7 @@ Controller.prototype.useNote = function (noteEvent) {
     this.colors.add(noteEvent);
     this.piano.keyDown(note, this.colors.getColorStyleRule(note));
     this.actives.push(note);
+    this.palette.render(this.colors);
   }
 };
 
@@ -39,6 +39,7 @@ Controller.prototype.disposeNote = function (note) {
   this.piano.keyUp(note);
   this.colors.remove(note);
   this.actives.splice(0, 1);
+  this.palette.render(this.colors);
 };
 
 function alreadyActive(key) {
