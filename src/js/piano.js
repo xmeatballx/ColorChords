@@ -1,10 +1,7 @@
-function Piano() {
+export const Piano = function () {
   const root = document.querySelector(".root");
   this.lightColor = getComputedStyle(root).getPropertyValue("--bg-main");
   this.darkColor = getComputedStyle(root).getPropertyValue("--mid");
-}
-
-Piano.prototype.init = function () {
   flagAccidentals();
 };
 
@@ -14,6 +11,7 @@ Piano.prototype.keyDown = function (key, color) {
 };
 
 Piano.prototype.keyUp = function (key) {
+  console.log(key.classList.contains("accidental"));
   key.style.fill =
     key.classList.contains("accidental") == true
       ? this.darkColor
@@ -29,5 +27,3 @@ function flagAccidentals() {
     accidental.classList.add("accidental")
   );
 }
-
-export { Piano };

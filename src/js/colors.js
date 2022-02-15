@@ -1,4 +1,4 @@
-function Colors() {
+export const Colors = function () {
   this.colors = [];
   this.intervals = {
     C: 0,
@@ -14,10 +14,10 @@ function Colors() {
     Bb: 0.777,
     B: 0.875,
   };
-}
+};
 
 Colors.prototype.add = function (e) {
-  const color = getColorByKey(e);
+  const color = this.getColorByKey(e);
   this.colors.push(color);
 };
 
@@ -45,6 +45,7 @@ Colors.prototype.getAllColors = function () {
 };
 
 Colors.prototype.indexOf = function (key) {
+  console.log(key);
   const hue = this.intervals[key.classList[0]] * 360;
   let value = key.getAttribute("data-octave");
   value = value / 8;
@@ -55,4 +56,11 @@ Colors.prototype.indexOf = function (key) {
   return result;
 };
 
-export { Colors, HSLtoRGB, RGBtoHex };
+Colors.prototype.getColorByKey = function (e) {
+  const rect = e.target.getBoundingClientRect();
+  const hue = this.intervals[e.target.classList[0]] * 360;
+  const saturation = ((e.clientY - rect.top) / rect.height).toFixed(2);
+  let value = e.target.getAttribute("data-octave");
+  value = value / 8;
+  return [hue, saturation, value];
+};

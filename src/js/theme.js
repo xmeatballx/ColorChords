@@ -1,10 +1,10 @@
-function Theme() {
+export const Theme = function () {
   this.darkMode = false;
   this.root = document.querySelector(".root");
   this.switcher = document.querySelector(".switch");
   this.icon = document.querySelector(".icon");
   this.mask = document.querySelector(".mask");
-}
+};
 
 Theme.prototype.toggleDark = function () {
   this.darkMode = !this.darkMode;
@@ -27,5 +27,3 @@ Theme.prototype.toggleDark = function () {
   this.mask.classList.toggle("nomask");
   this.icon.classList.toggle("sun");
 };
-
-export { Theme };

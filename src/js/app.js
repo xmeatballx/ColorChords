@@ -7,5 +7,5 @@ themeToggle.onclick = (e) => this.theme.toggleDark(e);
 
 const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
 [...pianoKeys].forEach((key) =>
-  key.addEventListener("mousedown", controller.handleInput(key))
+  key.addEventListener("mousedown", (e) => controller.handleInput(e))
 );
