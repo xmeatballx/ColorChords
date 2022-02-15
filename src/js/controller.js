@@ -11,9 +11,19 @@ export const Controller = function () {
   this.actives = [];
 };
 
-Controller.prototype.handleInput = function (e) {
-  !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
+Controller.prototype.handleInput = function () {
+  const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
+  const useEvent = (e) =>
+    !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
+  [...pianoKeys].forEach((key) =>
+    key.addEventListener("mousedown", (e) => useEvent(e))
+  );
   this.palette.render(this.colors);
+};
+
+Controller.prototype.handleTheme = function () {
+  const themeToggle = document.querySelector(".toggle");
+  themeToggle.onclick = (e) => this.theme.toggleDark(e);
 };
 
 Controller.prototype.useNote = function (noteEvent) {
