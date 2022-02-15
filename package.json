@@ -1,5 +1,5 @@
 {
-  "name": "ColorChords",
+  "name": "colorchords",
   "version": "1.0.0",
   "description": "",
   "main": "tailwind.config.js",
@@ -20,8 +20,8 @@
     "webpack-dev-server": "^4.7.1"
   },
   "scripts": {
-    "build": "npx webpack && npx tailwindcss -i ./src/css/main.css -o ./src/css/output.css && postcss ./src/css/output.css -o ./dist/css/tailwind.css",
-    "dev": "npx webpack serve",
+    "build": "npx webpack --config ./config/webpack.config.js && npx tailwindcss -i ./src/css/main.css -o ./src/css/output.css && postcss ./src/css/output.css -o ./dist/css/tailwind.css",
+    "dev": "npx webpack serve --config ./config/webpack.config.js",
     "prod": "npm run build && cd ./dist && live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
