@@ -19,6 +19,22 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                config: "./config/postcss.config.js",
+                plugins: ["postcss-preset-env"],
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   mode: "production",
