@@ -1,31 +1,31 @@
 function Theme() {
   this.darkMode = false;
-
-  Theme.prototype.toggleDark = function (darkMode) {
-    this.darkMode = !this.darkMode;
-    const root = document.querySelector(".root");
-    const switcher = document.querySelector(".switch");
-    const icon = document.querySelector(".icon");
-    const mask = document.querySelector(".mask");
-
-    if (this.darkMode) {
-      root.style.setProperty("--bg-main", "var(--gray-900)");
-      root.style.setProperty("--bg-focus", "var(--gray-800)");
-      root.style.setProperty("--mid", "var(--gray-600)");
-      root.style.setProperty("--high-contrast", "var(--gray-100)");
-      root.style.setProperty("--light", "var(--gray-500")
-    } else {
-      root.style.setProperty("--bg-main", "var(--gray-100)");
-      root.style.setProperty("--bg-focus", "var(--gray-500)");
-      root.style.setProperty("--mid", "var(--gray-800)");
-      root.style.setProperty("--high-contrast", "var(--gray-900)");
-      root.style.setProperty("--light", "var(--gray-400")
-    }
-    switcher.classList.toggle("switch-left");
-    switcher.classList.toggle("switch-right");
-    mask.classList.toggle("nomask");
-    icon.classList.toggle("sun");
-  };
+  this.root = document.querySelector(".root");
+  this.switcher = document.querySelector(".switch");
+  this.icon = document.querySelector(".icon");
+  this.mask = document.querySelector(".mask");
 }
+
+Theme.prototype.toggleDark = function () {
+  this.darkMode = !this.darkMode;
+
+  if (this.darkMode) {
+    this.root.style.setProperty("--bg-main", "var(--gray-900)");
+    this.root.style.setProperty("--bg-focus", "var(--gray-800)");
+    this.root.style.setProperty("--mid", "var(--gray-600)");
+    this.root.style.setProperty("--high-contrast", "var(--gray-100)");
+    this.root.style.setProperty("--light", "var(--gray-500");
+  } else {
+    this.root.style.setProperty("--bg-main", "var(--gray-100)");
+    this.root.style.setProperty("--bg-focus", "var(--gray-500)");
+    this.root.style.setProperty("--mid", "var(--gray-800)");
+    this.root.style.setProperty("--high-contrast", "var(--gray-900)");
+    this.root.style.setProperty("--light", "var(--gray-400");
+  }
+  this.switcher.classList.toggle("switch-left");
+  this.switcher.classList.toggle("switch-right");
+  this.mask.classList.toggle("nomask");
+  this.icon.classList.toggle("sun");
+};
 
 export { Theme };

@@ -4,29 +4,35 @@ import { Piano } from "./piano";
 import { Palette } from "./palette";
 
 function Controller() {
-  const theme = new Theme();
-  const piano = new Piano();
-  const colors = new Colors();
-  const palette = new Palette();
-
-  Controller.prototype.handleInput = function () {
-    const themeToggle = document.querySelector(".toggle");
-    themeToggle.onclick = (e) => theme.toggleDark(e);
-
-    const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
-    [...pianoKeys].forEach((key) => {
-      key.addEventListener("mousedown", function (e) {
-        const active = e.target.getAttribute("data-active");
-        if (active == "false") {
-          colors.add(e);
-          piano.keyDown(e.target, colors.getColorStyleRule(e.target));
-        } else {
-          piano.keyUp(e.target);
-          colors.remove(e.target);
-        }
-        palette.render(colors);
-      });
-    });
-  };
+  this.theme = new Theme();
+  this.piano = new Piano();
+  this.colors = new Colors();
+  this.palette = new Palette();
 }
+
+Controller.prototype.handleInput = function (e) {
+  if (!alreadyActive(e.target)) {
+    this.useNote(e);
+  } else {
+    this.disposeNote(e.target);
+  }
+  this.palette.render(this.colors);
+};
+
+Controller.prototype.useNote = function (noteEvent) {
+  const note = noteEvent.taget;
+  this.colors.add(noteEvent);
+  this.piano.keyDown(note, this.colors.getColorStyleRule(note));
+};
+
+Controller.prototype.disposeNote = function (note) {
+  this.piano.keyUp(note);
+  this.colors.remove(note);
+};
+
+function alreadyActive(key) {
+  const active = key.getAttribute("data-active");
+  return active == "false" ? false : true;
+}
+
 export { Controller };
