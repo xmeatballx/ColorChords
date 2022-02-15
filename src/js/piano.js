@@ -1,7 +1,4 @@
 export const Piano = function () {
-  const root = document.querySelector(".root");
-  this.lightColor = getComputedStyle(root).getPropertyValue("--bg-main");
-  this.darkColor = getComputedStyle(root).getPropertyValue("--mid");
   flagAccidentals();
 };
 
@@ -11,10 +8,11 @@ Piano.prototype.keyDown = function (key, color) {
 };
 
 Piano.prototype.keyUp = function (key) {
+  const root = document.querySelector(".root");
   key.style.fill =
     key.classList.contains("accidental") == true
-      ? this.darkColor
-      : this.lightColor;
+      ? "var(--mid)"
+      : "var(--bg-main)";
   key.setAttribute("data-active", "false");
 };
 
