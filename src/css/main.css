@@ -163,6 +163,15 @@ section#piano > svg:nth-child(4) {
   text-shadow: -1px 1px 2px var(--mid);
 }
 
+.hold_switch {
+  transform: translateX(100%);
+  transition: all 500ms ease-out;
+}
+
+.hold_switch-off {
+  transform: translateX(0%);
+}
+
 @media (max-width: 768px) {
   section#piano > svg:nth-child(2) {
     margin-left: 1.5%;

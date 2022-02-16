@@ -1,13 +1,12 @@
 export const Palette = function () {
   this.colorSection = document.querySelector("section:first-child");
   this.colorBlock = document.createElement("div");
+  this.colorBlock.classList =
+    "flex-grow h-full grid items-center justify-center";
 };
 
 Palette.prototype.render = function (colors) {
-  console.log("hi");
   clearChildren(this.colorSection);
-  this.colorBlock.classList =
-    "flex-grow h-full grid items-center justify-center";
 
   getColorInfo(colors)
     .then((response) => parseColorInfo(response))
@@ -29,7 +28,6 @@ Palette.prototype.paintUI = function (color) {
 };
 
 function getColorInfo(colors) {
-  console.log(colors);
   return Promise.all(
     colors.getAllColors().map((color) => {
       const h = Math.round(color[0]);

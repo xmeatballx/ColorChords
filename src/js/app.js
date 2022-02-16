@@ -3,4 +3,5 @@ import css from "../css/main.css";
 
 const controller = new Controller();
 controller.handleTheme();
-controller.handleInput();
+controller.handleParams();
+controller.handlePianoInput();

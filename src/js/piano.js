@@ -8,7 +8,6 @@ Piano.prototype.keyDown = function (key, color) {
 };
 
 Piano.prototype.keyUp = function (key) {
-  const root = document.querySelector(".root");
   key.style.fill =
     key.classList.contains("accidental") == true
       ? "var(--mid)"
