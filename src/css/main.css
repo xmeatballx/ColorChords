@@ -123,6 +123,10 @@ h2 {
   transition: border-bottom 60ms linear !important;
 }
 
+#piano {
+  transform: translateX(0.75%);
+}
+
 #piano path {
   pointer-events: all;
 }
@@ -141,6 +145,14 @@ section#piano > svg:nth-child(3) {
 
 section#piano > svg:nth-child(4) {
   transform: translateX(-4%);
+}
+
+section#piano > svg:nth-child(5) {
+  transform: translateX(-5%);
+}
+
+section#piano > svg:nth-child(6) {
+  transform: translateX(-6%);
 }
 
 .C,

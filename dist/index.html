@@ -18,32 +18,93 @@
   <body class="bg-main root">
     <!-- app wrapper  -->
     <div
-      class="max-w-screen-2xl m-auto h-full flex flex-col justify-center items-center content-container"
+      class="
+        max-w-screen-2xl
+        m-auto
+        h-full
+        flex flex-col
+        justify-center
+        items-center
+        content-container
+      "
     >
       <!-- header   -->
       <header
-        class="flex flex-row justify-between items-center h-16 bg-main w-full max-w-appWidth"
+        class="
+          flex flex-row
+          justify-between
+          items-center
+          h-16
+          bg-main
+          w-full
+          max-w-appWidth
+        "
       >
         <h1
-          class="text-xl text-highcontrast font-bold p-3 w-2/4 h-min 2xl:text-2xl"
+          class="
+            text-xl text-highcontrast
+            font-bold
+            p-3
+            w-2/4
+            h-min
+            2xl:text-2xl
+          "
         >
           ColorChords
         </h1>
         <!-- dark mode switch  -->
         <a
           href="#"
-          class="toggle justify-self-end m-3 w-16 h-8 bg-focus flex items-center"
+          class="
+            toggle
+            justify-self-end
+            m-3
+            w-16
+            h-8
+            bg-focus
+            flex
+            items-center
+          "
           data-parameter="theme"
           tabindex="0"
         >
           <div
-            class="switch switch-left w-6 h-6 m-1 bg-main overflow-hidden flex items-center justify-center transition-transform"
+            class="
+              switch switch-left
+              w-6
+              h-6
+              m-1
+              bg-main
+              overflow-hidden
+              flex
+              items-center
+              justify-center
+              transition-transform
+            "
           >
             <div
-              class="icon w-5 h-5 sun bg-mid transition-transform duration-500 rounded-full"
+              class="
+                icon
+                w-5
+                h-5
+                sun
+                bg-mid
+                transition-transform
+                duration-500
+                rounded-full
+              "
             >
               <div
-                class="mask nomask w-5 h-5 bg-main inline-block rounded-full transition-transform"
+                class="
+                  mask
+                  nomask
+                  w-5
+                  h-5
+                  bg-main
+                  inline-block
+                  rounded-full
+                  transition-transform
+                "
               ></div>
             </div>
           </div>
@@ -57,28 +118,60 @@
         <!-- end color blocks -->
         <!-- start controls section  -->
         <section
-          class="h-20 bg-light mx-3 flex justify-between items-center px-3 pt-1 pb-2"
+          class="
+            h-20
+            bg-light
+            mx-3
+            flex
+            justify-between
+            items-center
+            px-3
+            pt-1
+            pb-2
+          "
         >
           <div class="grid w-min">
             <p
-              class="w-full text-center text-base text-main font-bold text-shadow"
+              class="
+                w-full
+                text-center text-base text-main
+                font-bold
+                text-shadow
+              "
             >
               OCTAVE
             </p>
             <div class="flex justify-center gap-1">
               <button
-                class="octave-down w-6 border-2 border-main bg-light h-6 text-sm text-main text-center font-black drop-shadow-md"
+                class="
+                  octave-down
+                  w-6
+                  border-2 border-main
+                  bg-light
+                  h-6
+                  text-sm text-main text-center
+                  font-black
+                  drop-shadow-md
+                "
               >
                 -
               </button>
               <button
-                class="octave-up w-6 border-2 border-main bg-light text-sm text-center text-main font-bold drop-shadow-md"
+                class="
+                  octave-up
+                  w-6
+                  border-2 border-main
+                  bg-light
+                  text-sm text-center text-main
+                  font-bold
+                  drop-shadow-md
+                "
               >
                 +
               </button>
             </div>
           </div>
-          <a href="#">
+          <a href="#" class="chords">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -99,7 +192,14 @@
             <p class="text-base text-main font-bold text-shadow">HOLD</p>
             <a href="#" class="hold">
               <div
-                class="h-6 w-full bg-light p-1 border-2 border-main drop-shadow-md"
+                class="
+                  h-6
+                  w-full
+                  bg-light
+                  p-1
+                  border-2 border-main
+                  drop-shadow-md
+                "
               >
                 <div class="hold_switch h-full w-2/4 bg-main"></div>
               </div>
@@ -114,9 +214,122 @@
             width="100%"
             fill="none"
             viewBox="0 0 285 182"
-            class="w-full h-auto hidden md:block"
+            class="w-full h-auto hidden sm:hidden"
+            id="octave1"
           >
-            <g class="Octave">
+            <g class="Octave1">
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M1 1v180h41v-77.577H31V1H1z"
+                class="C"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M31 1h23v102H31V1z"
+                class="C#"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1H54.5v102.423H42V181h40.5v-78.085H72V1z"
+                class="D"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1h23v102H72V1z"
+                class="Eb"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M95 102.915L94.5 1H122v180H82.5v-78.085H95z"
+                class="E"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M122 1v180h41v-77.865h-11V1h-30z"
+                class="F"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M152 1h23v102h-23V1z"
+                class="F#"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h-17.5v102.423H163V181h40.5v-78.085H193V1z"
+                class="G"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h23v102h-23V1z"
+                class="Ab"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h-17.5v102.423H204V181h40.5v-78.085H234V1z"
+                class="A"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h23v102h-23V1z"
+                class="Bb"
+                data-active="false"
+                data-octave="1"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M257 102.915L256.5 1H284v180h-39.5v-78.085H257z"
+                class="B"
+                data-active="false"
+                data-octave="1"
+              />
+            </g>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            fill="none"
+            viewBox="0 0 285 182"
+            class="w-full h-auto hidden md:block sm:hidden"
+            id="octave2"
+          >
+            <g class="Octave2">
               <path
                 stroke="#050505"
                 stroke-width="2"
@@ -226,10 +439,10 @@
             height="100%"
             fill="none"
             viewBox="0 0 285 182"
-            class="w-full h-auto"
+            class="w-full h-auto block"
             id="octave3"
           >
-            <g class="Octave">
+            <g class="Octave3">
               <path
                 stroke="#050505"
                 stroke-width="2"
@@ -338,9 +551,10 @@
             width="100%"
             fill="none"
             viewBox="0 0 285 182"
-            class="w-full h-auto"
+            class="w-full h-auto block"
+            id="octave4"
           >
-            <g class="Octave">
+            <g class="Octave4">
               <path
                 stroke="#050505"
                 stroke-width="2"
@@ -449,9 +663,10 @@
             width="100%"
             fill="none"
             viewBox="0 0 285 182"
-            class="w-full h-auto hidden lg:block"
+            class="w-full h-auto hidden lg:block octave-5 sm:hidden"
+            id="octave5"
           >
-            <g class="Octave">
+            <g>
               <path
                 stroke="#050505"
                 stroke-width="2"
@@ -552,6 +767,118 @@
                 class="B"
                 data-active="false"
                 data-octave="5"
+              />
+            </g>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            fill="none"
+            viewBox="0 0 285 182"
+            class="w-full h-auto hidden sm:hidden"
+            id="octave6"
+          >
+            <g class="Octave6">
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M1 1v180h41v-77.577H31V1H1z"
+                class="C"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M31 1h23v102H31V1z"
+                class="C#"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1H54.5v102.423H42V181h40.5v-78.085H72V1z"
+                class="D"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M72 1h23v102H72V1z"
+                class="Eb"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M95 102.915L94.5 1H122v180H82.5v-78.085H95z"
+                class="E"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M122 1v180h41v-77.865h-11V1h-30z"
+                class="F"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M152 1h23v102h-23V1z"
+                class="F#"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h-17.5v102.423H163V181h40.5v-78.085H193V1z"
+                class="G"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M193 1h23v102h-23V1z"
+                class="Ab"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h-17.5v102.423H204V181h40.5v-78.085H234V1z"
+                class="A"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                fill="#000"
+                stroke="#050505"
+                stroke-width="2"
+                d="M234 1h23v102h-23V1z"
+                class="Bb"
+                data-active="false"
+                data-octave="6"
+              />
+              <path
+                stroke="#050505"
+                stroke-width="2"
+                d="M257 102.915L256.5 1H284v180h-39.5v-78.085H257z"
+                class="B"
+                data-active="false"
+                data-octave="6"
               />
             </g>
           </svg>
