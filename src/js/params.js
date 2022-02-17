@@ -3,12 +3,9 @@ export const Params = function () {
   this.hold = true;
 };
 
-Params.prototype.handleHold = function () {
+Params.prototype.handleHold = function (e) {
   e.currentTarget.children[0].children[0].classList.toggle("hold_switch-off");
   this.hold = !this.hold;
-  [...this.actives].forEach((note) => {
-    this.disposeNote(note);
-  });
 };
 
 Params.prototype.incrementOctave = function () {

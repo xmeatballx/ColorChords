@@ -32,6 +32,9 @@ Controller.prototype.handleParams = function () {
 
 Controller.prototype.useHold = function (e) {
   this.params.handleHold(e);
+  [...this.actives].forEach((note) => {
+    this.disposeNote(note);
+  });
   this.palette.render(this.colors);
 };
 
@@ -67,12 +70,14 @@ Controller.prototype.handlePianoInput = function () {
   const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
   [...pianoKeys].forEach((key) => {
     key.addEventListener("mousedown", (e) => {
+      console.log("down");
       !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
       this.palette.render(this.colors);
     });
 
     key.addEventListener("mouseup", (e) => {
-      if (!this.params.hold) {
+      console.log(this.params.hold);
+      if (this.params.hold == false) {
         this.disposeNote(e.target);
         this.palette.render(this.colors);
       }
@@ -93,6 +98,7 @@ Controller.prototype.disposeNote = function (note) {
   this.piano.keyUp(note);
   this.colors.remove(note);
   this.actives.splice(this.colors.indexOf(note), 1);
+  console.log(this.colors);
 };
 
 function alreadyActive(key) {
