@@ -25,8 +25,12 @@ Controller.prototype.handleParams = function () {
   const chords = document.querySelector(".chords");
 
   holdSwitch.addEventListener("click", (e) => this.useHold(e));
-  octaveUp.addEventListener("click", (e) => this.useOctave(e));
-  octaveDown.addEventListener("click", (e) => this.useOctave(e));
+  octaveUp.addEventListener("click", (e) =>
+    this.params.useOctave(e, this.piano.octaves)
+  );
+  octaveDown.addEventListener("click", (e) =>
+    this.params.useOctave(e, this.piano.octaves)
+  );
   chords.addEventListener("click", (e) => this.handleChords(e));
 };
 
@@ -38,34 +42,6 @@ Controller.prototype.useHold = function (e) {
   this.palette.render(this.colors);
 };
 
-Controller.prototype.useOctave = function (e) {
-  const visibleOctaves = this.piano.octaves.filter((octave) => {
-    const displayStyleRule = window
-      .getComputedStyle(octave)
-      .getPropertyValue("display");
-    return displayStyleRule == "block";
-  });
-
-  console.log(this.params.octave);
-
-  if (e.target.classList.contains("octave-up")) {
-    if (this.params.octave >= 1) return;
-    this.params.incrementOctave();
-    visibleOctaves[0].style.display = "none";
-    this.piano.octaves[
-      this.piano.octaves.indexOf(visibleOctaves[visibleOctaves.length - 1]) + 1
-    ].style.display = "block";
-  } else {
-    if (this.params.octave <= -1) return;
-    this.params.decrementOctave();
-    visibleOctaves[visibleOctaves.length - 1].style.display = "none";
-    this.piano.octaves[
-      this.piano.octaves.indexOf(visibleOctaves[0]) - 1
-    ].style.display = "block";
-  }
-  console.log(visibleOctaves);
-};
-
 Controller.prototype.handlePianoInput = function () {
   const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
   [...pianoKeys].forEach((key) => {
@@ -75,7 +51,6 @@ Controller.prototype.handlePianoInput = function () {
     });
 
     key.addEventListener("mouseup", (e) => {
-      console.log(this.params.hold);
       if (this.params.hold == false) {
         this.disposeNote(e.target);
         this.palette.render(this.colors);
