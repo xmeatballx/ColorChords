@@ -70,7 +70,6 @@ Controller.prototype.handlePianoInput = function () {
   const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
   [...pianoKeys].forEach((key) => {
     key.addEventListener("mousedown", (e) => {
-      console.log("down");
       !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
       this.palette.render(this.colors);
     });
@@ -79,6 +78,13 @@ Controller.prototype.handlePianoInput = function () {
       console.log(this.params.hold);
       if (this.params.hold == false) {
         this.disposeNote(e.target);
+        this.palette.render(this.colors);
+      }
+    });
+
+    key.addEventListener("touchstart", (e) => {
+      if (!this.params.hold) {
+        !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
         this.palette.render(this.colors);
       }
     });

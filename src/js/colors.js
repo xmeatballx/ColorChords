@@ -58,8 +58,11 @@ Colors.prototype.indexOf = function (key) {
 Colors.prototype.getColorByKey = function (e) {
   const rect = e.target.getBoundingClientRect();
   const hue = this.intervals[e.target.classList[0]] * 360;
-  const saturation = ((e.clientY - rect.top) / rect.height).toFixed(2);
+  const saturation = e.touches
+    ? ((e.touches[0].clientY - rect.top) / rect.height).toFixed(2)
+    : ((e.clientY - rect.top) / rect.height).toFixed(2);
   let value = e.target.getAttribute("data-octave");
   value = value / 8;
+  console.log(hue, saturation, value);
   return [hue, saturation, value];
 };
