@@ -53,12 +53,17 @@ Controller.prototype.handleChords = function () {
   this.chords.chordElements.forEach((chordElement, index) => {
     this.chords.paintUI(chordElement, index);
     chordElement.addEventListener("click", (e) => {
-      this.chords.highlightInUI(e);
       const chord = this.chords.getChord(chordElement, index);
+      this.chords.highlightInUI(e);
       if (chord.root == "" || chord.type == "") return;
+
+      // refactor this to a method in piano called clear
       [...this.piano.keys].forEach((key) => this.piano.keyUp(key));
+
       this.colors.clear();
       this.actives.length = 0;
+
+      // refactor this to playChord function
       chord.forEach((interval) => {
         const noteNum = ((interval - 1) % 12) + 1,
           octave = interval > 12 ? 5 : 4,
@@ -75,6 +80,12 @@ Controller.prototype.handleChords = function () {
   });
 };
 
+//
+//
+// REFACTOR THESE SO THAT EACH LISTENER CALLS A SIMPLE NAMED FUNCTION
+//
+//
+//  vvvv
 Controller.prototype.handlePianoInput = function () {
   [...this.piano.keys].forEach((key) => {
     key.addEventListener("mousedown", (e) => {
