@@ -3,6 +3,7 @@ import { Colors } from "./colors";
 import { Piano } from "./piano";
 import { Palette } from "./palette";
 import { Params } from "./params";
+import { Chords } from "./chords";
 
 export const Controller = function () {
   this.theme = new Theme();
@@ -10,6 +11,7 @@ export const Controller = function () {
   this.colors = new Colors();
   this.palette = new Palette();
   this.params = new Params();
+  this.chords = new Chords();
   this.actives = [];
 };
 
@@ -31,7 +33,9 @@ Controller.prototype.handleParams = function () {
   octaveDown.addEventListener("click", (e) =>
     this.params.useOctave(e, this.piano.octaves)
   );
-  chords.addEventListener("click", (e) => this.handleChords(e));
+  chords.addEventListener("click", (e) => {
+    this.handleChords(e);
+  });
 };
 
 Controller.prototype.useHold = function (e) {
@@ -40,6 +44,34 @@ Controller.prototype.useHold = function (e) {
     this.disposeNote(note);
   });
   this.palette.render(this.colors);
+};
+
+Controller.prototype.handleChords = function () {
+  this.chords.showChords();
+  this.chords.chordElements.forEach((chordElement, index) => {
+    this.chords.paintUI(chordElement, index);
+    chordElement.addEventListener("click", (e) => {
+      this.chords.highlightInUI(e);
+      const chord = this.chords.getChord(chordElement, index);
+      if (chord.root == "" || chord.type == "") return;
+      [...this.piano.keys].forEach((key) => this.piano.keyUp(key));
+      this.colors.clear();
+      this.actives.length = 0;
+      chord.forEach((interval) => {
+        const noteNum = ((interval - 1) % 12) + 1;
+        const octave = interval > 12 ? 5 : 4;
+        console.log(noteNum, octave);
+        const note = document.querySelector(
+          `#piano path:nth-of-type(${noteNum})[data-octave="${octave}"]`
+        );
+        const color = this.colors.getColorByKey(note, {});
+        this.piano.keyDown(note, this.colors.getColorStyleRule(color));
+        this.colors.add({ target: note });
+        this.actives.push(note);
+      });
+      this.palette.render(this.colors);
+    });
+  });
 };
 
 Controller.prototype.handlePianoInput = function () {
@@ -69,8 +101,9 @@ Controller.prototype.handlePianoInput = function () {
 Controller.prototype.useNote = function (noteEvent) {
   if (this.actives.length < 10) {
     const note = noteEvent.target;
+    const color = this.colors.getColorByKey(note, noteEvent);
     this.colors.add(noteEvent);
-    this.piano.keyDown(note, this.colors.getColorStyleRule(note));
+    this.piano.keyDown(note, this.colors.getColorStyleRule(color));
     this.actives.push(note);
   }
 };
@@ -79,7 +112,6 @@ Controller.prototype.disposeNote = function (note) {
   this.piano.keyUp(note);
   this.colors.remove(note);
   this.actives.splice(this.colors.indexOf(note), 1);
-  console.log(this.colors);
 };
 
 function alreadyActive(key) {

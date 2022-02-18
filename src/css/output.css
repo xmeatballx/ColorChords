@@ -438,7 +438,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --bg-main: var(--gray-100);
   --bg-focus: var(--gray-200);
   --light: var(--gray-400);
-  --lighter: var(--gray-300);
+  --lighter: var(--gray-200);
   --mid: var(--gray-800);
   --high-contrast: var(--gray-800);
   counter-reset: octaves;
@@ -544,6 +544,10 @@ h2 {
   transition: border-bottom 60ms linear !important;
 }
 
+#piano {
+  transform: translateX(0.75%);
+}
+
 #piano path {
   pointer-events: all;
 }
@@ -564,6 +568,14 @@ section#piano > svg:nth-child(4) {
   transform: translateX(-4%);
 }
 
+section#piano > svg:nth-child(5) {
+  transform: translateX(-5%);
+}
+
+section#piano > svg:nth-child(6) {
+  transform: translateX(-6%);
+}
+
 .C,
 .D,
 .E,
@@ -581,16 +593,32 @@ section#piano > svg:nth-child(4) {
 }
 
 .text-shadow {
-  text-shadow: -1px 1px 2px var(--mid);
+  text-shadow: -1px 1px 2px var(--gray-900);
 }
 
-.hold_switch > div > div {
+.chord_picker {
+  transform: translateX();
+}
+
+.hold_switch {
   transform: translateX(100%);
   transition: all 500ms ease-out;
 }
 
 .hold_switch-off {
-  transform: none;
+  transform: translateX(0%);
+}
+
+section.chord_picker > ul > li {
+  width: 3ch;
+  transition: all 500ms linear;
+  box-shadow: inset -1px 1px 4px var(--mid);
+  filter: contrast(60%);
+}
+
+section.chord_picker > ul > li.chord-active {
+  box-shadow: -1px 2px 1px var(--bg-main);
+  filter: contrast(100%);
 }
 
 @media (max-width: 768px) {

@@ -14,6 +14,9 @@ module.exports = {
       maxWidth: {
         appWidth: "1200px",
       },
+      minWidth: {
+        36: "9rem",
+      },
       colors: {
         "adobe-gray-50": "#ffffff",
         "adobe-gray-100": "#fafafa",
@@ -28,6 +31,7 @@ module.exports = {
         main: "var(--bg-main)",
         focus: "var(--bg-focus)",
         light: "var(--light)",
+        lighter: "var(--lighter)",
         mid: "var(--mid)",
         highcontrast: "var(--high-contrast)",
       },

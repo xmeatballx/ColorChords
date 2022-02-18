@@ -17,7 +17,7 @@
   --bg-main: var(--gray-100);
   --bg-focus: var(--gray-200);
   --light: var(--gray-400);
-  --lighter: var(--gray-300);
+  --lighter: var(--gray-200);
   --mid: var(--gray-800);
   --high-contrast: var(--gray-800);
   counter-reset: octaves;
@@ -172,7 +172,11 @@ section#piano > svg:nth-child(6) {
 }
 
 .text-shadow {
-  text-shadow: -1px 1px 2px var(--mid);
+  text-shadow: -1px 1px 2px var(--gray-900);
+}
+
+.chord_picker {
+  transform: translateX();
 }
 
 .hold_switch {
@@ -182,6 +186,18 @@ section#piano > svg:nth-child(6) {
 
 .hold_switch-off {
   transform: translateX(0%);
+}
+
+section.chord_picker > ul > li {
+  width: 3ch;
+  transition: all 500ms linear;
+  box-shadow: inset -1px 1px 4px var(--mid);
+  filter: contrast(60%);
+}
+
+section.chord_picker > ul > li.chord-active {
+  box-shadow: -1px 2px 1px var(--bg-main);
+  filter: contrast(100%);
 }
 
 @media (max-width: 768px) {

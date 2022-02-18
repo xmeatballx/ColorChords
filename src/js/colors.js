@@ -17,7 +17,7 @@ export const Colors = function () {
 };
 
 Colors.prototype.add = function (e) {
-  const color = this.getColorByKey(e);
+  const color = this.getColorByKey(e.target, e);
   this.colors.push(color);
 };
 
@@ -26,18 +26,8 @@ Colors.prototype.remove = function (key) {
   this.colors.splice(index, 1);
 };
 
-Colors.prototype.getColorStyleRule = function (key) {
-  const color = this.colors[this.indexOf(key)];
+Colors.prototype.getColorStyleRule = function (color) {
   return `hsl(${color[0]}, ${color[1] * 100}%, ${color[2] * 100}%)`;
-};
-
-Colors.prototype.getColor = function (e) {
-  const rect = e.target.getBoundingClientRect();
-  const hue = this.intervals[e.target.classList[0]] * 360;
-  const saturation = ((e.clientY - rect.top) / rect.height).toFixed(2);
-  let value = e.target.getAttribute("data-octave");
-  value = value / 8;
-  return [hue, saturation, value];
 };
 
 Colors.prototype.getAllColors = function () {
@@ -55,14 +45,19 @@ Colors.prototype.indexOf = function (key) {
   return result;
 };
 
-Colors.prototype.getColorByKey = function (e) {
-  const rect = e.target.getBoundingClientRect();
-  const hue = this.intervals[e.target.classList[0]] * 360;
+Colors.prototype.getColorByKey = function (key, e) {
+  const rect = key.getBoundingClientRect();
+  const hue = this.intervals[key.classList[0]] * 360;
   const saturation = e.touches
     ? ((e.touches[0].clientY - rect.top) / rect.height).toFixed(2)
-    : ((e.clientY - rect.top) / rect.height).toFixed(2);
-  let value = e.target.getAttribute("data-octave");
+    : e.clientY
+    ? ((e.clientY - rect.top) / rect.height).toFixed(2)
+    : 1;
+  let value = key.getAttribute("data-octave");
   value = value / 8;
-  console.log(hue, saturation, value);
   return [hue, saturation, value];
+};
+
+Colors.prototype.clear = function () {
+  this.colors.length = 0;
 };

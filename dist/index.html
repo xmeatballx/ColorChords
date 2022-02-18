@@ -130,7 +130,7 @@
             pb-2
           "
         >
-          <div class="grid w-min">
+          <div class="grid w-12">
             <p
               class="
                 w-full
@@ -151,7 +151,7 @@
                   h-6
                   text-sm text-main text-center
                   font-black
-                  drop-shadow-md
+                  shadow-sm shadow-main
                 "
               >
                 -
@@ -164,7 +164,7 @@
                   bg-light
                   text-sm text-center text-main
                   font-bold
-                  drop-shadow-md
+                  shadow-sm shadow-main
                 "
               >
                 +
@@ -178,7 +178,7 @@
               height="32"
               fill="none"
               viewBox="0 0 48 33"
-              class="border-2 border-main bg-light drop-shadow-xl"
+              class="border-2 border-main bg-light shadow-sm shadow-main"
             >
               <path d="M.5 1h47v31H.5z" />
               <path
@@ -188,8 +188,114 @@
               />
             </svg>
           </a>
-          <div class="w-min">
-            <p class="text-base text-main font-bold text-shadow">HOLD</p>
+          <section
+            class="
+              chord_picker
+              absolute
+              bg-light
+              mx-auto
+              left-0
+              right-0
+              w-max
+              h-24
+              -translate-y-16
+              p-1
+              hidden
+            "
+          >
+            <ul
+              class="
+                chord_picker-roots
+                flex
+                gap-1
+                w-full
+                justify-around
+                text-lg text-main text-shadow
+                font-bold
+              "
+            >
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">C</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">C#</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">D</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">Eb</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">E</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">F</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">F#</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">G</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">Ab</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">A</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">Bb</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">B</a>
+              </li>
+            </ul>
+            <ul
+              class="
+                flex
+                w-full
+                justify-around
+                text-lg text-highcontrast
+                font-bold
+              "
+            >
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">M</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">m</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">°</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">+</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">M6</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">m6</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">M7</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">m7</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">M9</a>
+              </li>
+              <li class="bg-focus w-8 h-8 grid shadow-sm shadow-main">
+                <a href="#" class="w-full h-full text-center leading-8">m9</a>
+              </li>
+            </ul>
+          </section>
+          <div class="w-12">
+            <p class="text-base text-main text-center font-bold text-shadow">
+              HOLD
+            </p>
             <a href="#" class="hold">
               <div
                 class="
@@ -198,7 +304,7 @@
                   bg-light
                   p-1
                   border-2 border-main
-                  drop-shadow-md
+                  shadow-sm shadow-main
                 "
               >
                 <div class="hold_switch h-full w-2/4 bg-main"></div>

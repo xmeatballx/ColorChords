@@ -1,5 +1,6 @@
 export const Piano = function () {
   this.octaves = [...document.querySelectorAll("#piano > svg")];
+  this.keys = [...document.querySelectorAll("#piano path")];
   flagAccidentals();
 };
 

@@ -2,7 +2,7 @@ export const Palette = function () {
   this.colorSection = document.querySelector("section:first-child");
   this.colorBlock = document.createElement("div");
   this.colorBlock.classList =
-    "flex-grow h-full grid items-center justify-center";
+    "flex-grow h-full flex flex-col gap-4 justify-center items-center p-2/4";
 };
 
 Palette.prototype.render = function (colors) {
@@ -46,7 +46,8 @@ function parseColorInfo(response) {
 
 function colorName(color) {
   const colorName = document.createElement("h2");
-  colorName.className = "font-bold text-main text-shadow text-center";
+  colorName.className =
+    "text-xl font-bold min-w-36 text-lighter text-shadow border-b-2 border-b-lighter";
   colorName.textContent = color.name.value;
   return colorName;
 }
@@ -54,7 +55,7 @@ function colorName(color) {
 function colorInfo(mode, color) {
   const colorInfo = document.createElement("ul");
   colorInfo.className =
-    "grid justify-center items-center w-max m-auto font-bold text-main text-shadow";
+    "flex flex-col w-36 font-bold text-xl text-lighter text-shadow";
 
   switch (mode) {
     case "hsl":
@@ -79,7 +80,7 @@ function colorInfo(mode, color) {
 
 function listItem(prefix, value) {
   const listItem = document.createElement("li");
-  listItem.className = "text-main text-shadow";
+  listItem.className = "text-lighter text-shadow";
   listItem.textContent = prefix + value;
   return listItem;
 }

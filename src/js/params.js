@@ -11,7 +11,6 @@ Params.prototype.useOctave = function (e, octaves) {
     return displayStyleRule == "block";
   });
   const availableOctaves = Math.floor((6 - visibleOctaves.length) / 2);
-  console.log(availableOctaves);
 
   if (e.target.classList.contains("octave-up")) {
     if (this.octave >= availableOctaves) return;
