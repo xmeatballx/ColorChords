@@ -13,6 +13,8 @@ export const Controller = function () {
   this.params = new Params();
   this.chords = new Chords();
   this.actives = [];
+  this.mouseIsDown = false;
+  this.mouseEventThrottleActive = true;
 };
 
 Controller.prototype.handleTheme = function () {
@@ -60,7 +62,6 @@ Controller.prototype.handleChords = function () {
       chord.forEach((interval) => {
         const noteNum = ((interval - 1) % 12) + 1;
         const octave = interval > 12 ? 5 : 4;
-        console.log(noteNum, octave);
         const note = document.querySelector(
           `#piano path:nth-of-type(${noteNum})[data-octave="${octave}"]`
         );
@@ -75,32 +76,77 @@ Controller.prototype.handleChords = function () {
 };
 
 Controller.prototype.handlePianoInput = function () {
-  const pianoKeys = document.querySelectorAll("section#piano svg > g > path");
-  [...pianoKeys].forEach((key) => {
+  [...this.piano.keys].forEach((key) => {
     key.addEventListener("mousedown", (e) => {
-      !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
+      this.mouseIsDown = true;
+      !alreadyActive(e.target)
+        ? this.useNote(e.target, e)
+        : this.disposeNote(e.target);
+      this.palette.render(this.colors);
+    });
+
+    key.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.mouseIsDown = true;
+      !alreadyActive(e.target)
+        ? this.useNote(e.target, e)
+        : this.disposeNote(e.target);
       this.palette.render(this.colors);
     });
 
     key.addEventListener("mouseup", (e) => {
+      this.mouseIsDown = false;
       if (this.params.hold == false) {
         this.disposeNote(e.target);
         this.palette.render(this.colors);
       }
     });
 
+    key.addEventListener("mousemove", (e) => {
+      if (!this.mouseIsDown) return;
+      this.throttleMouseMoveEvent(this.handleMouseMoved, e);
+    });
+
+    key.addEventListener("touchmove", (e) => {
+      e.preventDefault();
+      console.log(e.target.getAttribute("data-active"));
+      if (!this.mouseIsDown || !alreadyActive(e.target)) return;
+      this.throttleMouseMoveEvent(this.handleMouseMoved, e);
+    });
+
     key.addEventListener("touchstart", (e) => {
+      console.log(e.target.getAttribute("data-active"));
+
       if (!this.params.hold) {
-        !alreadyActive(e.target) ? this.useNote(e) : this.disposeNote(e.target);
+        !alreadyActive(e.target)
+          ? this.useNote(e.target, e)
+          : this.disposeNote(e.target);
+
         this.palette.render(this.colors);
       }
     });
   });
 };
 
-Controller.prototype.useNote = function (noteEvent) {
+Controller.prototype.handleMouseMoved = function (e) {
+  const moveEvent = e;
+  const element = e.target;
+  this.actives.length = 0;
+  this.colors.remove(element);
+  this.useNote(e.target, moveEvent);
+  console.log(this.colors.colors);
+  this.palette.render(this.colors);
+};
+
+Controller.prototype.throttleMouseMoveEvent = function (callback, args) {
+  if (!this.mouseEventThrottleActive) return;
+  this.mouseEventThrottleActive = false;
+  callback.call(this, args);
+  setTimeout(() => (this.mouseEventThrottleActive = true), 200);
+};
+
+Controller.prototype.useNote = function (note, noteEvent) {
   if (this.actives.length < 10) {
-    const note = noteEvent.target;
     const color = this.colors.getColorByKey(note, noteEvent);
     this.colors.add(noteEvent);
     this.piano.keyDown(note, this.colors.getColorStyleRule(color));

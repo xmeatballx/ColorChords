@@ -196,7 +196,7 @@ section.chord_picker > ul > li {
 }
 
 section.chord_picker > ul > li.chord-active {
-  box-shadow: -1px 2px 1px var(--bg-main);
+  box-shadow: -1px 2px 1px var(--bg-focus);
   filter: contrast(100%);
 }
 

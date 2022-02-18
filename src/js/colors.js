@@ -23,6 +23,7 @@ Colors.prototype.add = function (e) {
 
 Colors.prototype.remove = function (key) {
   const index = this.indexOf(key);
+  console.log(index);
   this.colors.splice(index, 1);
 };
 
@@ -38,11 +39,7 @@ Colors.prototype.indexOf = function (key) {
   const hue = this.intervals[key.classList[0]] * 360;
   let value = key.getAttribute("data-octave");
   value = value / 8;
-  var result = this.colors.map((color, index) => {
-    return color[0] == hue && color[2] == value ? index : null;
-  });
-  result = result.filter((result) => result != null);
-  return result;
+  return this.colors.findIndex((color) => color[0] == hue && color[2] == value);
 };
 
 Colors.prototype.getColorByKey = function (key, e) {

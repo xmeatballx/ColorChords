@@ -6,18 +6,16 @@ export const Palette = function () {
 };
 
 Palette.prototype.render = function (colors) {
-  clearChildren(this.colorSection);
-
   getColorInfo(colors)
     .then((response) => parseColorInfo(response))
     .then((data) => {
+      clearChildren(this.colorSection);
       data.map((prop) => this.paintUI(prop));
     });
 };
 
 Palette.prototype.paintUI = function (color) {
   clearChildren(this.colorBlock);
-
   this.colorBlock.appendChild(colorName(color));
   this.colorBlock.appendChild(colorInfo("hsl", color));
   this.colorBlock.appendChild(colorInfo("rgb", color));
