@@ -1,30 +1,41 @@
-export const Palette = function () {
-  this.colorSection = document.querySelector("section:first-child");
-  this.colorBlock = document.createElement("div");
-  this.colorBlock.classList =
-    "flex-grow h-full flex flex-col gap-4 justify-center items-center p-2/4";
-};
+export class Palette {
+  constructor() {
+    this.colorSection = document.querySelector("section:first-child");
+    this.colorBlock = document.createElement("div");
+    this.colorBlock.classList =
+      "flex-auto h-full flex flex-col gap-4 justify-center px-4";
+  }
+  render(colors) {
+    getColorInfo(colors)
+      .then((response) => parseColorInfo(response))
+      .then((data) => {
+        clearChildren(this.colorSection);
+        data.map((prop) => this.paintUI(prop));
+      });
+  }
+  paintUI(color) {
+    clearChildren(this.colorBlock);
+    this.colorBlock.appendChild(colorName(color));
+    this.colorBlock.appendChild(colorInfo("hsl", color));
+    this.colorBlock.appendChild(colorInfo("rgb", color));
+    this.colorBlock.appendChild(colorInfo("hex", color));
 
-Palette.prototype.render = function (colors) {
-  getColorInfo(colors)
-    .then((response) => parseColorInfo(response))
-    .then((data) => {
-      clearChildren(this.colorSection);
-      data.map((prop) => this.paintUI(prop));
-    });
-};
+    this.colorBlock.style.backgroundColor = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
+    this.colorSection.appendChild(this.colorBlock.cloneNode(true));
+  }
 
-Palette.prototype.paintUI = function (color) {
-  clearChildren(this.colorBlock);
-  this.colorBlock.appendChild(colorName(color));
-  this.colorBlock.appendChild(colorInfo("hsl", color));
-  this.colorBlock.appendChild(colorInfo("rgb", color));
-  this.colorBlock.appendChild(colorInfo("hex", color));
+  scrollToEnd() {
+    if (this.colorSection.lastChild == null) return;
+    console.log(this.colorSection.lastChild.offsetLeft);
+    setTimeout(
+      () =>
+        this.colorSection.scrollTo(this.colorSection.lastChild.offsetLeft, 0),
+      100
+    );
+  }
+}
 
-  this.colorBlock.style.backgroundColor = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
-  this.colorSection.appendChild(this.colorBlock.cloneNode(true));
-};
-
+// todo: check if array element is unchanged to avoid unnecessary API requests
 function getColorInfo(colors) {
   return Promise.all(
     colors.getAllColors().map((color) => {
@@ -45,7 +56,7 @@ function parseColorInfo(response) {
 function colorName(color) {
   const colorName = document.createElement("h2");
   colorName.className =
-    "text-xl font-bold min-w-36 text-lighter text-shadow border-b-2 border-b-lighter";
+    "text-base md:text-xl font-bold w-max md:min-w-36 text-lighter text-shadow border-b-2 border-b-lighter";
   colorName.textContent = color.name.value;
   return colorName;
 }
@@ -53,7 +64,7 @@ function colorName(color) {
 function colorInfo(mode, color) {
   const colorInfo = document.createElement("ul");
   colorInfo.className =
-    "flex flex-col w-36 font-bold text-xl text-lighter text-shadow";
+    "flex flex-col w-36 font-bold text-sm md:text-xl text-lighter text-shadow";
 
   switch (mode) {
     case "hsl":
