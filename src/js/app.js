@@ -5,3 +5,4 @@ const controller = new Controller();
 controller.handleTheme();
 controller.handleParams();
 controller.handlePianoInput();
+controller.handleKeyBoardInput();

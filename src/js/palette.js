@@ -26,7 +26,6 @@ export class Palette {
 
   scrollToEnd() {
     if (this.colorSection.lastChild == null) return;
-    console.log(this.colorSection.lastChild.offsetLeft);
     setTimeout(
       () =>
         this.colorSection.scrollTo(this.colorSection.lastChild.offsetLeft, 0),

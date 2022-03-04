@@ -15,12 +15,15 @@ export class Controller {
     this.chords = new Chords();
     this.actives = [];
     this.mouseIsDown = false;
+    this.shiftIsDown = false;
     this.mouseEventThrottleActive = true;
   }
+
   handleTheme() {
     const themeToggle = document.querySelector(".toggle");
     themeToggle.onclick = (e) => this.theme.toggleDark(e);
   }
+
   handleParams() {
     const holdSwitch = document.querySelector(".hold");
     const octaveUp = document.querySelector(".octave-up");
@@ -38,6 +41,17 @@ export class Controller {
       this.handleChords(e);
     });
   }
+
+  handleKeyBoardInput() {
+    document.addEventListener("keydown", (e) => {
+      if (e.shiftKey) this.shiftIsDown = true;
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (e.shiftKey) this.shiftIsDown = false;
+    });
+  }
+
   useHold(e) {
     this.params.handleHold(e);
     [...this.actives].forEach((note) => {
@@ -45,6 +59,7 @@ export class Controller {
     });
     this.palette.render(this.colors);
   }
+
   handleChords() {
     this.chords.showChords();
     this.chords.chordElements.forEach((chordElement, index) => {
@@ -115,9 +130,14 @@ export class Controller {
     });
   }
   usePianoInput(e) {
-    !alreadyActive(e.target)
-      ? this.useNote(e.target, e)
-      : this.disposeNote(e.target);
+    if (this.shiftIsDown) {
+      this.disposeNote(e.target);
+      this.useNote(e.target, e);
+    } else {
+      !alreadyActive(e.target)
+        ? this.useNote(e.target, e)
+        : this.disposeNote(e.target);
+    }
     this.palette.render(this.colors);
   }
   disposePianoInput(e) {
