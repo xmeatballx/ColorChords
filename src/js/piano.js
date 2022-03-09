@@ -1,21 +1,21 @@
-export const Piano = function () {
-  this.octaves = [...document.querySelectorAll("#piano > svg")];
-  this.keys = [...document.querySelectorAll("#piano path")];
-  flagAccidentals();
-};
-
-Piano.prototype.keyDown = function (key, color) {
-  key.style.fill = color;
-  key.setAttribute("data-active", "true");
-};
-
-Piano.prototype.keyUp = function (key) {
-  key.style.fill =
-    key.classList.contains("accidental") == true
-      ? "var(--mid)"
-      : "var(--bg-main)";
-  key.setAttribute("data-active", "false");
-};
+export class Piano {
+  constructor() {
+    this.octaves = [...document.querySelectorAll("#piano > svg")];
+    this.keys = [...document.querySelectorAll("#piano path")];
+    flagAccidentals();
+  }
+  keyDown(key, color) {
+    key.style.fill = color;
+    key.setAttribute("data-active", "true");
+  }
+  keyUp(key) {
+    key.style.fill =
+      key.classList.contains("accidental") == true
+        ? "var(--mid)"
+        : "var(--bg-main)";
+    key.setAttribute("data-active", "false");
+  }
+}
 
 function flagAccidentals() {
   const accidentals = document.querySelectorAll(
