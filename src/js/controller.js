@@ -46,7 +46,7 @@ export class Controller {
     });
 
     document.addEventListener("keyup", (e) => {
-      if (e.shiftKey) this.shiftIsDown = false;
+      if (e.key == "Shift") this.shiftIsDown = false;
     });
   }
 
@@ -115,6 +115,7 @@ export class Controller {
   }
 
   handlePianoTouchStart(e) {
+    console.log(this.shiftIsDown);
     e.preventDefault();
     this.mouseIsDown = true;
     this.usePianoInput(e);
