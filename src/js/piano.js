@@ -4,16 +4,22 @@ export class Piano {
     this.keys = [...document.querySelectorAll("#piano path")];
     flagAccidentals();
   }
+
   keyDown(key, color) {
     key.style.fill = color;
     key.setAttribute("data-active", "true");
   }
+
   keyUp(key) {
     key.style.fill =
       key.classList.contains("accidental") == true
         ? "var(--mid)"
         : "var(--bg-main)";
     key.setAttribute("data-active", "false");
+  }
+
+  clear() {
+    [...this.keys].forEach((key) => this.keyUp(key));
   }
 }
 
