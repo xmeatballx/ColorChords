@@ -84,7 +84,7 @@ export class Controller {
     chord.forEach((interval) => {
       const noteNum = ((interval - 1) % 12) + 1;
       const octave = interval > 12 ? 5 : 4;
-      const note = getNote(noteNum, octave);
+      const note = this.getNote(noteNum, octave);
       const color = this.colors.getColorByKey(note, {});
 
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
