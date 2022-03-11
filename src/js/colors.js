@@ -49,7 +49,11 @@ export class Colors {
       : 1;
     let value = key.getAttribute("data-octave");
     value = value / 8;
-    return [hue, saturation, value];
+    return [
+      hue,
+      parseFloat(saturation).toFixed(2),
+      parseFloat(value).toFixed(2),
+    ];
   }
   clear() {
     this.colors.length = 0;
