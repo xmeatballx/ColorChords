@@ -1,13 +1,25 @@
+/*
+The palette displays user-selected colors as columns in a flexbox
+*/
 export class Palette {
   constructor() {
+    //Get a reference to the palette's parent element
     this.colorSection = document.querySelector("section:first-child");
+
+    //create a palette child element
     this.colorBlock = document.createElement("div");
     this.colorBlock.classList =
       "flex-auto h-full flex flex-col gap-4 justify-center px-4";
-    this.draggingElement = undefined;
+
+    //initialize a cache to store metadata for each active color
     this.cache = [];
   }
 
+  /*
+   * Updates cache and UI based on metadata fetched from the Color API
+   *
+   * @param {Array} colors - an array of hsl colors
+   */
   render(colors) {
     this.getColorInfo(colors)
       .then((response) => parseColorInfo(response))
@@ -17,8 +29,14 @@ export class Palette {
         data.map((prop) => this.paintUI(prop));
       });
   }
+
+  /*
+   * Currently re-renders every color block component in the palette on each change
+   * Should only re-render a single component when its value is changed
+   *
+   * @param {Object} color - a single instance of color metadata
+   */
   paintUI(color) {
-    console.log(color);
     clearChildren(this.colorBlock);
     this.colorBlock.style.backgroundColor = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
     this.colorBlock.appendChild(colorName(color));
@@ -29,15 +47,14 @@ export class Palette {
     this.colorSection.appendChild(this.colorBlock.cloneNode(true));
   }
 
-  scrollToEnd() {
-    if (this.colorSection.lastChild === null) return;
-    setTimeout(
-      () =>
-        this.colorSection.scrollTo(this.colorSection.lastChild.offsetLeft, 0),
-      100
-    );
-  }
-
+  /*
+   * Makes a request to the Color API only if color metadata
+   * has not already been saved to the cache
+   *
+   * @param {Array} colors - array of active colors as [h, s, v]
+   * @returns {Array} result - array of resolved promises containing either
+   * Color API HTTP responses or cached color metadata
+   */
   getColorInfo(colors) {
     return Promise.all(
       colors.getAllColors().map((color, index) => {
@@ -64,8 +81,25 @@ export class Palette {
       })
     );
   }
+
+  // scrolls to end of the container once a new color block is added to the DOM
+  scrollToEnd() {
+    if (this.colorSection.lastChild == null) return;
+    setTimeout(
+      () =>
+        this.colorSection.scrollTo(this.colorSection.lastChild.offsetLeft, 0),
+      100
+    );
+  }
 }
 
+/*
+ * If response is an HTTP response(contains a res.status) then parse to JSON
+ * if it is a cached color metadata object then pass it through
+ *
+ * @param {Object} response - either an HTTP response or a color metadata object
+ * @returns {Array} result - an array of resolved promises containing
+ */
 function parseColorInfo(response) {
   return Promise.all(response.map((r) => (r.status ? r.json() : r)));
 }
