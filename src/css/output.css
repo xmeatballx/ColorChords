@@ -617,7 +617,7 @@ section.chord_picker > ul > li {
 }
 
 section.chord_picker > ul > li.chord-active {
-  border: 1px solid var(--gray-100);
+  outline: 1px solid var(--gray-900);
   box-shadow: inset -1px 1px 4px var(--mid);
   filter: contrast(60%);
 }
