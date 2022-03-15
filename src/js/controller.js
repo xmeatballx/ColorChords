@@ -51,7 +51,7 @@ export class Controller {
   }
 
   handleChords() {
-    this.chords.showChords();
+    this.chords.toggleChordVisibility();
     this.chords.chordElements.forEach((chordElement, index) => {
       this.chords.paintUI(chordElement, index);
       chordElement.addEventListener("click", (e) =>
