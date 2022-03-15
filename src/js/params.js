@@ -16,7 +16,7 @@ export class Params {
   useOctave(e, octaves) {
     this.allOctaves = octaves;
     this.visibleOctaves = this.getVisibleOctaves(octaves);
-    this.availableOctaves = Math.floor((6 - visibleOctaves.length) / 2);
+    this.availableOctaves = Math.floor((6 - this.visibleOctaves.length) / 2);
 
     if (e.target.classList.contains("octave-up")) {
       if (this.octave >= this.availableOctaves) return;
@@ -49,7 +49,8 @@ export class Params {
     this.octave--;
     const highestVisibleOctave = this.visibleOctaves.pop();
     highestVisibleOctave.style.display = "none";
-    const precedingOctaveIndex = this.octaves.indexOf(visibleOctaves[0]) - 1;
+    const precedingOctaveIndex =
+      this.allOctaves.indexOf(this.visibleOctaves[0]) - 1;
     const precedingOctave = this.allOctaves[precedingOctaveIndex];
     precedingOctave.style.display = "block";
   }
