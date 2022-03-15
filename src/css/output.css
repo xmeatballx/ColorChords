@@ -612,13 +612,14 @@ section#piano > svg:nth-child(6) {
 section.chord_picker > ul > li {
   width: 3ch;
   transition: all 500ms linear;
-  box-shadow: inset -1px 1px 4px var(--mid);
-  filter: contrast(60%);
+  box-shadow: -1px 2px 1px var(--bg-focus);
+  filter: contrast(100%);
 }
 
 section.chord_picker > ul > li.chord-active {
-  box-shadow: -1px 2px 1px var(--bg-focus);
-  filter: contrast(100%);
+  border: 1px solid var(--gray-100);
+  box-shadow: inset -1px 1px 4px var(--mid);
+  filter: contrast(60%);
 }
 
 @media (max-width: 768px) {
