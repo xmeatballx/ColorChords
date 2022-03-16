@@ -16,8 +16,8 @@ export class Colors {
       B: 0.875,
     };
   }
-  add(e) {
-    const color = this.getColorByKey(e.target, e);
+  add(key, e) {
+    const color = this.getColorByKey(key, e);
     this.colors.push(color);
   }
   remove(key) {

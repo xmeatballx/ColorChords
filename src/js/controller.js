@@ -4,6 +4,7 @@ import { Piano } from "./piano";
 import { Palette } from "./palette";
 import { Params } from "./params";
 import { Chords } from "./chords";
+import { Keyboard } from "./keyboard";
 
 export class Controller {
   constructor() {
@@ -13,6 +14,7 @@ export class Controller {
     this.palette = new Palette();
     this.params = new Params();
     this.chords = new Chords();
+    this.keyboard = new Keyboard();
     this.actives = [];
     this.mouseIsDown = false;
     this.shiftIsDown = false;
@@ -42,12 +44,35 @@ export class Controller {
 
   handleKeyBoardInput() {
     document.addEventListener("keydown", (e) => {
+      if (e.repeat) return;
       if (e.shiftKey) this.shiftIsDown = true;
+      this.useKeyboardInput(e);
+      this.palette.render(this.colors);
     });
 
     document.addEventListener("keyup", (e) => {
+      const noteData = this.keyboard.keyCodeToNoteData(e.key);
+      const note = this.getNote(noteData[0] + 1, noteData[1]);
       if (e.key == "Shift") this.shiftIsDown = false;
+      if (!this.params.hold) {
+        this.keyboard.disposeKeyboardInput(e);
+        this.disposeNote(note);
+        this.palette.render(this.colors);
+      }
     });
+  }
+
+  useKeyboardInput(e) {
+    const noteData = this.keyboard.keyCodeToNoteData(e.key);
+    const note = this.getNote(noteData[0] + 1, noteData[1]);
+    this.keyboard.useKeyboardInput(e);
+    if (this.keyboard.keyNames.includes(e.key)) {
+      if (this.params.hold) {
+        !alreadyActive(note) ? this.useNote(note, {}) : this.disposeNote(note);
+      } else {
+        this.useNote(note, {});
+      }
+    }
   }
 
   handleChords() {
@@ -86,9 +111,8 @@ export class Controller {
       const octave = interval > 12 ? 5 : 4;
       const note = this.getNote(noteNum, octave);
       const color = this.colors.getColorByKey(note, {});
-
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
-      this.colors.add({ target: note });
+      this.colors.add(note, {});
       this.actives.push(note);
     });
     this.palette.render(this.colors);
@@ -168,7 +192,7 @@ export class Controller {
   useNote(note, noteEvent) {
     if (this.actives.length < 10) {
       const color = this.colors.getColorByKey(note, noteEvent);
-      this.colors.add(noteEvent);
+      this.colors.add(note, noteEvent);
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
       this.actives.push(note);
     }
