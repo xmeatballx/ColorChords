@@ -22,8 +22,11 @@ export class Colors {
   }
   remove(key) {
     const index = this.indexOf(key);
-
     this.colors.splice(index, 1);
+  }
+  update(key, e) {
+    const index = this.indexOf(key);
+    this.colors[index] = this.getColorByKey(key, e);
   }
   getColorStyleRule(color) {
     return `hsl(${color[0]}, ${color[1] * 100}%, ${color[2] * 100}%)`;
@@ -34,7 +37,7 @@ export class Colors {
   indexOf(key) {
     const hue = this.intervals[key.classList[0]] * 360;
     let value = key.getAttribute("data-octave");
-    value = value / 8;
+    value = parseFloat(value / 8).toFixed(2);
     return this.colors.findIndex(
       (color) => color[0] == hue && color[2] == value
     );

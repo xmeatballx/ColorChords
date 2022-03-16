@@ -134,12 +134,11 @@ export class Controller {
 
       key.addEventListener("mousemove", (e) => this.handlePianoTouchMove(e));
 
-      key.addEventListener("touchmove", (e) => this.handlePainoTouchMove(e));
+      key.addEventListener("touchmove", (e) => this.handlePianoTouchMove(e));
     });
   }
 
   handlePianoTouchStart(e) {
-    console.log(this.shiftIsDown);
     e.preventDefault();
     this.mouseIsDown = true;
     this.usePianoInput(e);
@@ -159,7 +158,6 @@ export class Controller {
 
   usePianoInput(e) {
     if (this.shiftIsDown) {
-      this.disposeNote(e.target);
       this.useNote(e.target, e);
     } else {
       !alreadyActive(e.target)
@@ -177,7 +175,6 @@ export class Controller {
 
   handleMouseMoved(e) {
     this.actives.length = 0;
-    this.colors.remove(e.target);
     this.useNote(e.target, e);
     this.palette.render(this.colors);
   }
@@ -192,7 +189,9 @@ export class Controller {
   useNote(note, noteEvent) {
     if (this.actives.length < 10) {
       const color = this.colors.getColorByKey(note, noteEvent);
-      this.colors.add(note, noteEvent);
+      !this.shiftIsDown
+        ? this.colors.add(note, noteEvent)
+        : this.colors.update(note, noteEvent);
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
       this.actives.push(note);
     }
