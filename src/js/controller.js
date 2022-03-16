@@ -62,6 +62,11 @@ export class Controller {
     });
   }
 
+  handleSort(e) {
+    console.log(e);
+    this.colors.move(e.oldIndex, e.newIndex);
+  }
+
   useKeyboardInput(e) {
     const noteData = this.keyboard.keyCodeToNoteData(e.key);
     const note = this.getNote(noteData[0] + 1, noteData[1]);

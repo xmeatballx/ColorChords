@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "tailwind.config.js",
-  "dependencies": {},
+  "dependencies": {
+    "sortablejs": "^1.14.0"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "babel": "^6.23.0",

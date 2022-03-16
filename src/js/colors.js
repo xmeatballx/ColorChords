@@ -28,6 +28,11 @@ export class Colors {
     const index = this.indexOf(key);
     this.colors[index] = this.getColorByKey(key, e);
   }
+  move(oldIndex, newIndex) {
+    const itemToMove = this.colors[oldIndex];
+    this.colors.splice(oldIndex, 1);
+    this.colors.splice(newIndex, 0, itemToMove);
+  }
   getColorStyleRule(color) {
     return `hsl(${color[0]}, ${color[1] * 100}%, ${color[2] * 100}%)`;
   }
