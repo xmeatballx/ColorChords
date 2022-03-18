@@ -194,7 +194,7 @@ class Controller {
   useNote(note, noteEvent) {
     if (this.actives.length < 10) {
       const color = this.colors.getColorByKey(note, noteEvent);
-      if (!this.shiftIsDown) {
+      if (!this.shiftIsDown && !alreadyActive(note)) {
         this.colors.add(note, noteEvent);
       } else {
         this.colors.update(note, noteEvent);
