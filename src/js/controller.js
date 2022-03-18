@@ -1,12 +1,22 @@
-import { Theme } from "./theme";
-import { Colors } from "./colors";
-import { Piano } from "./piano";
-import { Palette } from "./palette";
-import { Params } from "./params";
-import { Chords } from "./chords";
-import { Keyboard } from "./keyboard";
+import { Theme } from './theme';
+import { Colors } from './colors';
+import { Piano } from './piano';
+import { Palette } from './palette';
+import { Params } from './params';
+import { Chords } from './chords';
+import { Keyboard } from './keyboard';
 
-export class Controller {
+function alreadyActive(key) {
+  const active = key.getAttribute('data-active');
+  // console.log(active, active == 'true');
+  return active == 'true';
+}
+
+function getNote(noteNum, octave) {
+  return document.querySelector(`#piano path:nth-of-type(${noteNum})[data-octave="${octave}"]`);
+}
+
+class Controller {
   constructor() {
     this.theme = new Theme();
     this.piano = new Piano();
@@ -22,38 +32,34 @@ export class Controller {
   }
 
   handleTheme() {
-    const themeToggle = document.querySelector(".toggle");
+    const themeToggle = document.querySelector('.toggle');
     themeToggle.onclick = (e) => this.theme.toggleDark(e);
   }
 
   handleParams() {
-    const holdSwitch = document.querySelector(".hold");
-    const octaveUp = document.querySelector(".octave-up");
-    const octaveDown = document.querySelector(".octave-down");
-    const chords = document.querySelector(".chords");
+    const holdSwitch = document.querySelector('.hold');
+    const octaveUp = document.querySelector('.octave-up');
+    const octaveDown = document.querySelector('.octave-down');
+    const chords = document.querySelector('.chords');
 
-    holdSwitch.addEventListener("click", (e) => this.useHold(e));
-    octaveUp.addEventListener("click", (e) =>
-      this.params.useOctave(e, this.piano.octaves)
-    );
-    octaveDown.addEventListener("click", (e) =>
-      this.params.useOctave(e, this.piano.octaves)
-    );
-    chords.addEventListener("click", (e) => this.handleChords(e));
+    holdSwitch.addEventListener('click', (e) => this.useHold(e));
+    octaveUp.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
+    octaveDown.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
+    chords.addEventListener('click', (e) => this.handleChords(e));
   }
 
   handleKeyBoardInput() {
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener('keydown', (e) => {
       if (e.repeat) return;
       if (e.shiftKey) this.shiftIsDown = true;
       this.useKeyboardInput(e);
       this.palette.render(this.colors);
     });
 
-    document.addEventListener("keyup", (e) => {
-      const noteData = this.keyboard.keyCodeToNoteData(e.key);
-      const note = this.getNote(noteData[0] + 1, noteData[1]);
-      if (e.key == "Shift") this.shiftIsDown = false;
+    document.addEventListener('keyup', (e) => {
+      const noteData = this.keyboard.keyToNoteData(e.key);
+      const note = getNote(noteData[0] + 1, noteData[1]);
+      if (e.key === 'Shift') this.shiftIsDown = false;
       if (!this.params.hold) {
         this.keyboard.disposeKeyboardInput(e);
         this.disposeNote(note);
@@ -63,17 +69,20 @@ export class Controller {
   }
 
   handleSort(e) {
-    console.log(e);
     this.colors.move(e.oldIndex, e.newIndex);
   }
 
   useKeyboardInput(e) {
-    const noteData = this.keyboard.keyCodeToNoteData(e.key);
-    const note = this.getNote(noteData[0] + 1, noteData[1]);
+    const noteData = this.keyboard.keyToNoteData(e.key);
+    const note = getNote(noteData[0] + 1, noteData[1]);
     this.keyboard.useKeyboardInput(e);
     if (this.keyboard.keyNames.includes(e.key)) {
       if (this.params.hold) {
-        !alreadyActive(note) ? this.useNote(note, {}) : this.disposeNote(note);
+        if (!alreadyActive(note)) {
+          this.useNote(note, {});
+        } else {
+          this.disposeNote(note);
+        }
       } else {
         this.useNote(note, {});
       }
@@ -84,16 +93,14 @@ export class Controller {
     this.chords.toggleChordVisibility();
     this.chords.chordElements.forEach((chordElement, index) => {
       this.chords.paintUI(chordElement, index);
-      chordElement.addEventListener("click", (e) =>
-        this.handleChordSelection(e, chordElement, index)
-      );
+      chordElement.addEventListener('click', (e) => this.handleChordSelection(e, chordElement, index));
     });
   }
 
   handleChordSelection(e, chordElement, index) {
     const chord = this.chords.getChord(chordElement, index);
     this.chords.highlightInUI(e);
-    if (chord.root == "" || chord.type == "") return;
+    if (chord.root === '' || chord.type === '') return;
 
     this.piano.clear();
     this.colors.clear();
@@ -114,7 +121,7 @@ export class Controller {
     chord.forEach((interval) => {
       const noteNum = ((interval - 1) % 12) + 1;
       const octave = interval > 12 ? 5 : 4;
-      const note = this.getNote(noteNum, octave);
+      const note = getNote(noteNum, octave);
       const color = this.colors.getColorByKey(note, {});
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
       this.colors.add(note, {});
@@ -123,23 +130,17 @@ export class Controller {
     this.palette.render(this.colors);
   }
 
-  getNote(noteNum, octave) {
-    return document.querySelector(
-      `#piano path:nth-of-type(${noteNum})[data-octave="${octave}"]`
-    );
-  }
-
   handlePianoInput() {
     [...this.piano.keys].forEach((key) => {
-      key.addEventListener("mousedown", (e) => this.handlePianoTouchStart(e));
+      key.addEventListener('mousedown', (e) => this.handlePianoTouchStart(e));
 
-      key.addEventListener("touchstart", (e) => this.handlePianoTouchStart(e));
+      key.addEventListener('touchstart', (e) => this.handlePianoTouchStart(e));
 
-      key.addEventListener("mouseup", (e) => this.handlePianoTouchEnd(e));
+      key.addEventListener('mouseup', (e) => this.handlePianoTouchEnd(e));
 
-      key.addEventListener("mousemove", (e) => this.handlePianoTouchMove(e));
+      key.addEventListener('mousemove', (e) => this.handlePianoTouchMove(e));
 
-      key.addEventListener("touchmove", (e) => this.handlePianoTouchMove(e));
+      key.addEventListener('touchmove', (e) => this.handlePianoTouchMove(e));
     });
   }
 
@@ -162,12 +163,10 @@ export class Controller {
   }
 
   usePianoInput(e) {
-    if (this.shiftIsDown) {
+    if (!alreadyActive(e.target) || this.shiftIsDown) {
       this.useNote(e.target, e);
     } else {
-      !alreadyActive(e.target)
-        ? this.useNote(e.target, e)
-        : this.disposeNote(e.target);
+      this.disposeNote(e.target);
     }
     this.palette.render(this.colors);
   }
@@ -188,15 +187,18 @@ export class Controller {
     if (!this.mouseEventThrottleActive) return;
     this.mouseEventThrottleActive = false;
     callback.call(this, args);
+    // eslint-disable-next-line no-return-assign
     setTimeout(() => (this.mouseEventThrottleActive = true), 200);
   }
 
   useNote(note, noteEvent) {
     if (this.actives.length < 10) {
       const color = this.colors.getColorByKey(note, noteEvent);
-      !this.shiftIsDown
-        ? this.colors.add(note, noteEvent)
-        : this.colors.update(note, noteEvent);
+      if (!this.shiftIsDown) {
+        this.colors.add(note, noteEvent);
+      } else {
+        this.colors.update(note, noteEvent);
+      }
       this.piano.keyDown(note, this.colors.getColorStyleRule(color));
       this.actives.push(note);
     }
@@ -208,8 +210,4 @@ export class Controller {
     this.actives.splice(this.colors.indexOf(note), 1);
   }
 }
-
-function alreadyActive(key) {
-  const active = key.getAttribute("data-active");
-  return active == "false" ? false : true;
-}
+export { Controller };
