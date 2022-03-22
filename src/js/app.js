@@ -12,5 +12,6 @@ controller.handleKeyBoardInput();
 const sortableContainer = document.getElementById('palette');
 const sortable = new Sortable(sortableContainer, {
   animation: 150,
+  handle: '.svg-handle',
   onUpdate: (e) => controller.handleSort(e),
 });

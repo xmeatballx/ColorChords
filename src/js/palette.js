@@ -11,21 +11,21 @@ function parseColorInfo(response) {
 
 function colorName(color) {
   const colorNameElement = document.createElement('h2');
-  colorNameElement.className = 'text-base md:text-xl font-bold w-max md:min-w-36 text-lighter text-shadow border-b-2 border-b-lighter';
+  colorNameElement.className = 'text-base md:text-xl w-36 text-center text-shadow';
   colorNameElement.textContent = color.name.value;
   return colorNameElement;
 }
 
 function listItem(prefix, value) {
   const listItemElement = document.createElement('li');
-  listItemElement.className = 'text-lighter text-shadow';
+  listItemElement.className = 'text-shadow';
   listItemElement.textContent = prefix + value;
   return listItemElement;
 }
 
 function colorInfo(mode, color) {
   const colorInfoElement = document.createElement('ul');
-  colorInfoElement.className = 'flex flex-col w-36 font-bold text-sm md:text-xl text-lighter text-shadow';
+  colorInfoElement.className = 'flex flex-col text-sm md:text-xl text-shadow';
 
   switch (mode) {
     case 'hsl':
@@ -51,6 +51,13 @@ function colorInfo(mode, color) {
   return colorInfoElement;
 }
 
+function sortableHandle(color) {
+  const handleSVG = document.querySelector('.svg-handle').cloneNode(true);
+  handleSVG.classList.remove('hidden');
+  handleSVG.style.stroke = `hsl(0, 0%, ${color.hsl.l < 50 ? 90 : 10}%)`;
+  return handleSVG;
+}
+
 function clearChildren(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -68,7 +75,7 @@ class Palette {
 
     // Create a palette child element
     this.colorBlock = document.createElement('div');
-    this.colorBlock.classList = 'flex-auto h-full flex flex-col gap-4 justify-center px-4';
+    this.colorBlock.classList = 'flex-auto h-full flex flex-col gap-4 justify-center items-center px-4 tracking-wide';
 
     // Initialize a cache to store metadata for each active color
     this.cache = [];
@@ -98,10 +105,13 @@ class Palette {
   paintUI(color) {
     clearChildren(this.colorBlock);
     this.colorBlock.style.backgroundColor = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
+    this.colorBlock.style.color = `hsl(0, 0%, ${color.hsl.l < 50 ? 90 : 10}%)`;
     this.colorBlock.appendChild(colorName(color));
     this.colorBlock.appendChild(colorInfo('hsl', color));
     this.colorBlock.appendChild(colorInfo('rgb', color));
     this.colorBlock.appendChild(colorInfo('hex', color));
+
+    this.colorBlock.appendChild(sortableHandle(color));
 
     this.colorSection.appendChild(this.colorBlock.cloneNode(true));
   }
