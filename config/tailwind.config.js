@@ -3,18 +3,19 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        sidebar: "calc(100vh - 64px)",
-        sidebarstatic: "800px",
-        sidebarsmall: "25vh",
-        canvasSmall: "24rem",
-        canvasLarge: "40rem",
+        content: "fill-available",
       },
       width: {
         mobilecontent: "90vw",
         smallCanvas: "250px",
-        actionBar: "6.66%",
         canvasSmall: "24rem",
         canvasLarge: "40rem",
+      },
+      maxWidth: {
+        appWidth: "1200px",
+      },
+      minWidth: {
+        36: "9rem",
       },
       colors: {
         "adobe-gray-50": "#ffffff",
@@ -30,6 +31,7 @@ module.exports = {
         main: "var(--bg-main)",
         focus: "var(--bg-focus)",
         light: "var(--light)",
+        lighter: "var(--lighter)",
         mid: "var(--mid)",
         highcontrast: "var(--high-contrast)",
       },
