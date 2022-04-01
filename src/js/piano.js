@@ -1,10 +1,12 @@
 function flagAccidentals() {
-  const cSharp = document.querySelector('#piano path:nth-child(2)');
-  const eFlat = document.querySelector('#piano path:nth-child(4)');
-  const fSharp = document.querySelector('#piano path:nth-child(7)');
-  const aFlat = document.querySelector('#piano path:nth-child(9)');
-  const bFlat = document.querySelector('#piano path:nth-child(11)');
-  const accidentals = [cSharp, eFlat, fSharp, aFlat, bFlat];
+  const cSharp = document.querySelectorAll('#piano path:nth-child(2)');
+  const eFlat = document.querySelectorAll('#piano path:nth-child(4)');
+  const fSharp = document.querySelectorAll('#piano path:nth-child(7)');
+  const aFlat = document.querySelectorAll('#piano path:nth-child(9)');
+  const bFlat = document.querySelectorAll('#piano path:nth-child(11)');
+  const accidentals = document.querySelectorAll(
+    '#piano path:nth-child(2), #piano path:nth-child(4), #piano path:nth-child(7), #piano path:nth-child(9), #piano path:nth-child(11)'
+  );
   [...accidentals].forEach((accidental) => accidental.classList.add('accidental'));
 }
 
