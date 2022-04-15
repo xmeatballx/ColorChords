@@ -6,6 +6,7 @@ import css from '../css/main.css';
 const controller = new Controller();
 controller.handleTheme();
 controller.handleParams();
+controller.handleCodeview();
 controller.handlePianoInput();
 controller.handleKeyBoardInput();
 

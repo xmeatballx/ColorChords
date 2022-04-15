@@ -87,6 +87,7 @@ class Palette {
    * @param {Array} colors - an array of hsl colors
    */
   render(colors) {
+    this.colorSection.classList.remove('p-10');
     this.getColorInfo(colors)
       .then((response) => parseColorInfo(response))
       .then((data) => {

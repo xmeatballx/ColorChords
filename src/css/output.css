@@ -377,6 +377,10 @@ button,
   cursor: pointer;
 }
 
+button > span {
+  
+}
+
 /*
 Make sure disabled buttons don't get the pointer cursor.
 */

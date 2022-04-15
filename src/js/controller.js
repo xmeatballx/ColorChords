@@ -5,6 +5,7 @@ import { Palette } from './palette';
 import { Params } from './params';
 import { Chords } from './chords';
 import { Keyboard } from './keyboard';
+import { CodeView } from './codeview';
 
 function alreadyActive(key) {
   const active = key.getAttribute('data-active');
@@ -25,6 +26,7 @@ class Controller {
     this.params = new Params();
     this.chords = new Chords();
     this.keyboard = new Keyboard();
+    this.codeView = new CodeView();
     this.actives = [];
     this.mouseIsDown = false;
     this.shiftIsDown = false;
@@ -42,10 +44,33 @@ class Controller {
     const octaveDown = document.querySelector('.octave-down');
     const chords = document.querySelector('.chords');
 
-    holdSwitch.addEventListener('click', (e) => this.useHold(e));
+    // holdSwitch.addEventListener('click', (e) => this.useHold(e));
     octaveUp.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
     octaveDown.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
     chords.addEventListener('click', (e) => this.handleChords(e));
+  }
+
+  handleCodeview() {
+    const cssButton = document.querySelector('.css');
+    console.log(cssButton);
+    const codeViewElement = document.querySelector('.code-view');
+    const codeBlockElement = document.querySelector('#code');
+    const copyButton = document.querySelector('.copy');
+    cssButton.addEventListener('click', () => {
+      this.codeView.isOpen = !this.codeView.isOpen;
+      if (this.codeView.isOpen) {
+        codeViewElement.style.display = 'flex';
+      } else {
+        codeViewElement.style.display = 'none';
+      }
+    });
+    copyButton.addEventListener('click', () => {
+      const type = 'text/plain';
+      const blob = new Blob([codeBlockElement.textContent], { type });
+      const data = [new ClipboardItem({ [type]: blob })];
+      navigator.clipboard.write(data);
+      alert('Copied CSS variables to clipboard');
+    });
   }
 
   handleKeyBoardInput() {
@@ -54,6 +79,7 @@ class Controller {
       if (e.shiftKey) this.shiftIsDown = true;
       this.useKeyboardInput(e);
       this.palette.render(this.colors);
+      setTimeout(() => this.codeView.update(this.palette.cache), 500);
     });
 
     document.addEventListener('keyup', (e) => {
@@ -169,6 +195,8 @@ class Controller {
       this.disposeNote(e.target);
     }
     this.palette.render(this.colors);
+    console.log(this.palette.cache);
+    setTimeout(() => this.codeView.update(this.palette.cache), 500);
   }
 
   disposePianoInput(e) {
@@ -181,6 +209,7 @@ class Controller {
     this.actives.length = 0;
     this.useNote(e.target, e);
     this.palette.render(this.colors);
+    setTimeout(() => this.codeView.update(this.palette.cache), 500);
   }
 
   throttleMouseMoveEvent(callback, args) {
