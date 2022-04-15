@@ -42,7 +42,7 @@ class Controller {
     const octaveDown = document.querySelector('.octave-down');
     const chords = document.querySelector('.chords');
 
-    holdSwitch.addEventListener('click', (e) => this.useHold(e));
+    // holdSwitch.addEventListener('click', (e) => this.useHold(e));
     octaveUp.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
     octaveDown.addEventListener('click', (e) => this.params.useOctave(e, this.piano.octaves));
     chords.addEventListener('click', (e) => this.handleChords(e));
